@@ -10,7 +10,14 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
+Route::auth();
+Route::group(['middleware' => ['web', 'auth']], function () {
+	
+	Route::get('/', 'HomeController@index');		
+	Route::get('/home', 'HomeController@index');		
 });
+
+Route::get('auth/{provider}', 'Auth\AuthController@redirectToProvider');
+Route::get('auth/callback/{provider}',  'Auth\AuthController@handleProviderCallback');
+
+Route::get('user/activation/{token}', 'Auth\AuthController@activateUser')->name('user.activate');

@@ -12,7 +12,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'facebook_id', 'avatar'
     ];
 
     /**
@@ -21,6 +21,19 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token', 
     ];
+
+    public function social()
+    {
+        return $this->hasMany('App\Social');
+    }
+
+    public static function boot()
+    {
+        parent::boot();
+        static::creating(function($user){
+            $user->token = str_random(30);
+        });
+    }
 }
