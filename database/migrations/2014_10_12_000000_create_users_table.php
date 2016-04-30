@@ -12,9 +12,10 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('intact_users', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
+            $table->string('account_ref');                  // account ref is a string with uppercase letters and numbers as unique identifier for an account. 
+            $table->integer('affiliate')->default(null);   // the id of the affiliate who referred the user 
             $table->string('email')->unique();
             $table->string('password');
             $table->boolean('activated')->default(false);
