@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "732c385c44590c797c07d27ed992fcf2",
-    "content-hash": "205d3bac84374f9c6c594422171fdb10",
+    "hash": "3549b91a5046c9ac8c7c021bb0a6e510",
+    "content-hash": "4fee29ca6ae27e7510d2d87b8f92c14a",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -1324,6 +1324,85 @@
                 "shell"
             ],
             "time": "2016-03-09 05:03:14"
+        },
+        {
+            "name": "socialiteproviders/manager",
+            "version": "v2.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/SocialiteProviders/Manager.git",
+                "reference": "3c2253b75b4a3056ae8369f532d045ab213ce063"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/SocialiteProviders/Manager/zipball/3c2253b75b4a3056ae8369f532d045ab213ce063",
+                "reference": "3c2253b75b4a3056ae8369f532d045ab213ce063",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/socialite": "~2.0",
+                "php": "^5.6 || ^7.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "^0.9.4",
+                "phpunit/phpunit": "^5.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "SocialiteProviders\\Manager\\": "src/",
+                    "SocialiteProviders\\Manager\\Test\\": "tests/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Andy Wendt",
+                    "email": "andy@awendt.com"
+                }
+            ],
+            "description": "Easily add new or override built-in providers in Laravel Socialite.",
+            "time": "2016-04-21 15:44:54"
+        },
+        {
+            "name": "socialiteproviders/yahoo",
+            "version": "v2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/SocialiteProviders/Yahoo.git",
+                "reference": "d181761d6fb81ef49443cf5ad985ef8060717a94"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/SocialiteProviders/Yahoo/zipball/d181761d6fb81ef49443cf5ad985ef8060717a94",
+                "reference": "d181761d6fb81ef49443cf5ad985ef8060717a94",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.6 || ^7.0",
+                "socialiteproviders/manager": "~2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "SocialiteProviders\\Yahoo\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "DraperStudio",
+                    "email": "hello@draperstud.io"
+                }
+            ],
+            "description": "Yahoo OAuth2 Provider for Laravel Socialite",
+            "time": "2016-03-30 07:12:14"
         },
         {
             "name": "swiftmailer/swiftmailer",

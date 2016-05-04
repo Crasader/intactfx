@@ -1,86 +1,56 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Login</div>
-                <div class="panel-body">
+<section id="main">
+    <div class="container">
+        <div class="row">
+            <div id="login-register">
 
-                   @if (session('status'))
-                        <div class="alert alert-success">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+                <div id="tabs">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active">
+                            <a href="#login" aria-controls="login" role="tab" data-toggle="tab"><img src="{{ URL::asset('/img/button-icon.png') }}" alt="login" title="login" />Login</a>
+                        </li>
+                        <li role="presentation">
+                            <a href="#register" aria-controls="register" role="tab" data-toggle="tab">Register<img src="{{ URL::asset('/img/button-icon.png') }}" alt="login" title="login" /></a>
+                        </li>
+                    </ul>
+                </div><!--/ tabs -->
 
-                    @if (session('warning'))
-                        <div class="alert alert-warning">
-                            {{ session('warning') }}
-                        </div>
-                    @endif
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
-                        {!! csrf_field() !!}
+                <div id="logo-wrapper">
+                    <a href="index.html"><img src="{{ URL::asset('/img/logo.png') }}" alt="logo" title="logo" /></a>
+                </div><!--/ logo wrapper -->
 
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label class="col-md-4 control-label">E-Mail Address</label>
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane fade in active" id="login"> 
+                        
+                        <div id="form-wrapper">
+                           
+                            @include('forms.login')
 
-                            <div class="col-md-6">
-                                <input type="email" class="form-control" name="email" value="{{ old('email') }}">
+                            @include('forms.loginfooter')
 
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
+                        </div><!--/ form wrapper -->
+                          
+                    </div><!--/ tab panel -->
 
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label class="col-md-4 control-label">Password</label>
-
-                            <div class="col-md-6">
-                                <input type="password" class="form-control" name="password">
-
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="remember"> Remember Me
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    <i class="fa fa-btn fa-sign-in"></i>Login
-                                </button>
-
-                                <a class="btn btn-link" href="{{ url('/password/reset') }}">Forgot Your Password?</a>
-                            </div>
-                             <div class="col-md-6 col-md-offset-4">
-                             <br>   
-                                <!-- <a class="btn btn-info" href="auth/facebook" role="button">Login with fb</a> -->
-                                <a href="{{ url('auth/facebook') }}" class="btn btn-lg btn-primary btn-block facebook" type="submit">Facebook</a>
-                                <a href="{{ url('auth/google')}}" class="btn btn-lg btn-warning btn-block google" type="submit">Google</a>
-                                <a href="{{ url('auth/twitter')}}" class="btn btn-lg btn-primary btn-block google" type="submit">twitter</a>
-                            </div>
+                    <div role="tabpanel" class="tab-pane fade" id="register"> 
+                        
+                        <div id="form-wrapper">
                             
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+                             @include('forms.register')
+
+                             @include('forms.loginfooter')
+
+                        </div><!--/ form wrapper -->
+                    
+                    </div><!--/ tab panel -->
+
+                </div><!--/ tab content -->
+
+        </div><!--/ login/register -->
+
+        </div> <!-- row -->
+    </div> <!--container -->
+</section><!--/ section main -->
 @endsection

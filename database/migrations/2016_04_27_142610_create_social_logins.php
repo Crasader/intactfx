@@ -12,10 +12,10 @@ class CreateSocialLogins extends Migration
      */
     public function up()
     {
-        Schema::create('social_logins', function (Blueprint $table) {
+        Schema::create('intact_social_logins', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned()->index();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('intact_users')->onDelete('cascade');
             $table->string('provider', 32);
             $table->text('social_id');
             $table->string('avatar');
@@ -30,6 +30,6 @@ class CreateSocialLogins extends Migration
      */
     public function down()
     {
-        Schema::drop('social_logins');
+        Schema::drop('intact_social_logins');
     }
 }
