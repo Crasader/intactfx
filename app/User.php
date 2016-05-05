@@ -6,6 +6,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
+    protected $table = 'intact_users';
     /**
      * The attributes that are mass assignable.
      *
@@ -26,14 +27,18 @@ class User extends Authenticatable
 
     public function social()
     {
+
         return $this->hasMany('App\Social');
+
     }
 
     public static function boot()
     {
+
         parent::boot();
         static::creating(function($user){
             $user->token = str_random(30);
         });
+        
     }
 }

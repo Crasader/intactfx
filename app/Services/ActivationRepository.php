@@ -10,7 +10,7 @@ class ActivationRepository
 
     protected $db;
 
-    protected $table = 'user_activations';
+    protected $table = 'intact_user_activations';
 
     public function __construct(Connection $db)
     {

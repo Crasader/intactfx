@@ -47,10 +47,18 @@ return [
         'redirect' => env('GOOGLE_CALLBACK_URL'),
     ],
 
-     'twitter' => [
+    'twitter' => [
         'client_id'     => env('TW_CLIENT_ID'),
         'client_secret' => env('TW_CLIENT_SECRET'),
         'redirect'      => env('TW_CALLBACK_URL')
     ],
+
+    'yahoo' => [
+        'client_id'     => env('YAHOO_CLIENT_ID'),
+        'client_secret' => env('YAHOO_CLIENT_SECRET'),
+        'redirect'      => env('YAHOO_CALLBACK_URL')
+    ],
+
+    
 
 ];

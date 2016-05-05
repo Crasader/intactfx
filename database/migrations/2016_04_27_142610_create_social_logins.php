@@ -30,6 +30,6 @@ class CreateSocialLogins extends Migration
      */
     public function down()
     {
-        Schema::drop('social_logins');
+        Schema::drop('intact_social_logins');
     }
 }
