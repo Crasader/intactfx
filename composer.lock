@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "fa835868c94ed9076c7c5cc76d1e1b71",
-    "content-hash": "4fee29ca6ae27e7510d2d87b8f92c14a",
+    "hash": "487b2705ec10e85093a8b50167ab8f45",
+    "content-hash": "ceb4ae806d26b991b58d006d4aeee876",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -1366,6 +1366,43 @@
             ],
             "description": "Easily add new or override built-in providers in Laravel Socialite.",
             "time": "2016-04-21 15:44:54"
+        },
+        {
+            "name": "socialiteproviders/microsoft-live",
+            "version": "v2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/SocialiteProviders/Microsoft-Live.git",
+                "reference": "6305672c2c5e2b824794848678b23024ba901482"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/SocialiteProviders/Microsoft-Live/zipball/6305672c2c5e2b824794848678b23024ba901482",
+                "reference": "6305672c2c5e2b824794848678b23024ba901482",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.6 || ^7.0",
+                "socialiteproviders/manager": "~2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "SocialiteProviders\\Live\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "DraperStudio",
+                    "email": "hello@draperstud.io"
+                }
+            ],
+            "description": "Microsoft Live OAuth2 Provider for Laravel Socialite",
+            "time": "2016-03-30 07:16:06"
         },
         {
             "name": "socialiteproviders/yahoo",
