@@ -1,60 +1,37 @@
 @extends('layouts.app')
 
 @section('content')
-<nav class="navbar navbar-default navbar-static-top">
-        <div class="container">
-            <div class="navbar-header">
 
-                <!-- Collapsed Hamburger -->
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
-                    <span class="sr-only">Toggle Navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
+  @include('intactfx.header')
 
-                <!-- Branding Image -->
-                <a class="navbar-brand" href="{{ url('/') }}">
-                  
-                     @if (Auth::guest())
-                         Laravel
-                    @else
-                        Hi, {{ Auth::user()->name }} </span>
-                    @endif
-                </a>
-            </div>
+  <section id="main">
+    
+    @include('intactfx.main')
 
-            <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                <!-- Left Side Of Navbar -->
-                <ul class="nav navbar-nav">
-                    <li><a href="{{ url('/home') }}">Home</a></li>
-                </ul>
+    @include('intactfx.account_tabs_head')
+    
+    @include('intactfx.account_tabs_content')
 
-                <!-- Right Side Of Navbar -->
-                <ul class="nav navbar-nav navbar-right">
-                    <!-- Authentication Links -->
-                    @if (Auth::guest())
-                        <li><a href="{{ url('/login') }}">Login</a></li>
-                        <li><a href="{{ url('/register') }}">Register</a></li>
-                    @else
-                        <img src="{{ Auth::user()->avatar }}" height="50" width="50">
-                        <a href="{{ url('/logout') }}">Logout</a>
-                    @endif
-                </ul>
-            </div>
-        </div>
-    </nav>
-<div class="container">
-    <div class="row">
-        <div class="col-md-10 col-md-offset-1">
-            <div class="panel panel-default">
-                <div class="panel-heading">Dashboard</div>
+  </section><!--/ section main -->
+ 
+  @include('intactfx.footer')
+  
+   
+@endsection
 
-                <div class="panel-body">
-                    You are logged in!
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+@section('footer')
+    <style type="text/css">
+        @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300italic,300,400italic,600,600italic,700,700italic,800,800italic);
+        #main {
+            clear: both;
+            overflow: hidden;
+            background: #f4f3f3;
+        }
+        #main .container {
+            background: #f4f3f3;
+            overflow: hidden;
+            padding-top: 35px;
+            padding-bottom: 20px;
+        }
+    </style>
 @endsection
