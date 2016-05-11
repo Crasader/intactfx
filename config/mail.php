@@ -56,7 +56,7 @@ return [
     |
     */
 
-    'from' => ['address' => null, 'name' => null],
+    'from' => ['address' => 'noreplay@intactfx.com', 'name' => 'intactfx'],
 
     /*
     |--------------------------------------------------------------------------
