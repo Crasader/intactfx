@@ -1,9 +1,10 @@
 <?php
 namespace App\Repositories;
 
-
+use App\User;
 use Illuminate\Mail\Mailer;
 use Illuminate\Mail\Message;
+use Illuminate\Support\Facades\Mail;
 
 class ActivationService
 {
@@ -30,19 +31,28 @@ class ActivationService
         $token = $this->activationRepo->createActivation($user);
 
         $link = route('user.activate', $token);
-        $message = sprintf('Activate account <a href="%s">%s</a>', $link, $link);
 
-        $this->mailer->queue($message, function (Message $m) use ($user) {
-            $m->to($user->email)->subject('Activation mail');
-        });
+        // $message = sprintf('Activate account <a href="%s">click here</a>', $link, $link);
 
-        // Mailer::queue('emails.notice', compact('user', 'will'), function($message) use ($filename){
+        $message = sprintf('Activate account <a href="%s">click here</a>', $link, $link);
+
+        // $this->mailer->raw('email.confirm', function (Message $m) use ($user) {
         //     $m->to($user->email)->subject('Activation mail');
         // });
 
+        
+
+        // $this->mailer->raw('emails.confirm', compact('user', 'link'), function(Message $m) use ($user){
+        //     $m->to($user->email)->subject('Activation mail');
+        // });
+        
+        Mail::queue('emails.confirm', compact('user', 'token'), function($message) use ($user){
+            $message->to($user->email)->subject('Activation mail');
+        });
+        
 
     }
-
+  
     public function activateUser($token)
     {
         $activation = $this->activationRepo->getActivationByToken($token);
