@@ -59,6 +59,12 @@ return [
         'redirect'      => env('YAHOO_CALLBACK_URL')
     ],
 
+    'live' => [
+        'client_id' => env('MICROSOFT_KEY'),
+        'client_secret' => env('MICROSOFT_SECRET'),
+        'redirect' => env('MICROSOFT_REDIRECT_URI'),  
+    ], 
+
     
 
 ];

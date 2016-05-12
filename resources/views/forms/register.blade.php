@@ -1,6 +1,6 @@
 <div class="form-body">
     <div class="title-wrapper">
-        <img src="{{ URL::asset('/img/login-icon.png') }}" alt="login icon" title="login icon" />
+        <img src="{{ URL::asset('/img/login_img/login-icon.png') }}" alt="login icon" title="login icon" />
         <h2><span>Don’t have an account?</span> Register Now</h2>
     </div><!--/ title wrapper -->
 
@@ -60,7 +60,7 @@
             </div>
 
             <div class="form-group text-center">
-                <img src="{{ URL::asset('/img/form-separator.png') }}" class="form-separator" />
+                <img src="{{ URL::asset('/img/login_img/form-separator.png') }}" class="form-separator" />
                 <button type="submit" id="registerbutton">Submit</button>
             </div>
 

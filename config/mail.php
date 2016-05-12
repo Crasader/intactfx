@@ -56,7 +56,11 @@ return [
     |
     */
 
+<<<<<<< HEAD
     'from' => ['address' => 'noreply@intactfx.com', 'name' => 'intactfx Auto'],
+=======
+    'from' => ['address' => 'noreplay@intactfx.com', 'name' => 'intactfx'],
+>>>>>>> 883f0f4452aa5d2fc15ece698e44f127aef25757
 
     /*
     |--------------------------------------------------------------------------
