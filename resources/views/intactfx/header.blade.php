@@ -10,9 +10,13 @@
         <div id="profile">
 
             <div class="profile-content">
-
-                <h3 class="username">Welcome, {{ Auth::user()->name or '' }}</h3>
-                <p class="userid">( I.D. - 12345)</p>
+                @if(Auth::user()->name!='')
+                    <h3 class="username">Welcome, {{ Auth::user()->name }}</h3>
+                @else
+                    <h3 class="username">Welcome, Daniel</h3>
+                @endif
+                
+                <p class="userid">( I.D. - {{ $account->id }})</p>
                 <p><a href="#">Change Password</a> &nbsp;<span class="separator">|</span>&nbsp; <a href="{{ url('logout') }}">Log out</a></p>
             </div>
 

@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Account;
 use App\Http\Requests;
+use App\Mt4Account;
 use App\Social;
 use App\User;
 use Auth;
-use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
@@ -32,12 +34,18 @@ class HomeController extends Controller
         $user = Auth::user();
         // dd($user);
         try {
-           $social = Social::where('user_id', $user->id)->firstOrFail();
+            $social = Social::where('user_id', $user->id)->firstOrFail();
         } catch (ModelNotFoundException $ex) {
-          $social = '';
+            $social = '';
         }
-       
-        
-        return view('home', compact('social'));
+
+        $account = Account::where('user_id', $user->id)->first();
+        $mt4account = Mt4Account::where('eoffice_id', $account->id)->get();
+
+        // dd($mt4account);
+
+        return view('home', compact('social', 'account', 'mt4account'));
+
     }
+
 }

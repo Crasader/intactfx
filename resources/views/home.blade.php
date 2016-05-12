@@ -29,7 +29,10 @@
 
         @include('intactfx.account_tabs_content')
 
+
     </section><!--/ section main -->
+
+    @include('modal.main_wallet_modal')
 
     @include('intactfx.footer')
   
