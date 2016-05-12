@@ -7,6 +7,7 @@ use App\Social;
 use App\User;
 use Auth;
 use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class HomeController extends Controller
 {
@@ -30,8 +31,13 @@ class HomeController extends Controller
         
         $user = Auth::user();
         // dd($user);
-        $social = Social::where('user_id', $user->id)->firstOrFail();
-        // dd($social->avatar);
+        try {
+           $social = Social::where('user_id', $user->id)->firstOrFail();
+        } catch (ModelNotFoundException $ex) {
+          $social = '';
+        }
+       
+        
         return view('home', compact('social'));
     }
 }
