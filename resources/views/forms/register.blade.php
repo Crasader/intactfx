@@ -1,6 +1,6 @@
 <div class="form-body">
     <div class="title-wrapper">
-        <img src="{{ URL::asset('/img/login-icon.png') }}" alt="login icon" title="login icon" />
+        <img src="{{ URL::asset('/img/login_img/login-icon.png') }}" alt="login icon" title="login icon" />
         <h2><span>Don’t have an account?</span> Register Now</h2>
     </div><!--/ title wrapper -->
 
@@ -8,7 +8,7 @@
         <form  class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
             {!! csrf_field() !!}
             
-            <div class="form-group">
+           <!--  <div class="form-group">
 
                 <div class="styled-select1">
                     <select class="form-control" id="accountselect">
@@ -30,10 +30,10 @@
                     </select>
                 </div>
 
-            </div>
+            </div> -->
 
             <div class="form-group">
-                <input type="text" class="form-control" name="email" value="{{ old('name') }}"  id="InputEmail" required="" autofocus="">
+                <input type="text" class="form-control" name="email" value="{{ old('name') }}"  id="InputEmail1"  placeholder="Email" required="" autofocus="">
                  @if ($errors->has('email'))
                     <span class="help-block">
                         <strong>{{ $errors->first('email') }}</strong>
@@ -42,7 +42,7 @@
             </div>
 
             <div class="form-group">
-                <input type="password" class="form-control" id="InputPassword" name="password" required="">
+                <input type="password" class="form-control" id="InputPassword3" name="password" required=""  placeholder="Password">
                  @if ($errors->has('password'))
                     <span class="help-block">
                         <strong>{{ $errors->first('password') }}</strong>
@@ -51,7 +51,7 @@
             </div>
 
             <div class="form-group">
-                <input type="password" class="form-control" id="InputPassword2" name="password_confirmation" required=""/>
+                <input type="password" class="form-control" id="InputPassword4" name="password_confirmation" placeholder="Confirm Password" required=""/>
                 @if ($errors->has('password_confirmation'))
                     <span class="help-block">
                         <strong>{{ $errors->first('password_confirmation') }}</strong>
@@ -60,7 +60,7 @@
             </div>
 
             <div class="form-group text-center">
-                <img src="{{ URL::asset('/img/form-separator.png') }}" class="form-separator" />
+                <img src="{{ URL::asset('/img/login_img/form-separator.png') }}" class="form-separator" />
                 <button type="submit" id="registerbutton">Submit</button>
             </div>
 

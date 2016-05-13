@@ -56,7 +56,9 @@ return [
     |
     */
 
-    'from' => ['address' => 'noreply@intactfx.com', 'name' => 'intactfx Auto'],
+
+    'from' => ['address' => 'noreplay@intactfx.com', 'name' => 'intactfx'],
+
 
     /*
     |--------------------------------------------------------------------------
@@ -95,7 +97,7 @@ return [
     |
     */
 
-    // 'password' => env('MAIL_PASSWORD'),
+    'password' => env('MAIL_PASSWORD'),
 
     /*
     |--------------------------------------------------------------------------

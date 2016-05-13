@@ -21,6 +21,8 @@ class EventServiceProvider extends ServiceProvider
         \SocialiteProviders\Manager\SocialiteWasCalled::class => [
             // add your listeners (aka providers) here
             'SocialiteProviders\Yahoo\YahooExtendSocialite@handle',
+
+            'SocialiteProviders\Live\LiveExtendSocialite@handle',
         ],
     ];
 
