@@ -19,6 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->boolean('activated')->default(false);
             $table->string('token')->nullable();
+            $table->string('affiliate_id')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

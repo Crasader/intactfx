@@ -6,6 +6,7 @@ use App\Mt4Account;
 use Carbon\Carbon;
 use Faker\Factory as Faker;
 use Illuminate\Database\Connection;
+use Illuminate\Support\Facades\Mail;
 
 class AccountRepository
 {
@@ -26,16 +27,23 @@ class AccountRepository
 
        $this->generateMt4Account($account);
 
+        Mail::queue('emails.affiliate', compact('user', 'account'), function($message) use ($user){
+            $message->to($user->email)->subject('Thank you for signing up.');
+        });
+
     }
 
     private function generateAccount($user)
     {
-
-       return Account::create([
-            'id' => Faker::create()->numberBetween($min = 100000, $max = 999999),
-            // Faker::create()->randomNumber($nbDigits = 6),
-            'user_id' => $user->id,
-        ]);
+        $id = strval(strtoupper(Faker::create()->randomLetter($nbDigits = 2)) . strtoupper(Faker::create()->randomLetter($nbDigits = 2)) . Faker::create()->numberBetween($min = 100000, $max = 999999));
+        // . Faker::create()->numberBetween($min = 100000, $max = 999999)
+        
+        $account = new Account;
+        $account->id = $id;
+        $account->user_id = $user->id;
+        $account->save();
+        
+        return $account;
 
     }
 
@@ -49,6 +57,7 @@ class AccountRepository
             'ip_high',
             'broker'
         ];
+
 
         foreach ($accountType as $value) {
             Mt4Account::create([

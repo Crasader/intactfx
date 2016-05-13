@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Auth;
 
-
+use Faker\Factory as Faker;
 use App\Http\Controllers\Controller;
 use App\Mailers\AppMailer;
+use App\Repositories\AccountRepository;
 use App\Services\ActivationService;
 use App\Social;
 use App\User;
@@ -12,6 +13,7 @@ use Auth;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Socialite;
 use Validator;
 
@@ -45,10 +47,11 @@ class AuthController extends Controller
      */
     protected $activationService;
 
-    public function __construct(ActivationService $activationService)
+    public function __construct(ActivationService $activationService, AccountRepository $accountRepo)
     {
         $this->middleware($this->guestMiddleware(), ['except' => 'logout']);
         $this->activationService = $activationService;
+        $this->accountRepo = $accountRepo;
     }
 
     /**
@@ -95,6 +98,7 @@ class AuthController extends Controller
             // 'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+            'affiliate_id' => isset($data['eoffice_id']) ? $data['eoffice_id'] : '',
         ]);
         
     }
@@ -154,11 +158,18 @@ class AuthController extends Controller
 
             if(empty($sameSocialId))
             {
+                $password = Faker::create()-> password();
                 //There is no combination of this social id and provider, so create new one
                 $newSocialUser = new User;
                 $newSocialUser->email        = $user->email;
                 $newSocialUser->name         = $user->name;
+                $newSocialUser->password     =  bcrypt($password);
+                $newSocialUser->activated     =  true;
                 $newSocialUser->save();
+
+                $this->accountRepo->createAccount($newSocialUser);
+
+                $this->sendPasswordforSocial($newSocialUser, $password);
 
                 $socialData = new Social;
                 $socialData->social_id = $user->id;
@@ -179,6 +190,27 @@ class AuthController extends Controller
 
         return redirect('home');
        
+    }
+
+    protected function sendPasswordforSocial($user, $password)
+    {
+        Mail::queue('emails.password', compact('user', 'password'), function($message) use ($user){
+            $message->to($user->email)->subject('Temporary Password');
+        });
+    }
+
+    public function showLoginFormAffiliate(Request $request)
+    {
+        // dd($request->eoffice_id);
+        $eoffice_id = $request->eoffice_id;
+        $view = property_exists($this, 'loginView')
+                    ? $this->loginView : 'auth.authenticate';
+
+        if (view()->exists($view)) {
+            return view($view);
+        }
+
+        return view('auth.login',compact('eoffice_id'));
     }
  
 }

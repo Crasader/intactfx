@@ -8,7 +8,9 @@ class Account extends Model
 {
 
     protected $table = 'intact_accounts';
-
+	
+	public $incrementing = false;
+    
     protected $fillable = [
         'id', 'user_id', 'main_wallet', 'commision_wallet', 'iprofit_commision_wallet'
     ];

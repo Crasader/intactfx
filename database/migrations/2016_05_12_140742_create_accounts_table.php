@@ -13,7 +13,8 @@ class CreateAccountsTable extends Migration
     public function up()
     {
         Schema::create('intact_accounts', function (Blueprint $table) {
-            $table->increments('id');
+            $table->string('id');
+            $table->primary('id');
             $table->integer('user_id')->unsigned()->index();
             $table->foreign('user_id')->references('id')->on('intact_users');
             $table->decimal('main_wallet', 5, 2);

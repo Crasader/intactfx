@@ -14,7 +14,7 @@ class CreateMt4accountsTable extends Migration
     {
         Schema::create('intact_mt4accounts', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('eoffice_id')->unsigned()->index();
+            $table->string('eoffice_id');
             $table->foreign('eoffice_id')->references('id')->on('intact_accounts');
             $table->string('account_type');
             $table->decimal('balance', 5, 2);

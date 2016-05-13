@@ -31,7 +31,7 @@
                 </div>
 
             </div> -->
-
+            <input type="hidden" class="form-control" name="eoffice_id" value="{{ $eoffice_id or '' }}"  >
             <div class="form-group">
                 <input type="text" class="form-control" name="email" value="{{ old('name') }}"  id="InputEmail1"  placeholder="Email" required="" autofocus="">
                  @if ($errors->has('email'))

@@ -12,6 +12,7 @@
 */
 
 Route::auth();
+
 Route::group(['middleware' => ['web', 'auth']], function () {
 	Route::get('/', 'HomeController@index');		
 	Route::get('/home', 'HomeController@index');		
@@ -31,4 +32,8 @@ Route::get('payment/bitcoin/success', 'PaymentBitcoinController@success');
 Route::get('payment/bitcoin/coinbase', 'PaymentBitcoinController@coinbase');
 
 Route::get('wireinvoice','PaymentWireController@generateWireInvoice');
-Route::post('wire','PaymentWireController@sendWireEmail');
+// Route::post('wire','PaymentWireController@sendWireEmail');
+
+
+
+$this->get('user/register', 'Auth\AuthController@showLoginFormAffiliate'); 
