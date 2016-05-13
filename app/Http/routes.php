@@ -32,7 +32,7 @@ Route::get('payment/bitcoin/success', 'PaymentBitcoinController@success');
 Route::get('payment/bitcoin/coinbase', 'PaymentBitcoinController@coinbase');
 
 Route::get('wireinvoice','PaymentWireController@generateWireInvoice');
-// Route::post('wire','PaymentWireController@sendWireEmail');
+Route::post('wire','PaymentWireController@sendWireEmail');
 
 
 
