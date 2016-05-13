@@ -1,9 +1,12 @@
 <?php
-namespace App;
+namespace App\Services;
 
-
+use App\User;
 use Illuminate\Mail\Mailer;
 use Illuminate\Mail\Message;
+use Illuminate\Support\Facades\Mail;
+use App\Repositories\AccountRepository;
+use App\Repositories\ActivationRepository;
 
 class ActivationService
 {
@@ -11,13 +14,16 @@ class ActivationService
     protected $mailer;
 
     protected $activationRepo;
+    
+    protected $accountRepo;
 
     protected $resendAfter = 24;
 
-    public function __construct(Mailer $mailer, ActivationRepository $activationRepo)
+    public function __construct(Mailer $mailer, ActivationRepository $activationRepo, AccountRepository $accountRepo)
     {
         $this->mailer = $mailer;
         $this->activationRepo = $activationRepo;
+        $this->accountRepo = $accountRepo;
     }
 
     public function sendActivationMail($user)
@@ -30,14 +36,20 @@ class ActivationService
         $token = $this->activationRepo->createActivation($user);
 
         $link = route('user.activate', $token);
-        $message = sprintf('Activate account <a href="%s">%s</a>', $link, $link);
 
-        $this->mailer->raw($message, function (Message $m) use ($user) {
-            $m->to($user->email)->subject('Activation mail');
+        $message = sprintf('Activate account <a href="%s">click here</a>', $link, $link);
+
+        // $this->mailer->raw('emails.confirm', compact('user', 'link'), function(Message $m) use ($user){
+        //     $m->to($user->email)->subject('Activation mail');
+        // });
+        
+        Mail::queue('emails.confirm', compact('user', 'token'), function($message) use ($user){
+            $message->to($user->email)->subject('Activation mail');
         });
+        
 
     }
-
+  
     public function activateUser($token)
     {
         $activation = $this->activationRepo->getActivationByToken($token);
@@ -53,6 +65,8 @@ class ActivationService
         $user->save();
 
         $this->activationRepo->deleteActivation($token);
+
+        $this->accountRepo->createAccount($user);
 
         return $user;
 

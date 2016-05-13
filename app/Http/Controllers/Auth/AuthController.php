@@ -3,17 +3,17 @@
 namespace App\Http\Controllers\Auth;
 
 
+use App\Http\Controllers\Controller;
+use App\Mailers\AppMailer;
+use App\Services\ActivationService;
+use App\Social;
 use App\User;
 use Auth;
+use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Illuminate\Foundation\Auth\ThrottlesLogins;
+use Illuminate\Http\Request;
 use Socialite;
 use Validator;
-use App\Social;
-use Illuminate\Http\Request;
-use App\Mailers\AppMailer;
-use App\Repositories\ActivationService;
-use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\ThrottlesLogins;
-use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
 
 class AuthController extends Controller

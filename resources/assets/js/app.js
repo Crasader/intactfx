@@ -10,3 +10,5 @@
  */
 
 require('./core/bootstrap');
+
+new Vue(require('./intactfx'));

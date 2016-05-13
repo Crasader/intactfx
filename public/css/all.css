@@ -768,7 +768,7 @@ h4 {
 #header #profile .profile-content .username {
 	color: #fff;
 	margin: 0;
-	font-size: 22px;
+	font-size: 13px;
 	line-height: 22px;
 	font-weight: 700;
 }
@@ -2119,4 +2119,43 @@ img.alignright {
 	}
 	 
 } 
+
+
+.modal-nav-tabs {
+	border: none;
+}
+
+.modal-nav-tabs > li {
+	margin: 0;
+	width: 20%;
+}
+
+.modal-nav-tabs > li > a {
+	margin: 0;
+	border-radius: 0;
+	color:#fff;
+	text-align: center;
+	text-decoration: none;
+	display: block;
+	height: 129px;
+	padding: 90px 0 0 0;
+	transition: all 0.5s ease 0s;
+    -webkit-transition: all 0.5s ease 0s;
+    -moz-transition: all 0.5s ease 0s;
+    -o-transition: all 0.5s ease 0s;
+}
+
+.modal-nav-tabs > li > a:hover {
+	background: #4a5255;
+	color: #fff;
+	border: none;
+}
+
+.modal-nav-tabs > li.active > a, .modal-nav-tabs > li.active > a:focus, .modal-nav-tabs > li.active > a:hover {
+	background-color: #4a5255;
+	color: #fff;
+	border-radius: 0;
+	border: none;
+	text-decoration: none;
+}
 /*# sourceMappingURL=all.css.map */

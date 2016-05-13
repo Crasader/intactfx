@@ -9,20 +9,23 @@
         <!-- Additional CSS includes -->
         @yield('override_css')
         <!-- END STYLESHEETS -->
+        @include('scripts.globals')
     </head>
     
     <body>
+        <div id="intactfx-app" v-cloak>
+        
+            @yield('content')
+                          
+            <!-- BEGIN JAVASCRIPT -->
+            <!--JS lib-->
+            <script src="{{ URL::asset('js/app.js') }}"> </script> 
+            <!-- Other JS -->
+            <script src="{{ URL::asset('js/custom.js') }}"> </script>   
+            <!-- END JAVASCRIPT -->
 
-        @yield('content')
-                      
-        <!-- BEGIN JAVASCRIPT -->
-        <!--JS lib-->
-        <script src="{{ URL::asset('js/app.js') }}"> </script> 
-        <!-- Other JS -->
-        <script src="{{ URL::asset('js/custom.js') }}"> </script>   
-        <!-- END JAVASCRIPT -->
+        </div>
 
         @yield('footer')
-        
     </body>
 </html>
