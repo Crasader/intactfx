@@ -16,13 +16,13 @@
                     <p><a href="#" class="red-btn">Change Trading Password</a></p>
                     <p><a href="#" class="green-btn">Change Investor Password</a></p>
                     <div class="socialmedia-wrapper">
-                      <h4>Connect Social Account</h4>
+                      <!-- <h4>Connect Social Account</h4>
                       <div class="socialmedia">
                         <a href="#" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>
                         <a href="#" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
                         <a href="#" target="_blank"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
                         <a href="#" target="_blank"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
-                      </div>
+                      </div> -->
                     </div>
 
                   </div>
