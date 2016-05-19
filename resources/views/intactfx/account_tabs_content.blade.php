@@ -5,7 +5,7 @@
           <div class="tab-content">
 
             <div role="tabpanel" class="tab-pane fade in active" id="miniaccount">
-              <div class="col-md-3 nopadding">
+              <div class="col-md-3 nopadding col-20">
                 <div id="account-wrapper">
                   <div class="account-icon">
                     <img src="/img/member_img/mini-account-blue.png" alt="mini account" title="mini account" />
@@ -28,7 +28,7 @@
                   </div>
                 </div>
               </div><!--/ col-md-3 -->
-              <div class="col-md-9">
+              <div class="col-md-9 col-78">
 
                 <div class="table">
                 <table class="table">
