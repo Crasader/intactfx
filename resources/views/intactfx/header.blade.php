@@ -4,7 +4,7 @@
             <a href="index.html"><img src="/img/member_img/logo.png" alt="logo" title="logo" /></a> 
         </div><!--/ logo -->
         <div class="header-buttons">
-            <a href="#">Language</a>
+            <a href="#" class="fa lang">Language</a>
             <a href="#">Settings</a>
         </div>
         <div id="profile">
