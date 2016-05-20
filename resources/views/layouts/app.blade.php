@@ -23,7 +23,8 @@
             <!--JS lib-->
             <script src="{{ URL::asset('js/app.js') }}"> </script> 
             <!-- Other JS -->
-            <script src="{{ URL::asset('js/custom.js') }}"> </script>   
+            <script src="{{ URL::asset('js/custom.js') }}"> </script>
+            <script src="{{ asset('js/customscript.js') }}"></script>
             <!-- END JAVASCRIPT -->
 
         </div>

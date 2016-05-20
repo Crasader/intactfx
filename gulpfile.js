@@ -21,7 +21,10 @@ elixir(function(mix) {
 
     mix.scripts([
         'custom.js',
+        "customscript.js"
     ],'public/js/custom.js');
+
+
 
 
     mix.browserify('app.js', 'public/js/app.js');
