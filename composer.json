@@ -22,10 +22,12 @@
     },
     "autoload": {
         "classmap": [
-            "database"
+            "database",
+            "app/Libraries"
         ],
         "files":[
-            "app/helpers.php"
+            "app/helpers.php",
+            "app/Libraries/twitteroauth/twitteroauth.php"
         ],
         "psr-4": {
             "App\\": "app/"

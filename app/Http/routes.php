@@ -18,6 +18,8 @@ Route::group(['middleware' => ['web', 'auth']], function () {
 	Route::get('/home', 'HomeController@index');		
 	Route::get('/pm', 'PaymentPerfectMoneyController@index');
 	Route::get('/bitcoin', 'PaymentBitcoinController@index');
+
+	Route::post('fetchtwitterfeeds', 'HomeController@get_twitter_feeds');
 });
 
 Route::get('auth/{provider}', 'Auth\AuthController@redirectToProvider');
@@ -33,6 +35,13 @@ Route::get('payment/bitcoin/coinbase', 'PaymentBitcoinController@coinbase');
 
 Route::get('wireinvoice','PaymentWireController@generateWireInvoice');
 Route::post('wire','PaymentWireController@sendWireEmail');
+
+/**
+ * Authenticate Twitter
+ */
+Route::get('twitter-authenticate', 'TwitterOauthController@auth_twitter');
+Route::get('twitter-callback', 'TwitterOauthController@auth_callback');
+
 
 
 

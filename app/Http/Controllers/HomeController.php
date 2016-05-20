@@ -48,4 +48,11 @@ class HomeController extends Controller
 
     }
 
+    public function get_twitter_feeds()
+    {
+        $feeds = TwitterOauthController::getFeeds();
+
+        echo json_encode($feeds->statuses);
+    }
+
 }

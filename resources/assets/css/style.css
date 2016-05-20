@@ -2147,3 +2147,111 @@ img.alignright {
 	border: none;
 	text-decoration: none;
 }
+
+/**
+ * Memberpanel Folders
+ */
+.wallet{
+	position: relative;
+}
+.mainwallet{
+	background-image: url(../img/member_img/main-wallet.png);
+	width: 507px;
+	height: 208px;
+	-webkit-background-size: 100% 100%;
+	background-size: 100% 100%;
+	max-width: 100%;
+}
+.commisionwallet_red{
+	background-image: url(../img/member_img/commision-wallet-red.png);
+	width: 251px;
+	height: 101px;
+	-webkit-background-size: 100% 100%;
+	background-size: 100% 100%;
+	max-width: 100%;
+}
+.commisionwallet_green{
+	background-image: url(../img/member_img/commision-wallet-green.png);
+	width: 258px;
+	height: 100px;
+	-webkit-background-size: 100% 100%;
+	background-size: 100% 100%;
+	max-width: 100%;
+}
+/**
+ * Wallet text position
+ */
+.mainwallet.wallet .position{
+	position: absolute;
+    left: 40%;
+    top: 7rem;
+    text-align: center;
+}
+.mainwallet.wallet .position h2{
+	font-size: 70px;
+	font-weight: bold;
+	color: #FFF;
+    text-shadow: #9C9A9A 2px 2px 2px;
+}
+.mainwallet.wallet .position p{
+	font-size: 25px;
+	color: #FFF;
+    text-shadow: #9C9A9A 2px 2px 2px;
+	text-transform: uppercase;
+}
+
+
+.commisionwallet_red.wallet .position{
+	position: absolute;
+    left: 36%;
+    top: 2.5rem;
+    text-align: center;
+}
+.commisionwallet_red.wallet .position h2{
+	font-size: 30px;
+	color: #FFF;
+    text-shadow: #9C9A9A 2px 2px 2px;
+    padding:0;
+    margin:0;
+    font-weight: bold;
+}
+.commisionwallet_red.wallet .position p{
+	font-size: 12px;
+	color: #FFF;
+    text-shadow: #9C9A9A 2px 2px 2px;
+	text-transform: uppercase;
+}
+
+.commisionwallet_green.wallet .position{
+	position: absolute;
+    left: 36%;
+    top: 2.5rem;
+    text-align: center;
+}
+.commisionwallet_green.wallet .position h2{
+	font-size: 30px;
+	font-weight: bold;
+	color: #FFF;
+    text-shadow: #9C9A9A 2px 2px 2px;
+    padding:0;
+    margin:0;
+}
+.commisionwallet_green.wallet .position p{
+	font-size: 12px;
+	color: #FFF;
+    text-shadow: #9C9A9A 2px 2px 2px;
+	text-transform: uppercase;
+}
+@media only screen and (max-width: 511px){
+	.mainwallet.wallet .position h2{
+		font-size: 50px;
+	}
+}
+@media only screen and (max-width: 390px){
+	.mainwallet.wallet .position h2{
+		font-size: 40px;
+	}
+	.mainwallet.wallet .position{
+		left: 32%;
+	}
+}
