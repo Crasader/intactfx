@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" id="testingapp">
       <div class="row">
         <div class="content">
           <div class="col-md-6">
@@ -39,10 +39,10 @@
             <div id="recentnews">
               <h3 class="recentnews-block-title">Recent News</h3>
               <div class="recentnews-block">
-                <div class="recentnews-thumb">
-                  <img src="/img/member_img/recentnews-thumb.jpg" alt="recent news" title="recent news" />
+                <div class="recentnews-thumb col-md-2">
+                  <img src="/img/member_img/recentnews-thumb.jpg" alt="recent news" title="recent news" class="img-responsive" />
                 </div>
-                <div class="recentnews-content">
+                <div class="recentnews-content col-md-9">
                   <h4>Proin gravida nibh vel velit auctor aliqut velit auctor aliquet enim</h4>
                   <span class="glyphicon glyphicon-chevron-right blue-icon" aria-hidden="true"></span>
                   <div class="recentnews-excerpt">
@@ -59,10 +59,8 @@
                 <h3 class="twiiter-ribbon">Recent Tweet</h3>
               </div>
               
-              <div v-for="feeds in tweet_feeds">
-                <div v-for="datas in feeds.data">
-                @{{datas.text}}
-                </div>
+              <div v-for="tweets in tweet_feeds">
+                
               </div>
               <!-- <div class="tweets">
                 <h4>#intactfx</h4>
@@ -79,7 +77,7 @@
             </div><!--/ twitter -->
           </div>
 
-          <div class="col-md-12">
+          <!-- <div class="col-md-12">
             <div id="content-links">
                 <ul>
                   <li><a href="#">Accounts</a></li>
@@ -88,7 +86,7 @@
                   <li><a href="#">Contests</a></li>
                 </ul>
               </div>
-          </div>
+          </div> -->
 
          </div><!--/ content -->
        </div><!--/ row -->

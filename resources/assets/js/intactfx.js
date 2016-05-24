@@ -15,6 +15,7 @@ module.exports = {
     	wallet:{
 			amount: 0,	
 		},
+		tweet_feeds:[]
 	},
 
 	created(){
@@ -22,6 +23,10 @@ module.exports = {
 
 	events:{
 
+	},
+
+	ready: function(){
+		this.fetchTwitterFeeds();
 	},
 
 	methods:{
@@ -38,6 +43,16 @@ module.exports = {
 			})
 
 			return false;
+		},
+		fetchTwitterFeeds: function(){
+			
+			this.$http.post(window.location.href+'fetchtwitterfeeds', {
+				_token:document.querySelector("meta[name='csrf-token']").getAttribute('content')
+			}, function(tweetfeeds){
+				// this.$set('tweet_feeds', tweetfeeds);
+				this.tweet_feeds = tweetfeeds;
+				console.log(this.tweet_feeds);
+			});
 		}
 	}
 

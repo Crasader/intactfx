@@ -1,10 +1,35 @@
 <div id="tab-wrapper">
       
-      <div class="container">
-        <div class="row">
+      <div class="container margin-top-4">
+
+        <div>
+
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Accounts</a></li>
+    <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Services</a></li>
+    <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Promotions and Bonuses</a></li>
+    <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Contest</a></li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="main tab-content">
+    <div role="tabpanel" class="tab-pane active" id="home">
+
+        
           <div class="tab-content">
 
             <div role="tabpanel" class="tab-pane fade in active" id="miniaccount">
+              <div class="icon-selection col-md-12">
+                <ul>
+                  <li><a href="#"><span class="main-acct"></span></a></li>
+                  <li><a href="#"><span class="standard-acct"></span></a></li>
+                  <li><a href="#"><span class="profitlowrisk"></span></a></li>
+                  <li><a href="#"><span class="profithightrisk"></span></a></li>
+                  <li><a href="#"><span class="intactbrokercapital"></span></a></li>
+                </ul>
+              </div>
+
               <div class="col-md-3 nopadding col-20">
                 <div id="account-wrapper">
                   <div class="account-icon">
@@ -13,8 +38,8 @@
                   <div class="account-information">
                     <h3>Mini Account</h3>
                     <p><a href="#" class="add-account-btn"><i class="fa fa-plus" aria-hidden="true"></i> Add Account </a></p>
-                    <p><a href="#" class="red-btn">Change Trading Password</a></p>
-                    <p><a href="#" class="green-btn">Change Investor Password</a></p>
+                    <p><a href="#"><img src="{{url('img/member_img/changetradingbutton.png')}}"></a></p>
+                    <p><a href="#"><img src="{{url('img/member_img/changeinvestorpassword.png')}}"></a></p>
                     <div class="socialmedia-wrapper">
                       <!-- <h4>Connect Social Account</h4>
                       <div class="socialmedia">
@@ -432,6 +457,15 @@
 
 
           </div><!--/ tab content -->
+        
+
         </div>
+    <div role="tabpanel" class="tab-pane" id="profile">...</div>
+    <div role="tabpanel" class="tab-pane" id="messages">...</div>
+    <div role="tabpanel" class="tab-pane" id="settings">...</div>
+  </div>
+
+</div>
+
       </div>
     </div>
