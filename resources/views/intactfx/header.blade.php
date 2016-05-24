@@ -1,13 +1,17 @@
+<div class="prehead"></div>
 <header id="header">
-    <div class="container">
-        <div id="logo">
+    <div class="container" style="position:relative;">
+        <div id="logo" class="col-md-2 col-sm-12 col-xs-12">
             <a href="index.html"><img src="/img/member_img/logo.png" alt="logo" title="logo" /></a> 
         </div><!--/ logo -->
-        <div class="header-buttons">
-            <a href="#" class="fa lang">Language</a>
-            <a href="#">Settings</a>
+        <div class="header-buttons col-md-5 col-sm-12 col-xs-12 nopadding">
+            <ul>
+                <li><a href="#">Account Logs</a></li>
+                <li><a href="#" class="lang">Language</a></li>
+                <li><a href="#">Settings</a></li>
+            </ul>
         </div>
-        <div id="profile">
+        <div id="profile" class="col-md-5 col-sm-12 col-xs-12">
 
             <div class="profile-content">
                 @if(Auth::user()->name!='')

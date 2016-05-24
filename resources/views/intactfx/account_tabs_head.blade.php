@@ -1,4 +1,4 @@
-<div class="dark-bar">
+<!-- <div class="dark-bar">
   <div class="container">
     <ul class="nav nav-tabs" role="tablist">
       <li role="presentation" class="active"><a href="#miniaccount" aria-controls="miniaccount" role="tab" data-toggle="tab" class="icon1">Mini Account</a></li>
@@ -8,4 +8,4 @@
       <li role="presentation"><a href="#broker" aria-controls="broker" role="tab" data-toggle="tab" class="icon5">Intact Broker Capital</a></li>
     </ul>
   </div>
-</div><!--/ dark bar -->
+</div> --><!--/ dark bar -->

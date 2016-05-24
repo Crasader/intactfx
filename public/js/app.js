@@ -23946,13 +23946,18 @@ module.exports = {
 	data: {
 		wallet: {
 			amount: 0
-		}
+		},
+		tweet_feeds: []
 	},
 
 	created: function created() {},
 
 
 	events: {},
+
+	ready: function ready() {
+		this.fetchTwitterFeeds();
+	},
 
 	methods: {
 		openModal: function openModal() {
@@ -23968,6 +23973,17 @@ module.exports = {
 			});
 
 			return false;
+		},
+
+		fetchTwitterFeeds: function fetchTwitterFeeds() {
+
+			this.$http.post(window.location.href + 'fetchtwitterfeeds', {
+				_token: document.querySelector("meta[name='csrf-token']").getAttribute('content')
+			}, function (tweetfeeds) {
+				// this.$set('tweet_feeds', tweetfeeds);
+				this.tweet_feeds = tweetfeeds;
+				console.log(this.tweet_feeds);
+			});
 		}
 	}
 
