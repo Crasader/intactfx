@@ -23984,7 +23984,17 @@ module.exports = {
 				this.tweet_feeds = tweetfeeds;
 				console.log(this.tweet_feeds);
 			});
+		},
+		mainwallet: function mainwallet() {
+			$("#mainWallet").modal('show');
+		},
+		commisionwallet_red: function commisionwallet_red() {
+			$("#commisionwallet_red").modal('show');
+		},
+		commisionwallet_green: function commisionwallet_green() {
+			$("#commisionwallet_green").modal('show');
 		}
+
 	}
 
 };

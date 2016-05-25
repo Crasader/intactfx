@@ -5,7 +5,7 @@
 
             <!-- <img @click="openModal()" src="/img/member_img/12k-blue.png" alt="12,000 main wallet" title="12,000 main wallet" class="blue-btn-img"/> -->
             <div class="col-md-12">
-              <div class="mainwallet wallet">
+              <div class="mainwallet wallet" v-on:click="mainwallet()">
                 <div class="position">
                   <h2>12,000</h2>
                   <p>Main Wallet</p>
@@ -15,7 +15,7 @@
             <!-- <img src="/img/member_img/12k-red.png" alt="12,000 commision wallet" title="12,000 commision wallet" class="red-btn-img"/> -->
             
             <div class="col-md-6 col-sm-6 col-xs-12">
-            <div class="commisionwallet_red wallet">
+            <div class="commisionwallet_red wallet" v-on:click="commisionwallet_red()">
               <div class="position">
                 <h2>12,000</h2>
                 <p>Commision Wallet</p>
@@ -25,7 +25,7 @@
 
             <!-- <img src="/img/member_img/12k-green.png" alt="12,000 commision wallet" title="12,000 commision wallet" class="green-btn-img"/> -->
             <div class="col-md-6 col-sm-6 col-xs-12">
-            <div class="commisionwallet_green wallet">
+            <div class="commisionwallet_green wallet" v-on:click="commisionwallet_green()">
               <div class="position">
                 <h2>12,000</h2>
                 <p>Commision Wallet</p>
@@ -91,3 +91,64 @@
          </div><!--/ content -->
        </div><!--/ row -->
     </div><!--/ container -->
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="mainWallet" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="commisionwallet_red" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="commisionwallet_green" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -53,8 +53,19 @@ module.exports = {
 				this.tweet_feeds = tweetfeeds;
 				console.log(this.tweet_feeds);
 			});
+		},
+		mainwallet: function()
+		{
+			$("#mainWallet").modal('show');
+		},
+		commisionwallet_red: function(){
+			$("#commisionwallet_red").modal('show');
+		},
+		commisionwallet_green: function(){
+			$("#commisionwallet_green").modal('show');
 		}
+
 	}
 
-} 
+};
 

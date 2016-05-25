@@ -2218,6 +2218,9 @@ img.alignright {
 	background-size: 100% 100%;
 	max-width: 100%;
 }
+.mainwallet:hover{
+	cursor: pointer;
+}
 .commisionwallet_red{
 	background-image: url(../img/member_img/commision-wallet-red.png);
 	width: 251px;
@@ -2226,6 +2229,9 @@ img.alignright {
 	background-size: 100% 100%;
 	max-width: 100%;
 }
+.commisionwallet_red:hover{
+	cursor: pointer;
+}
 .commisionwallet_green{
 	background-image: url(../img/member_img/commision-wallet-green.png);
 	width: 258px;
@@ -2233,6 +2239,9 @@ img.alignright {
 	-webkit-background-size: 100% 100%;
 	background-size: 100% 100%;
 	max-width: 100%;
+}
+.commisionwallet_green:hover{
+	cursor: pointer;
 }
 /**
  * Wallet text position
