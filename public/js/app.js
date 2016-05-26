@@ -23957,6 +23957,8 @@ module.exports = {
 
 	ready: function ready() {
 		this.fetchTwitterFeeds();
+
+		this.transblack();
 	},
 
 	methods: {
@@ -23986,18 +23988,35 @@ module.exports = {
 			});
 		},
 		mainwallet: function mainwallet() {
-			$("#mainWallet").modal('show');
+			$('<div class="transblack"></div>').css({
+				backgroundColor: 'rgba(0,0,0,0.5)',
+				position: 'fixed',
+				zIndex: '9999',
+				width: '100%',
+				height: '100%'
+			}).prependTo('body');
+			$("#mainWallet").show();
 		},
 		commisionwallet_red: function commisionwallet_red() {
 			$("#commisionwallet_red").modal('show');
 		},
 		commisionwallet_green: function commisionwallet_green() {
 			$("#commisionwallet_green").modal('show');
+		},
+		transblack: function transblack() {
+			$(document).on('click', '.transblack', function () {
+				$(this).remove();
+				$('#mainWallet').hide();
+			});
 		}
 
 	}
 
 };
+
+jQuery(function ($) {
+	$('.input-daterange').datepicker();
+});
 
 },{"./core/components":43,"./core/directives":44}]},{},[41]);
 

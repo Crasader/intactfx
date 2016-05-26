@@ -2551,3 +2551,99 @@ ul.nav-tabs{
     margin: 0;
     padding: 0;
 }
+
+/**
+ * Main Wallet Modal
+ */
+#mainWallet{
+	display: none;
+	position: absolute;
+	z-index: 9999;
+	width: 601px;
+	margin-right: auto;
+	margin-left: auto;
+	left: 17%;
+    top: 50%;
+}
+.mainwallet-nav{
+	position: relative;
+
+}
+#mainWallet .tab-content{
+	background-color: #fff;
+	overflow: hidden;
+	min-height: 375px;
+}
+#mainWallet .nav-tabs>li>a{
+	padding: 10px 38.7px;
+}
+#mainWallet h2{
+	font-family: 'Didact Gothic', sans-serif;
+	font-size: 14px;
+	color: #000;
+	margin: 0;
+	padding: 0;
+	text-transform: uppercase;
+	font-weight: bold;
+}
+#mainWallet h3{
+	font-weight: bold;
+	font-size: 16px;
+	font-family: 'Didact Gothic', sans-serif;
+}
+.tab_divider{
+	border: 1px solid #000;
+	border-radius: 7px;
+	padding: 2rem;
+	overflow: hidden;
+}
+#mainWallet input[type="text"]{
+	width: 67%;
+}
+#mainWallet ul.pg-logos{
+	list-style: none;
+	padding-left: 0;
+	margin-left: 0;
+}
+#mainWallet ul.pg-logos li{
+	display: inline-block;
+	float: left;
+}
+#mainWallet .side_right_tabs{
+	position: absolute;
+    top: 92px;
+    left: 585px;
+}
+#mainWallet .side_right_tabs ul{
+	list-style: none;
+	padding-left: 0;
+	margin-left: 0;
+	position: relative;
+}
+#mainWallet .side_right_tabs ul li{
+	position: relative;
+}
+#mainWallet ul.transaction_btn{
+	list-style: none;
+	margin-left: 0;
+	padding-left: 0;
+}
+#mainWallet ul.transaction_btn li{
+	float: left;
+	padding-right: 1rem;
+}
+.transaction_btn .btn{
+	border: 1px solid #000;
+	border-radius: 7px;
+	padding: 7px 60px;
+}
+ul.verification_list{
+	list-style: none;
+}
+ul.verification_list li{
+	clear: both;
+	display: block;
+}
+.left{
+	float: left;
+}

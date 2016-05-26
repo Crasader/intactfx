@@ -27,6 +27,9 @@ module.exports = {
 
 	ready: function(){
 		this.fetchTwitterFeeds();
+
+		this.transblack();
+
 	},
 
 	methods:{
@@ -56,16 +59,33 @@ module.exports = {
 		},
 		mainwallet: function()
 		{
-			$("#mainWallet").modal('show');
+			$('<div class="transblack"></div>').css({
+				backgroundColor:'rgba(0,0,0,0.5)',
+				position:'fixed',
+				zIndex: '9999',
+				width: '100%',
+				height: '100%'
+			}).prependTo('body');
+			$("#mainWallet").show();
 		},
 		commisionwallet_red: function(){
 			$("#commisionwallet_red").modal('show');
 		},
 		commisionwallet_green: function(){
 			$("#commisionwallet_green").modal('show');
+		},
+		transblack: function(){
+			$(document).on('click', '.transblack', function(){
+				$(this).remove();
+				$('#mainWallet').hide();
+			});
 		}
 
 	}
 
 };
 
+
+jQuery(function($){
+	$('.input-daterange').datepicker();
+});
