@@ -2,20 +2,24 @@
       <div class="row">
         <div class="content">
           <div class="col-md-6">
-
             <!-- <img @click="openModal()" src="/img/member_img/12k-blue.png" alt="12,000 main wallet" title="12,000 main wallet" class="blue-btn-img"/> -->
-            <div class="col-md-12">
-              <div class="mainwallet wallet" v-on:click="mainwallet()">
-                <div class="position">
-                  <h2>12,000</h2>
-                  <p>Main Wallet</p>
+            {{ $user }}
+            <div class="col-md-12" @click="mainwallet()">
+            @if($user->account_stat==0)
+                <div class="mainwallet-red wallet">
+            @else
+                <div class="mainwallet wallet">    
+            @endif
+                    <div class="position">
+                        <h2>12,000</h2>
+                        <p>Main Wallet</p>
+                    </div>
                 </div>
-              </div>
             </div>
             <!-- <img src="/img/member_img/12k-red.png" alt="12,000 commision wallet" title="12,000 commision wallet" class="red-btn-img"/> -->
             
             <div class="col-md-6 col-sm-6 col-xs-12">
-            <div class="commisionwallet_red wallet" v-on:click="commisionwallet_red()">
+            <div class="commisionwallet_red wallet" @click="commisionwallet_red()">
               <div class="position">
                 <h2>12,000</h2>
                 <p>Commision Wallet</p>
@@ -25,7 +29,7 @@
 
             <!-- <img src="/img/member_img/12k-green.png" alt="12,000 commision wallet" title="12,000 commision wallet" class="green-btn-img"/> -->
             <div class="col-md-6 col-sm-6 col-xs-12">
-            <div class="commisionwallet_green wallet" v-on:click="commisionwallet_green()">
+            <div class="commisionwallet_green wallet" @click="commisionwallet_green()">
               <div class="position">
                 <h2>12,000</h2>
                 <p>Commision Wallet</p>

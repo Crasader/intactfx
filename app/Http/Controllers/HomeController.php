@@ -44,7 +44,7 @@ class HomeController extends Controller
 
         // dd($mt4account);
 
-        return view('home', compact('social', 'account', 'mt4account'));
+        return view('home', compact('user', 'social', 'account', 'mt4account'));
 
     }
 
