@@ -69,8 +69,10 @@ class PaymentBitcoinController extends Controller
             return $res;
 
         } catch (NotFoundException $e) {
+
             $res['status'] = 'error';
             return $res;
+
         }
     
     }
@@ -106,6 +108,11 @@ class PaymentBitcoinController extends Controller
 
         return view('bitcoin');
         
+    }
+
+    public function postrequest(Request $request)
+    {
+        dd($request);
     }
 
 

@@ -1,5 +1,4 @@
 <?php
-
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -22,15 +21,24 @@ Route::group(['middleware' => ['web', 'auth']], function () {
 	Route::post('fetchtwitterfeeds', 'HomeController@get_twitter_feeds');
 });
 
+
+/**
+ * Social Logins
+ */
 Route::get('auth/{provider}', 'Auth\AuthController@redirectToProvider');
 Route::get('auth/callback/{provider}',  'Auth\AuthController@handleProviderCallback');
 
 Route::get('user/activation/{token}', 'Auth\AuthController@activateUser')->name('user.activate');
 
+
+/**
+ * Funding
+ */
 Route::post('payment/pm/success', 'PaymentPerfectMoneyController@success');
 Route::post('payment/pm/error', 'PaymentPerfectMoneyController@error');
 
 Route::get('payment/bitcoin/success', 'PaymentBitcoinController@success');
+Route::post('payment/bitcoin/success', 'PaymentBitcoinController@postrequest');
 Route::get('payment/bitcoin/coinbase', 'PaymentBitcoinController@coinbase');
 
 Route::get('wireinvoice','PaymentWireController@generateWireInvoice');
@@ -43,6 +51,7 @@ Route::get('twitter-authenticate', 'TwitterOauthController@auth_twitter');
 Route::get('twitter-callback', 'TwitterOauthController@auth_callback');
 
 
+// other routes
+Route::get('user/register', 'Auth\AuthController@showLoginFormAffiliate'); 
 
-
-$this->get('user/register', 'Auth\AuthController@showLoginFormAffiliate'); 
+Route::post('file/upload', 'FileController@upload');

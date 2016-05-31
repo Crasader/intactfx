@@ -2,20 +2,25 @@
       <div class="row">
         <div class="content">
           <div class="col-md-6">
-
             <!-- <img @click="openModal()" src="/img/member_img/12k-blue.png" alt="12,000 main wallet" title="12,000 main wallet" class="blue-btn-img"/> -->
-            <div class="col-md-12">
-              <div class="mainwallet wallet" v-on:click="mainwallet()">
-                <div class="position">
-                  <h2>12,000</h2>
-                  <p>Main Wallet</p>
+            <!-- {{ $user }} -->
+              <h2>{!! Session::get('success') !!}</h2>
+            <div class="col-md-12" @click="mainwallet()">
+            @if($user->account_stat==0)
+                <div class="mainwallet-red wallet">
+            @else
+                <div class="mainwallet wallet">    
+            @endif
+                    <div class="position">
+                        <h2>12,000</h2>
+                        <p>Main Wallet</p>
+                    </div>
                 </div>
-              </div>
             </div>
             <!-- <img src="/img/member_img/12k-red.png" alt="12,000 commision wallet" title="12,000 commision wallet" class="red-btn-img"/> -->
             
             <div class="col-md-6 col-sm-6 col-xs-12">
-            <div class="commisionwallet_red wallet" v-on:click="commisionwallet_red()">
+            <div class="commisionwallet_red wallet" @click="commisionwallet_red()">
               <div class="position">
                 <h2>12,000</h2>
                 <p>Commision Wallet</p>
@@ -25,7 +30,7 @@
 
             <!-- <img src="/img/member_img/12k-green.png" alt="12,000 commision wallet" title="12,000 commision wallet" class="green-btn-img"/> -->
             <div class="col-md-6 col-sm-6 col-xs-12">
-            <div class="commisionwallet_green wallet" v-on:click="commisionwallet_green()">
+            <div class="commisionwallet_green wallet" @click="commisionwallet_green()">
               <div class="position">
                 <h2>12,000</h2>
                 <p>Commision Wallet</p>
@@ -97,8 +102,6 @@
     </div><!--/ container -->
 
 
-
-
 <!-- Modal -->
 <div id="mainWallet">
   <div>
@@ -112,15 +115,20 @@
 
   <!-- Nav tabs -->
   <ul class="nav nav-tabs mainwallet-nav" role="tablist">
-    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Financial Operation</a></li>
-    <li role="presentation"><a href="#transactionhistory" aria-controls="transactionhistory" role="tab" data-toggle="tab">Transaction History</a></li>
+    @if($user->account_stat!=0)
+        <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Financial Operation</a></li>
+        <li role="presentation"><a href="#transactionhistory" aria-controls="transactionhistory" role="tab" data-toggle="tab">Transaction History</a></li>
+    @endif
     <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Verification</a></li>
   </ul>
 
   <!-- Tab panes -->
   <div class="tab-content">
+    @if($user->account_stat!=0)
     <div role="tabpanel" class="tab-pane active" id="home">
-
+    @else
+    <div role="tabpanel" class="tab-pane" id="home">
+    @endif
       <h2>Deposit</h2>
       <div class="tab_divider">
       <div class="modal_section">
@@ -201,75 +209,46 @@
               <td>deposit</td>
               <td><div class="processing">processing</div></td>
             </tr>
-            <tr>
-              <td>#sdfdfg</td>
-              <td>23/09/2015</td>
-              <td>1,000</td>
-              <td>deposit</td>
-              <td><div class="approveed">approveed</div></td>
-            </tr>
-            <tr>
-              <td>#sdfdfg</td>
-              <td>23/09/2015</td>
-              <td>1,000</td>
-              <td>deposit</td>
-              <td><div class="pending">pending</div></td>
-            </tr>
-            <tr>
-              <td>#sdfdfg</td>
-              <td>23/09/2015</td>
-              <td>1,000</td>
-              <td>deposit</td>
-              <td><div class="approveed">approveed</div></td>
-            </tr>
-            <tr>
-              <td>#sdfdfg</td>
-              <td>23/09/2015</td>
-              <td>1,000</td>
-              <td>deposit</td>
-              <td><div class="pending">pending</div></td>
-            </tr>
-            <tr>
-              <td>#sdfdfg</td>
-              <td>23/09/2015</td>
-              <td>1,000</td>
-              <td>deposit</td>
-              <td><div class="rejected">rejected</div></td>
-            </tr>
-            <tr>
-              <td>#sdfdfg</td>
-              <td>23/09/2015</td>
-              <td>1,000</td>
-              <td>deposit</td>
-              <td><div class="cancelled">cancelled</div></td>
-            </tr>
-            <tr>
-              <td>#sdfdfg</td>
-              <td>23/09/2015</td>
-              <td>1,000</td>
-              <td>deposit</td>
-              <td><div class="pending">pending</div></td>
-            </tr>
           </tbody>
         </table>
       </div><!-- .modal_section -->
     </div><!-- .tabpanel -->
-    <div role="tabpanel" class="tab-pane" id="messages">
+    @if($user->account_stat!=0)
+        <div role="tabpanel" class="tab-pane" id="messages">
+    @else
+        <div role="tabpanel" class="tab-pane active" id="messages">
+    @endif
       <div class="modal_section">
         <h2>Upload your documents for account verification</h2>
+          {!! Form::open(array('url'=>'file/upload','method'=>'POST', 'files'=>true)) !!}
+         
+
+          {!! Form::file('image') !!}
+
+      {!! Form::submit('Submit', array('class'=>'send-btn')) !!}
+      {!! Form::close() !!} 
+
+
+
         <ul class="verification_list">
           <li>
             <span class="left">Verify Identity</span> <div class="left upload_area"><input type="file" name="ver_identity"></div>
-            <div class="left"><input type="submit" value="Send"></div>
+            <!-- <div class="left"><input type="submit" value="Send"></div> -->
+            <br>
           </li>
           <li>
             <span class="left">Verify Address</span> <div class="left upload_area"><input type="file" name="ver_address"></div>
-            <div class="left"><input type="submit" value="Send"></div>
+            <!-- <div class="left"><input type="submit" value="Send"></div> -->
+            <br>
           </li>
           <li>
             <span>Note (Optional):</span>
             <br>
             <input type="text" name="note_opt">
+            <br>
+          </li>
+            <li>
+            <input type="submit" value="Send">
           </li>
         </ul>
       </div><!-- .modal_section -->

@@ -18,6 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->boolean('activated')->default(false);
+            $table->string('account_stat')->default(1);
             $table->string('token')->nullable();
             $table->string('affiliate_id')->nullable();
             $table->rememberToken();
