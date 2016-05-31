@@ -970,11 +970,12 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#003953', end
 /*twitter*/
 #twitter {
 	clear: both;
+	padding-bottom: 12rem;
 }
 
 #twitter .twitter-headline {
 	float: left;
-	margin: 0 29px 0 0;
+	margin: 0 7px 0 0;
 }
 
 #twitter .twitter-headline .twiiter-ribbon {
@@ -995,7 +996,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#003953', end
 	color: #737373;
 	font-size: 9px;
 	line-height: 12px;
-	max-width: 146px;
+	max-width: 115px;
+	/*min-height: 72px;*/
+    margin-right: 0.15rem;
 	margin: 0;
 	position: relative;
 }
