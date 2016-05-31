@@ -23956,7 +23956,11 @@ module.exports = {
 	events: {},
 
 	ready: function ready() {
-		this.fetchTwitterFeeds();
+		// this.fetchTwitterFeeds();
+		var j = this;
+		setInterval(function () {
+			j.fetchTwitterFeeds();
+		}, 300000);
 
 		this.transblack();
 	},
