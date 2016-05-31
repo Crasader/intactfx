@@ -5,7 +5,7 @@ require('./core/components');
 require('./core/directives');
 
 /**
- * Export the lawcanvas-app
+ * Export the intactfx-app
  */
 module.exports = {
 
@@ -19,6 +19,7 @@ module.exports = {
 	},
 
 	created(){
+
 	},
 
 	events:{
@@ -26,16 +27,25 @@ module.exports = {
 	},
 
 	ready: function(){
+		
 		this.fetchTwitterFeeds();
+
+		this.transblack();
+
 	},
 
 	methods:{
+
 		openModal(){
 			$('#myModal').modal('show')
 		},
+
 		processWire(){
+
 			$('#wirebutton').prop('disabled', true);
+
 			// alert('asdf')
+			
 			this.$http.post('/wire', this.wallet, function(data, status, request) {
 				$('#wirebutton').prop('disabled', false);
 				alert('invoice sent. please check your email')
@@ -44,6 +54,7 @@ module.exports = {
 
 			return false;
 		},
+
 		fetchTwitterFeeds: function(){
 			
 			this.$http.post(window.location.href+'fetchtwitterfeeds', {
@@ -54,18 +65,45 @@ module.exports = {
 				console.log(this.tweet_feeds);
 			});
 		},
-		mainwallet: function()
-		{
-			$("#mainWallet").modal('show');
+
+		mainwallet: function(){
+
+			$('<div class="transblack"></div>').css({
+				backgroundColor:'rgba(0,0,0,0.5)',
+				position:'fixed',
+				zIndex: '9999',
+				width: '100%',
+				height: '100%'
+			}).prependTo('body');
+			$("#mainWallet").show();
+
 		},
+
 		commisionwallet_red: function(){
+
 			$("#commisionwallet_red").modal('show');
+		
 		},
+		
 		commisionwallet_green: function(){
+
 			$("#commisionwallet_green").modal('show');
+
+		},
+
+		transblack: function(){
+
+			$(document).on('click', '.transblack', function(){
+				$(this).remove();
+				$('#mainWallet').hide();
+			});
+
 		}
 
 	}
 
 };
 
+jQuery(function($){
+	$('.input-daterange').datepicker();
+});

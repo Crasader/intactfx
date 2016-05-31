@@ -34,12 +34,17 @@ class HomeController extends Controller
         $user = Auth::user();
         // dd($user);
         try {
+
             $social = Social::where('user_id', $user->id)->firstOrFail();
+
         } catch (ModelNotFoundException $ex) {
+
             $social = '';
+            
         }
 
         $account = Account::where('user_id', $user->id)->first();
+
         $mt4account = Mt4Account::where('eoffice_id', $account->id)->get();
 
         // dd($mt4account);
@@ -50,6 +55,7 @@ class HomeController extends Controller
 
     public function get_twitter_feeds()
     {
+        
         $feeds = TwitterOauthController::getFeeds();
 
         echo json_encode($feeds->statuses);
