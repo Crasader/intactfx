@@ -23934,7 +23934,7 @@ require('./core/components');
 require('./core/directives');
 
 /**
- * Export the lawcanvas-app
+ * Export the intactfx-app
  */
 module.exports = {
 
