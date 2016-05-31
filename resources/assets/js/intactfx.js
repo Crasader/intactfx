@@ -54,8 +54,10 @@ module.exports = {
 			}, function(tweetfeeds){
 				// this.$set('tweet_feeds', tweetfeeds);
 				this.tweet_feeds = tweetfeeds;
-				console.log(this.tweet_feeds);
+				console.log(tweetfeeds);
 			});
+
+			$("#twitter .tweets:last-child").addClass('last');
 		},
 		mainwallet: function()
 		{

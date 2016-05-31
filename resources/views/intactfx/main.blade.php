@@ -59,8 +59,12 @@
                 <h3 class="twiiter-ribbon">Recent Tweet</h3>
               </div>
               
-              <div v-for="tweets in tweet_feeds">
-                
+              <div v-for="(key, tweets) in tweet_feeds">
+                <div class="tweets" v-if="key <= 1">
+                  <h4>#intactfx</h4>
+                  <p>@{{ tweets.text }}</p>
+                   <span class="glyphicon glyphicon-chevron-right gray-icon" aria-hidden="true"></span>
+                </div>
               </div>
               <!-- <div class="tweets">
                 <h4>#intactfx</h4>

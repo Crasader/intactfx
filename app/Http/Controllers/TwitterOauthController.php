@@ -50,7 +50,20 @@ class TwitterOauthController extends Controller
 
     public static function getFeeds()
     {
-    	return TwitteroAuth_class::getTwitter_requestAPI('#intactfx');
+    	$t = TwitteroAuth_class::getTwitter_requestAPI('#intactfx');
+
+        $arr = [];
+        foreach ($t->statuses as $key => $value) {
+            # code...
+            $txt = $value->text;
+            $txt = str_replace('#intactfx', "", $value->text);
+            $arr[$key]['text'] = $txt;
+            $arr[$key]['id'] = $value->id;    
+        }
+
+        echo json_encode($arr);
+
+        exit();
     }
 
 
