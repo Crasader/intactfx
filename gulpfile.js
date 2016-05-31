@@ -16,11 +16,13 @@ elixir(function(mix) {
      mix.styles([
         'lib/bootstrap.min.css',
         'lib/font-awesome.min.css',
+        'lib/bootstrap-datepicker.min.css',
         'style.css',
     ]);
 
     mix.scripts([
         'custom.js',
+        'bootstrap-datepicker.min.js',
         "customscript.js"
     ],'public/js/custom.js');
 

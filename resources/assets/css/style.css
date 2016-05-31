@@ -970,11 +970,12 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#003953', end
 /*twitter*/
 #twitter {
 	clear: both;
+	padding-bottom: 12rem;
 }
 
 #twitter .twitter-headline {
 	float: left;
-	margin: 0 29px 0 0;
+	margin: 0 7px 0 0;
 }
 
 #twitter .twitter-headline .twiiter-ribbon {
@@ -995,7 +996,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#003953', end
 	color: #737373;
 	font-size: 9px;
 	line-height: 12px;
-	max-width: 146px;
+	max-width: 115px;
+	/*min-height: 72px;*/
+    margin-right: 0.15rem;
 	margin: 0;
 	position: relative;
 }
@@ -2199,6 +2202,7 @@ img.alignright {
 .wallet{
 	position: relative;
 }
+
 .mainwallet{
 	background-image: url(../img/member_img/main-wallet.png);
 	width: 507px;
@@ -2206,6 +2210,19 @@ img.alignright {
 	-webkit-background-size: 100% 100%;
 	background-size: 100% 100%;
 	max-width: 100%;
+}
+
+.mainwallet-red{
+	background-image: url(../img/member_img/commision-wallet-red.png);
+	width: 507px;
+	height: 208px;
+	-webkit-background-size: 100% 100%;
+	background-size: 100% 100%;
+	max-width: 100%;
+}
+
+.mainwallet:hover, .mainwallet-red:hover{
+	cursor: pointer;
 }
 .commisionwallet_red{
 	background-image: url(../img/member_img/commision-wallet-red.png);
@@ -2215,6 +2232,9 @@ img.alignright {
 	background-size: 100% 100%;
 	max-width: 100%;
 }
+.commisionwallet_red:hover{
+	cursor: pointer;
+}
 .commisionwallet_green{
 	background-image: url(../img/member_img/commision-wallet-green.png);
 	width: 258px;
@@ -2223,22 +2243,25 @@ img.alignright {
 	background-size: 100% 100%;
 	max-width: 100%;
 }
+.commisionwallet_green:hover{
+	cursor: pointer;
+}
 /**
  * Wallet text position
  */
-.mainwallet.wallet .position{
+.mainwallet.wallet .position, .mainwallet-red.wallet .position{
 	position: absolute;
     left: 40%;
     top: 7rem;
     text-align: center;
 }
-.mainwallet.wallet .position h2{
+.mainwallet.wallet .position h2, .mainwallet-red.wallet .position h2{
 	font-size: 70px;
 	font-weight: bold;
 	color: #FFF;
     text-shadow: #9C9A9A 2px 2px 2px;
 }
-.mainwallet.wallet .position p{
+.mainwallet.wallet .position p, .mainwallet-red.wallet .position p{
 	font-size: 25px;
 	color: #FFF;
     text-shadow: #9C9A9A 2px 2px 2px;
@@ -2541,4 +2564,100 @@ ul.nav-tabs{
 	width: 100px;
     margin: 0;
     padding: 0;
+}
+
+/**
+ * Main Wallet Modal
+ */
+#mainWallet{
+	display: none;
+	position: absolute;
+	z-index: 9999;
+	width: 601px;
+	margin-right: auto;
+	margin-left: auto;
+	left: 17%;
+    top: 50%;
+}
+.mainwallet-nav{
+	position: relative;
+
+}
+#mainWallet .tab-content{
+	background-color: #fff;
+	overflow: hidden;
+	min-height: 375px;
+}
+#mainWallet .nav-tabs>li>a{
+	padding: 10px 38.7px;
+}
+#mainWallet h2{
+	font-family: 'Didact Gothic', sans-serif;
+	font-size: 14px;
+	color: #000;
+	margin: 0;
+	padding: 0;
+	text-transform: uppercase;
+	font-weight: bold;
+}
+#mainWallet h3{
+	font-weight: bold;
+	font-size: 16px;
+	font-family: 'Didact Gothic', sans-serif;
+}
+.tab_divider{
+	border: 1px solid #000;
+	border-radius: 7px;
+	padding: 2rem;
+	overflow: hidden;
+}
+#mainWallet input[type="text"]{
+	width: 67%;
+}
+#mainWallet ul.pg-logos{
+	list-style: none;
+	padding-left: 0;
+	margin-left: 0;
+}
+#mainWallet ul.pg-logos li{
+	display: inline-block;
+	float: left;
+}
+#mainWallet .side_right_tabs{
+	position: absolute;
+    top: 92px;
+    left: 585px;
+}
+#mainWallet .side_right_tabs ul{
+	list-style: none;
+	padding-left: 0;
+	margin-left: 0;
+	position: relative;
+}
+#mainWallet .side_right_tabs ul li{
+	position: relative;
+}
+#mainWallet ul.transaction_btn{
+	list-style: none;
+	margin-left: 0;
+	padding-left: 0;
+}
+#mainWallet ul.transaction_btn li{
+	float: left;
+	padding-right: 1rem;
+}
+.transaction_btn .btn{
+	border: 1px solid #000;
+	border-radius: 7px;
+	padding: 7px 60px;
+}
+ul.verification_list{
+	list-style: none;
+}
+ul.verification_list li{
+	clear: both;
+	display: block;
+}
+.left{
+	float: left;
 }

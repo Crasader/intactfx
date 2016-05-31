@@ -20,8 +20,8 @@
           <div class="tab-content">
 
             <div role="tabpanel" class="tab-pane fade in active" id="miniaccount">
-              <div class="icon-selection col-md-12">
-                <ul>
+              <div class="icon-selection col-md-12 pull-right">
+                <ul class="pull-right">
                   <li><a href="#"><span class="main-acct"></span></a></li>
                   <li><a href="#"><span class="standard-acct"></span></a></li>
                   <li><a href="#"><span class="profitlowrisk"></span></a></li>
