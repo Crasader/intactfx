@@ -17,6 +17,7 @@ class Payment extends Model
         'payment_units',
         'payment_batch_num',
         'payor_account',
+        'email',
         'confirm',
         'timestamp_gmt',
         'hash'

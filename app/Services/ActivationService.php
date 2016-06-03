@@ -66,7 +66,7 @@ class ActivationService
 
         $this->activationRepo->deleteActivation($token);
 
-        $this->accountRepo->createAccount($user);
+        // $this->accountRepo->createAccount($user);
 
         return $user;
 

@@ -8,10 +8,18 @@
 
                 <div id="tabs">
                     <ul class="nav nav-tabs" role="tablist">
-                        <li role="presentation" class="active">
+                        @if(isset($eoffice_id))
+                            <li role="presentation">
+                         @else
+                            <li role="presentation" class="active">
+                         @endif
                             <a href="#login" aria-controls="login" role="tab" data-toggle="tab"><img src="{{ URL::asset('/img/login_img/button-icon.png') }}" alt="login" title="login" />Login</a>
                         </li>
-                        <li role="presentation">
+                         @if(isset($eoffice_id))
+                            <li role="presentation" class="active">
+                         @else
+                            <li role="presentation" >
+                         @endif
                             <a href="#register" aria-controls="register" role="tab" data-toggle="tab">Register<img src="{{ URL::asset('/img/login_img/button-icon.png') }}" alt="login" title="login" /></a>
                         </li>
                     </ul>
@@ -22,7 +30,11 @@
                 </div><!--/ logo wrapper -->
 
                 <div class="tab-content">
-                    <div role="tabpanel" class="tab-pane fade in active" id="login"> 
+                    @if(isset($eoffice_id))
+                        <div role="tabpanel" class="tab-pane fade" id="login"> 
+                    @else
+                        <div role="tabpanel" class="tab-pane fade in active" id="login"> 
+                    @endif
                         
                         <div id="form-wrapper">
                            
@@ -33,9 +45,12 @@
                         </div><!--/ form wrapper -->
                           
                     </div><!--/ tab panel -->
-
-                    <div role="tabpanel" class="tab-pane fade" id="register"> 
-                        
+                    @if(isset($eoffice_id))
+                        <div role="tabpanel" class="tab-pane fade in active" id="register"> 
+                    @else
+                        <div role="tabpanel" class="tab-pane fade" id="register"> 
+                    @endif
+                       
                         <div id="form-wrapper">
                             
                              @include('forms.register')

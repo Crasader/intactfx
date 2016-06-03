@@ -1,11 +1,12 @@
-<!-- <div class="dark-bar">
-  <div class="container">
-    <ul class="nav nav-tabs" role="tablist">
-      <li role="presentation" class="active"><a href="#miniaccount" aria-controls="miniaccount" role="tab" data-toggle="tab" class="icon1">Mini Account</a></li>
-      <li role="presentation"><a href="#standard" aria-controls="standard" role="tab" data-toggle="tab" class="icon2">Standard Account</a></li>
-      <li role="presentation"><a href="#lowrisk" aria-controls="lowrisk" role="tab" data-toggle="tab" class="icon3">I-Profit Low Risk</a></li>
-      <li role="presentation"><a href="#highrisk" aria-controls="highrisk" role="tab" data-toggle="tab" class="icon4">I-Profit High Risk</a></li>
-      <li role="presentation"><a href="#broker" aria-controls="broker" role="tab" data-toggle="tab" class="icon5">Intact Broker Capital</a></li>
-    </ul>
-  </div>
-</div> --><!--/ dark bar -->
+<div class="white-bar">
+    
+      <div id="content-tab-wrapper">
+        <div class="container">
+            <ul class="nav nav-tabs" role="tablist">
+              <li role="presentation" class="active"><a href="#accounts" aria-controls="miniaccount" role="tab" data-toggle="tab">Accounts</a></li>
+              <li role="presentation"><a href="#services" aria-controls="standard" role="tab" data-toggle="tab">Services</a></li>
+              <li role="presentation"><a href="#promotions" aria-controls="lowrisk" role="tab" data-toggle="tab">Promotions and Bonuses</a></li>
+              <li role="presentation"><a href="#contests" aria-controls="highrisk" role="tab" data-toggle="tab">Contests</a></li>
+            </ul>
+        </div>
+      </div><!--/ content tab wrapper -->

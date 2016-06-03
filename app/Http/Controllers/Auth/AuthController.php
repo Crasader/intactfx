@@ -81,6 +81,8 @@ class AuthController extends Controller
 
         $user = $this->create($request->all());
 
+        $this->accountRepo->createAccount($user);
+        
         $this->activationService->sendActivationMail($user);
 
         return redirect('/login')->with('status', 'We sent you an activation code. Check your email.');

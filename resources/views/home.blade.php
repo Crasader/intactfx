@@ -1,25 +1,13 @@
 @extends('layouts.app')
 
 @section('override_css')
-    <style type="text/css">
-        @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300italic,300,400italic,600,600italic,700,700italic,800,800italic);
-        #main {
-            clear: both;
-            overflow: hidden;
-            background: #f4f3f3;
-        }
-        #main .container {
-            background: #f4f3f3;
-            overflow: hidden;
-            padding-top: 35px;
-            padding-bottom: 20px;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/main-style.css') }}">
 @endsection
-
+    
 @section('content')
 
     @include('intactfx.header')
+
 
     <section id="main">
 
@@ -29,12 +17,34 @@
 
         @include('intactfx.account_tabs_content')
 
-
     </section><!--/ section main -->
 
-    @include('modal.main_wallet_modal')
 
     @include('intactfx.footer')
-  
-   
+ 
+    <!-- modals -->
+
+    <!-- Social Media Modal -->
+    @include('modal.social-modal')
+
+    <!-- TransferOut Modal -->
+    @include('modal.transferout-modal')    
+
+    <!-- TransferIn Modal -->
+    @include('modal.transferin-modal')        
+
+    <!-- Create Account Modal -->
+    @include('modal.createaccount-modal')            
+
+    <!-- Main Wallet Modal -->
+    @include('modal.mainwallet-modal')                
+
+    <!-- Commission Wallet Modal -->
+    @include('modal.commisionwallet-modal')           
+
+    <!-- end modals -->        
+
 @endsection
+
+
+    

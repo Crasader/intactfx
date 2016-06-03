@@ -12224,9 +12224,6 @@ var currentQueue;
 var queueIndex = -1;
 
 function cleanUpNextTick() {
-    if (!draining || !currentQueue) {
-        return;
-    }
     draining = false;
     if (currentQueue.length) {
         queue = currentQueue.concat(queue);
@@ -23957,14 +23954,15 @@ module.exports = {
 
 	ready: function ready() {
 		// this.fetchTwitterFeeds();
-		var j = this;
-		setInterval(function () {
-			j.fetchTwitterFeeds();
-		}, 300000);
+		// var j = this;
+		// setInterval(function(){
+		// 	j.fetchTwitterFeeds();
+		// }, 300000);
 
-		this.fetchTwitterFeeds();
+		// this.fetchTwitterFeeds();
 
-		this.transblack();
+		// this.transblack();
+
 	},
 
 	methods: {
@@ -23975,7 +23973,13 @@ module.exports = {
 
 			$('#wirebutton').prop('disabled', true);
 
-			// alert('asdf')
+			if (this.wallet.amount <= 0) {
+				alert('please enter amount');
+				return false;
+			};
+
+			$('#mainWallet').hide();
+			$('.transblack').remove();
 
 			this.$http.post('/wire', this.wallet, function (data, status, request) {
 				$('#wirebutton').prop('disabled', false);
@@ -23989,15 +23993,15 @@ module.exports = {
 
 		fetchTwitterFeeds: function fetchTwitterFeeds() {
 
-			this.$http.post(window.location.href + 'fetchtwitterfeeds', {
-				_token: document.querySelector("meta[name='csrf-token']").getAttribute('content')
-			}, function (tweetfeeds) {
-				// this.$set('tweet_feeds', tweetfeeds);
-				this.tweet_feeds = tweetfeeds;
-				console.log(tweetfeeds);
-			});
+			// this.$http.post(window.location.href+'fetchtwitterfeeds', {
+			// 	_token:document.querySelector("meta[name='csrf-token']").getAttribute('content')
+			// }, function(tweetfeeds){
+			// 	// this.$set('tweet_feeds', tweetfeeds);
+			// 	this.tweet_feeds = tweetfeeds;
+			// 	console.log(tweetfeeds);
+			// });
 
-			$("#twitter .tweets:last-child").addClass('last');
+			// $("#twitter .tweets:last-child").addClass('last');
 		},
 
 		mainwallet: function mainwallet() {

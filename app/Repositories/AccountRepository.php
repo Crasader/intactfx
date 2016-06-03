@@ -2,6 +2,7 @@
 namespace App\Repositories;
 
 use App\Account;
+use App\Affiliate;
 use App\Mt4Account;
 use Carbon\Carbon;
 use Faker\Factory as Faker;
@@ -42,6 +43,13 @@ class AccountRepository
         $account->id = $id;
         $account->user_id = $user->id;
         $account->save();
+        if ($user->affiliate_id!='') {
+            $affiliate = new Affiliate;
+            $affiliate->eoffice_id = $id;
+            $affiliate->affiliate_id = $user->affiliate_id;
+            $affiliate->save();
+        }
+        
         
         return $account;
 

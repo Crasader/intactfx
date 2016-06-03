@@ -5,11 +5,13 @@ namespace App\Http\Controllers;
 use App\Account;
 use App\Http\Requests;
 use App\Mt4Account;
+use App\Payment;
 use App\Social;
 use App\User;
 use Auth;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -47,9 +49,24 @@ class HomeController extends Controller
 
         $mt4account = Mt4Account::where('eoffice_id', $account->id)->get();
 
-        // dd($mt4account);
+        // $wallet = Payment::select(DB::raw('sum(payment_amount) as user_count, status'))->where('email', $user->email)->get();
 
-        return view('home', compact('user', 'social', 'account', 'mt4account'));
+        $wallet = DB::table('intact_payment_table')
+                ->select(DB::raw('SUM(payment_amount) as main_wallet'))
+                ->where('email', $user->email)
+                ->first();
+
+        $payments  = Payment::where('email', $user->email)
+                ->get();
+
+        $withdraw_available  = Payment::select('funding_service', DB::raw('SUM(payment_amount) as total_deposit'))
+                    ->where('email', $user->email)
+                    ->groupBy('funding_service')
+                    ->get();
+
+
+
+        return view('home', compact('user', 'social', 'account', 'mt4account', 'wallet', 'payments', 'withdraw_available'));
 
     }
 

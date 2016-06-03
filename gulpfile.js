@@ -20,14 +20,15 @@ elixir(function(mix) {
         'style.css',
     ]);
 
+    mix.styles([
+        'main-style.css'
+    ],  'public/css/main-style.css');
+    
     mix.scripts([
-        'custom.js',
+        // 'custom.js',
         'bootstrap-datepicker.min.js',
-        "customscript.js"
+        // "customscript.js"
     ],'public/js/custom.js');
-
-
-
 
     mix.browserify('app.js', 'public/js/app.js');
 

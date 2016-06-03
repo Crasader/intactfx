@@ -38,7 +38,7 @@ Route::post('payment/pm/success', 'PaymentPerfectMoneyController@success');
 Route::post('payment/pm/error', 'PaymentPerfectMoneyController@error');
 
 Route::get('payment/bitcoin/success', 'PaymentBitcoinController@success');
-Route::post('payment/bitcoin/success', 'PaymentBitcoinController@postrequest');
+Route::post('payment/bitcoin/notification', 'PaymentBitcoinController@notificationEndpoints');
 Route::get('payment/bitcoin/coinbase', 'PaymentBitcoinController@coinbase');
 
 Route::get('wireinvoice','PaymentWireController@generateWireInvoice');

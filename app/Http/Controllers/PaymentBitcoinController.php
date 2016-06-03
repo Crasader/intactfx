@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Account;
 use App\Http\Requests;
 use App\Payment;
 use App\PaymentMain;
@@ -59,7 +60,7 @@ class PaymentBitcoinController extends Controller
                 $key = preg_replace('/[\x00-\x1F\x80-\xFF]/', '', $key);
                 if ($key=='*rawData') {
                     $res['id'] =  $value['id'];
-                    $res['amount'] =  $value['bitcoin_amount']['amount'];
+                    $res['amount'] =  $value['amount']['amount'];
                     $res['currency'] = $value['amount']['currency'];
                     $res['status'] = 'success';
                     break; 
@@ -87,16 +88,53 @@ class PaymentBitcoinController extends Controller
         
         $res = $this->coinbase($orderId);
         
+        // if ($res['status']=='success') {
+            
+        //     $payment = Payment::create([
+        //         'id' => Faker::create()->randomNumber($nbDigits = 9),
+        //         'payment_id' =>  $orderId,
+        //         'funding_service'  => 'bitcoin',
+        //         'payee_account'  => '',
+        //         'payment_amount'  => $res['amount'],
+        //         'payment_units'  => $res['currency'],
+        //         'payor_account'  =>  $payor_account,
+        //         'confirm' => true,
+        //     ]);
+            
+        //     PaymentMain::create([
+        //         'payment_id' => $payment->id
+        //     ]);
+
+        // }
+
+        return view('home');
+        
+    }
+
+    public function notificationEndpoints(Request $request)
+    {
+        
+        $orderId =  $request->order['uuid'];
+        
+        $payor_account = $request->order['button']['name'];
+        $email = $request->customer['email'];
+
+        $res = $this->coinbase($orderId);
+        // echo round($res['amount'] / 100, 2);
+        // echo '<pre>' . print_r($res, 1) . '</pre>';
+
         if ($res['status']=='success') {
             
             $payment = Payment::create([
                 'id' => Faker::create()->randomNumber($nbDigits = 9),
                 'payment_id' =>  $orderId,
                 'funding_service'  => 'bitcoin',
+                'type'  => 'deposit',
                 'payee_account'  => '',
                 'payment_amount'  => $res['amount'],
                 'payment_units'  => $res['currency'],
                 'payor_account'  =>  $payor_account,
+                'email'  =>  $email,
                 'confirm' => true,
             ]);
             
@@ -104,15 +142,13 @@ class PaymentBitcoinController extends Controller
                 'payment_id' => $payment->id
             ]);
 
+            // $account = new Account();
+            // $account->main_wallet + $res['amount'];
+            // $account->save();
+
         }
 
-        return view('bitcoin');
-        
-    }
-
-    public function postrequest(Request $request)
-    {
-        dd($request);
+        return 'success';
     }
 
 
