@@ -57,7 +57,8 @@ class PaymentBitcoinController extends Controller
             echo '<pre>' . print_r($array, 1 ) . '</pre>';
 
             foreach ($array as $key => $value) {
-                $key = preg_replace('/[\x00-\x1F\x80-\xFF]/', '', $key);
+                $key = preg_replace('/[\x00-\x1F\x80-\xFF]/', '', $key);    
+                echo $key;
                 if ($key=='*rawData') {
                     $res['id'] =  $value['id'];
                     $res['amount'] =  $value['amount']['amount'];
@@ -151,7 +152,7 @@ class PaymentBitcoinController extends Controller
         return 'success';
     }
 
-    
+
 
 
 }
