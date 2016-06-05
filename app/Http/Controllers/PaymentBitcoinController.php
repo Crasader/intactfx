@@ -59,13 +59,24 @@ class PaymentBitcoinController extends Controller
             foreach ($array as $key => $value) {
                 $key = preg_replace('/[\x00-\x1F\x80-\xFF]/', '', $key);    
                 echo $key;
-                if ($key=='*rawData') {
+                
+                // if ($key=='*rawData') {
+                //     $res['id'] =  $value['id'];
+                //     $res['amount'] =  $value['amount']['amount'];
+                //     $res['currency'] = $value['amount']['currency'];
+                //     $res['status'] = 'success';
+                //     break; 
+                // }
+
+                if ($key=='Coinbase\Wallet\Resource\ResourcerawData') {
                     $res['id'] =  $value['id'];
                     $res['amount'] =  $value['amount']['amount'];
                     $res['currency'] = $value['amount']['currency'];
                     $res['status'] = 'success';
                     break; 
                 }
+
+                
             }
 
             return $res;
