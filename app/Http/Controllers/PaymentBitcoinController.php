@@ -54,7 +54,7 @@ class PaymentBitcoinController extends Controller
 
             $array =  (array) $order;
             
-            // echo '<pre>' . print_r($array, 1 ) . '</pre>';
+            echo '<pre>' . print_r($array, 1 ) . '</pre>';
 
             foreach ($array as $key => $value) {
                 $key = preg_replace('/[\x00-\x1F\x80-\xFF]/', '', $key);
@@ -150,6 +150,8 @@ class PaymentBitcoinController extends Controller
 
         return 'success';
     }
+
+    
 
 
 }
