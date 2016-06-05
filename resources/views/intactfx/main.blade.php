@@ -2,6 +2,7 @@
   <div class="row">
     <div class="content">
       <div class="col-md-6">
+       {{ $wallet->main_wallet }}
         <a href="#" data-toggle="modal" data-target="#MainWalletModal"><img src="{{url('img/mainpage/12k-blue.png')}}" alt="12,000 main wallet" title="12,000 main wallet" class="blue-btn-img"/></a>
         <a href="#" data-toggle="modal" data-target="#CommissionWalletModal"><img src="{{url('img/mainpage/12k-red.png')}}" alt="12,000 commision wallet" title="12,000 commision wallet" class="red-btn-img"/></a>
         <a href="#" data-toggle="modal" data-target="#Commission2WalletModal"><img src="{{url('img/mainpage/12k-green.png')}}" alt="12,000 commision wallet" title="12,000 commision wallet" class="green-btn-img"/></a>
