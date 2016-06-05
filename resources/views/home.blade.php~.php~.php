@@ -8,6 +8,7 @@
 
     @include('intactfx.header')
 
+
     <section id="main">
 
         @include('intactfx.main')
@@ -18,20 +19,20 @@
 
     </section><!--/ section main -->
 
-    @include('intactfx.footer') 
 
-
-    <!-- main modals -->
+    @include('intactfx.footer')
+ 
+    <!-- modals -->
 
     <!-- Social Media Modal -->
-   @include('modal.social-modal')
+    @include('modal.social-modal')
 
     <!-- TransferOut Modal -->
     @include('modal.transferout-modal')    
-    
+
     <!-- TransferIn Modal -->
     @include('modal.transferin-modal')        
-   
+
     <!-- Create Account Modal -->
     @include('modal.createaccount-modal')            
 
@@ -41,10 +42,7 @@
     <!-- Commission Wallet Modal -->
     @include('modal.commisionwallet-modal')           
 
-    <!-- Commission Wallet 2 Modal -->
-    @include('modal.commisionwallet2-modal')           
-    
-    <!-- /main modals -->
+    <!-- end modals -->        
 
 @endsection
 

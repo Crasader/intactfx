@@ -100,6 +100,10 @@ h4 {
 	text-align: right;
 }
 
+.text-left {
+	text-align: left;
+}
+
 .nopadding {
 	padding: 0 !important;
 }
@@ -120,6 +124,14 @@ h4 {
 	font-style: italic !important;
 }
 
+.small {
+	line-height: normal !important;
+}
+
+.block {
+	display: block;
+}
+
 /*color*/
 
 .brown {
@@ -128,6 +140,10 @@ h4 {
 
 .yellow {
 	color: #ff9600 !important;
+}
+
+.red {
+	color: #f70707 !important;
 }
 
 /* =Header
@@ -1360,6 +1376,7 @@ img.alignright {
 
 #MainWalletModal .modal-body {
 	padding: 0;
+	position: relative;
 }
 
 #MainWalletModal .tab-content {
@@ -1403,7 +1420,7 @@ img.alignright {
 }
 
 #MainWalletModal .nav-tabs > li {
-	width: 33.3%;
+	width: 33.33%;
 	text-align: center;
 }
 
@@ -1427,6 +1444,87 @@ img.alignright {
 	box-shadow: inset 0 20px 20px #00d2ff;
  	font-size: 14px;
  	border: none;
+}
+
+#MainWalletModal .transaction-box {
+	clear: both;
+	overflow: hidden;
+}
+
+#MainWalletModal .transaction-box form {
+	padding: 0 0 10px 0;
+}
+
+#MainWalletModal .transaction-box table {
+	background: none !important;
+	border: medium none;
+    border-collapse: unset !important;
+    border-spacing: 2px !important;
+    width: 100%;
+    margin: 0 0 40px 0;
+}
+
+#MainWalletModal .transaction-box table th {
+	border: 1px solid #000;
+	text-align: center;
+	padding: 4px;
+	background: #e1e1e1;
+}
+
+#MainWalletModal .transaction-box table td {
+	border: 1px solid #000;
+	text-align: center;
+	background: #fff;
+	padding: 4px;
+	-webkit-border-radius: 4px; 
+  	-moz-border-radius: 4px; 
+  	border-radius: 4px; 
+}
+
+#MainWalletModal .verification-box {
+	clear: both;
+	overflow: hidden;
+}
+
+#MainWalletModal .verification-box h3 {
+	margin: 0 15px 10px;
+	font-size: 18px;
+	line-height: 22px;
+}
+
+#MainWalletModal .fileinput {
+	background: #ebebeb;
+	text-align: center;
+	border: 1px solid #6f6f6f;
+	-webkit-border-radius: 6px; 
+  	-moz-border-radius: 6px; 
+  	border-radius: 6px; 
+  	color: #000;
+}
+
+#MainWalletModal #side-tabs {
+	-ms-transform: rotate(90deg); /* IE 9 */
+    -webkit-transform: rotate(90deg); /* Safari */
+    transform: rotate(90deg);
+    position: absolute;
+    right: -132px;
+    top: 47%;
+    width: 225px;
+}
+
+#MainWalletModal #side-tabs .nav-tabs > li {
+	width: 50%;
+}
+
+#MainWalletModal #side-tabs .nav-tabs > li a {
+	margin: 0;
+	background: #fff;
+	-moz-box-shadow: inset 0 20px 20px #00d2ff;
+	-webkit-box-shadow: inset 0 20px 20px #00d2ff;
+	box-shadow: inset 0 20px 20px #00d2ff;
+	border: none;
+	color: #000;
+	font-weight: 600;
 }
 
 #CommissionWalletModal .modal-dialog {
@@ -1526,6 +1624,189 @@ img.alignright {
  	border: none;
 }
 
+#CommissionWalletModal .transaction-box {
+	clear: both;
+	overflow: hidden;
+}
+
+#CommissionWalletModal .transaction-box form {
+	padding: 0 0 10px 0;
+}
+
+#CommissionWalletModal .transaction-box table {
+	background: none !important;
+	border: medium none;
+    border-collapse: unset !important;
+    border-spacing: 2px !important;
+    width: 100%;
+    margin: 0;
+}
+
+#CommissionWalletModal .transaction-box table th {
+	border: 1px solid #000;
+	text-align: center;
+	padding: 4px;
+	background: #e1e1e1;
+	font-weight: 600;
+}
+
+#CommissionWalletModal .tab-title {
+	margin: 30px 0;
+	text-align: center;
+	color: #000;
+	line-height: 35px;
+	font-weight: 700;
+	font-size: 18px;
+}
+
+#CommissionWalletModal .transaction-box table td {
+	border: 1px solid #000;
+	text-align: center;
+	background: #fff;
+	padding: 4px;
+	-webkit-border-radius: 4px; 
+  	-moz-border-radius: 4px; 
+  	border-radius: 4px; 
+  	font-weight: 600;
+}
+
+#CommissionWalletModal .merchant-box {
+	clear: both;
+	overflow: hidden;
+	border: 1px solid #000;
+	padding: 30px 30px 10px;
+	-webkit-border-radius: 20px; 
+  	-moz-border-radius: 20px; 
+  	border-radius: 20px;
+  	margin: 0 0 20px 0;
+}
+
+#CommissionWalletModal .merchant-box form {
+	padding: 0 0 0 0;
+}
+
+#CommissionWalletModal .merchant-box h3 {
+	font-size: 16px;
+	font-weight: 700;
+}
+
+#CommissionWalletModal .merchant-box span {
+	font-size: 14px;
+}
+
+#CommissionWalletModal .codetracking-box {
+	font-weight: 600;
+	color: #000;
+	padding: 50px 30px;
+}
+
+#CommissionWalletModal .codetracking-box h3 {
+	font-size: 16px;
+	margin: 0 0 30px 0;
+	font-weight: 600;
+}
+
+#CommissionWalletModal .codetracking-box form {
+	padding: 30px 0;
+}
+
+#Commission2WalletModal .modal-dialog {
+	margin: 106px auto 150px !important;
+	max-width: 1000px;
+	width: auto !important;
+	background: none;
+	-moz-box-shadow:    -10px 0 20px #444;
+   	-webkit-box-shadow: -10px 0 20px #444;
+   	box-shadow:         -10px 0 20px #444;
+   	-webkit-border-radius: 6px; 
+  	-moz-border-radius: 6px; 
+  	border-radius: 6px; 
+}
+
+#Commission2WalletModal .modal-content {
+	background: none;
+   	border: none;
+   	color: #000;
+   	font-size: 14px;
+   	-moz-box-shadow:    none;
+   	-webkit-box-shadow: none;
+   	box-shadow:         none;
+}
+
+#Commission2WalletModal .modal-body {
+	padding: 0;
+}
+
+#Commission2WalletModal .tab-content {
+	background: #fff;
+	padding: 0 0 10px 0;
+	margin: 0;
+	-moz-box-shadow: inset 0 -17px 20px #00d2ff;
+	-webkit-box-shadow: inset 0 -17px 20px #00d2ff;
+	box-shadow: inset 0 -17px 20px #00d2ff;
+	-moz-border-radius: 0 0 10px 10px;
+	-webkit-border-radius: 0 0 10px 10px;
+	border-radius: 0 0 10px 10px;
+}
+
+#Commission2WalletModal .tab-content > .tab-pane {
+	padding: 15px 30px 0 30px;
+}
+
+#Commission2WalletModal .form-box {
+	-webkit-border-radius: 6px; 
+  	-moz-border-radius: 6px; 
+  	border-radius: 6px; 
+  	border: 1px solid #000;
+  	overflow: hidden;
+  	margin: 0 0 20px;
+}
+
+#Commission2WalletModal .form-box form {
+	padding: 15px 0 0;
+}
+
+#Commission2WalletModal .form-box p {
+	margin: 0 0 10px 0;
+}
+
+#Commission2WalletModal .light-input {
+	border: 1px solid #000;
+	max-width: 190px;
+}
+
+#Commission2WalletModal .dark-input {
+	border: 1px solid #000;
+	max-width: 190px;
+}
+
+#Commission2WalletModal .nav-tabs > li {
+	width: 25%;
+	text-align: center;
+}
+
+#Commission2WalletModal .nav-tabs > li > a {
+	margin: 0;
+	background: #fff;
+	-moz-box-shadow: inset 0 20px 20px #035669;
+	-webkit-box-shadow: inset 0 20px 20px #035669;
+	box-shadow: inset 0 20px 20px #035669;
+	border: none;
+	color: #fff;
+	font-weight: 600;
+}
+
+#Commission2WalletModal .nav-tabs > li.active > a, #Commission2WalletModal .nav-tabs > li.active > a:focus, #Commission2WalletModal .nav-tabs > li.active > a:hover {
+	background-color: #fff !important;
+	color: #000;
+	font-weight: 600;
+	-moz-box-shadow: inset 0 20px 20px #00d2ff;
+	-webkit-box-shadow: inset 0 20px 20px #00d2ff;
+	box-shadow: inset 0 20px 20px #00d2ff;
+ 	font-size: 14px;
+ 	border: none;
+}
+
 /*button*/
 .share-btn {
 	display: inline-block;
@@ -1591,6 +1872,51 @@ img.alignright {
    	text-decoration: none;
 }
 
+.small-btn {
+	display: inline-block;
+	padding: 0 15px;
+	height: 32px;
+	line-height: 30px;
+	border: 1px solid #404141;
+	-moz-box-shadow:    inset 0 0 20px #00d2ff;
+   	-webkit-box-shadow: inset 0 0 20px #00d2ff;
+   	box-shadow:         inset 0 0 20px #00d2ff;
+   	font-size: 14px;
+   	color: #000;
+   	background: #fff;
+   	text-decoration: none;
+   	-webkit-border-radius: 6px; 
+  	-moz-border-radius: 6px; 
+  	border-radius: 6px; 
+  	font-weight: 600;
+  	transition: all 0.5s ease 0s;
+    -webkit-transition: all 0.5s ease 0s;
+    -moz-transition: all 0.5s ease 0s;
+    -o-transition: all 0.5s ease 0s;
+}
+
+.small-btn:hover, .small-btn:active, .small-btn:focus {
+	background: #fff;
+	-moz-box-shadow:    inset 0 0 20px #5ed973;
+   	-webkit-box-shadow: inset 0 0 20px #5ed973;
+   	box-shadow:         inset 0 0 20px #5ed973;
+   	color: #000;
+   	text-decoration: none;
+}
+
+#MainWalletModal .verification-box .modal-btn {
+	padding: 0 13px;
+	margin: 3px 0;
+}
+
+input[type="file"] {
+	display: inline-block;
+}
+
+.middle-btn {
+	margin: 0 20px;
+}
+
 .clear {
 	overflow: hidden;
 	clear: both;
@@ -1605,7 +1931,7 @@ img.alignright {
 	display: inline-block;
 	width: 138px;
 	height: 49px;
-	margin: 0 12px -24px;
+	margin: 0 12px 10px;
 	padding: 0;
 }
 
@@ -1678,6 +2004,116 @@ img.alignright {
     -o-transition: all 0.5s ease 0s;
 }
 
+.pending-btn {
+	background: url(../img/mainpage/pending-btn.gif) repeat-x 0 0;
+	height: 20px;
+	line-height: 18px;
+	color: #000;
+	font-size: 13px;
+	border: none;
+	transition: all 0.5s ease 0s;
+    -webkit-transition: all 0.5s ease 0s;
+    -moz-transition: all 0.5s ease 0s;
+    -o-transition: all 0.5s ease 0s;
+    -webkit-border-radius: 20px; 
+  	-moz-border-radius: 20px; 
+  	border-radius: 20px; 
+  	padding: 1px 20px;
+  	-moz-box-shadow:    0 0 10px #888;
+   	-webkit-box-shadow: 0 0 10px #888;
+   	box-shadow:         0 0 10px #888;
+   	width: 105px;
+   	display: inline-block;
+}
+
+.process-btn {
+	background: url(../img/mainpage/process-btn.gif) repeat-x 0 0;
+	height: 20px;
+	line-height: 18px;
+	color: #000;
+	font-size: 13px;
+	border: none;
+	transition: all 0.5s ease 0s;
+    -webkit-transition: all 0.5s ease 0s;
+    -moz-transition: all 0.5s ease 0s;
+    -o-transition: all 0.5s ease 0s;
+    -webkit-border-radius: 20px; 
+  	-moz-border-radius: 20px; 
+  	border-radius: 20px; 
+  	padding: 1px 20px;
+  	-moz-box-shadow:    0 0 10px #888;
+   	-webkit-box-shadow: 0 0 10px #888;
+   	box-shadow:         0 0 10px #888;
+   	width: 105px;
+   	display: inline-block;
+}
+
+.approve-btn {
+	background: url(../img/mainpage/approve-btn.gif) repeat-x 0 0;
+	height: 20px;
+	line-height: 18px;
+	color: #000;
+	font-size: 13px;
+	border: none;
+	transition: all 0.5s ease 0s;
+    -webkit-transition: all 0.5s ease 0s;
+    -moz-transition: all 0.5s ease 0s;
+    -o-transition: all 0.5s ease 0s;
+    -webkit-border-radius: 20px; 
+  	-moz-border-radius: 20px; 
+  	border-radius: 20px; 
+  	padding: 1px 20px;
+  	-moz-box-shadow:    0 0 10px #888;
+   	-webkit-box-shadow: 0 0 10px #888;
+   	box-shadow:         0 0 10px #888;
+   	width: 105px;
+   	display: inline-block;
+}
+
+.reject-btn {
+	background: url(../img/mainpage/rejected-btn.gif) repeat-x 0 0;
+	height: 20px;
+	line-height: 18px;
+	color: #000;
+	font-size: 13px;
+	border: none;
+	transition: all 0.5s ease 0s;
+    -webkit-transition: all 0.5s ease 0s;
+    -moz-transition: all 0.5s ease 0s;
+    -o-transition: all 0.5s ease 0s;
+    -webkit-border-radius: 20px; 
+  	-moz-border-radius: 20px; 
+  	border-radius: 20px; 
+  	padding: 1px 20px;
+  	-moz-box-shadow:    0 0 10px #888;
+   	-webkit-box-shadow: 0 0 10px #888;
+   	box-shadow:         0 0 10px #888;
+   	width: 105px;
+   	display: inline-block;
+}
+
+.cancel-btn {
+	background: url(../img/mainpage/cancel-btn.gif) repeat-x 0 0;
+	height: 20px;
+	line-height: 18px;
+	color: #000;
+	font-size: 13px;
+	border: none;
+	transition: all 0.5s ease 0s;
+    -webkit-transition: all 0.5s ease 0s;
+    -moz-transition: all 0.5s ease 0s;
+    -o-transition: all 0.5s ease 0s;
+    -webkit-border-radius: 20px; 
+  	-moz-border-radius: 20px; 
+  	border-radius: 20px; 
+  	padding: 1px 20px;
+  	-moz-box-shadow:    0 0 10px #888;
+   	-webkit-box-shadow: 0 0 10px #888;
+   	box-shadow:         0 0 10px #888;
+   	width: 105px;
+   	display: inline-block;
+}
+
 /*input text color*/
 
 .dark-input {
@@ -1706,6 +2142,68 @@ img.alignright {
 	max-width: 240px;
 }
 
+.date-input {
+	background: #cccccc;
+	color: #000;
+	font-weight: 600;
+	height: 37px;
+	line-height: 35px;
+	border: 1px solid #cccccc; 
+	padding: 0 10px;
+	font-size: 14px;
+	text-align: center;
+	max-width: 140px;
+}
+
+.input-note {
+	background: #cccccc;
+	color: #000;
+	font-weight: 600;
+	height: 37px;
+	line-height: 35px;
+	border: 1px solid #cccccc; 
+	padding: 0 40px;
+	font-size: 14px;
+	text-align: left;
+	width: 100%;
+	display: block;
+}
+
+.generate-input {
+	background: #898989;
+	color: #000;
+	font-weight: 600;
+	height: 37px;
+	line-height: 35px;
+	border: 1px solid #898989; 
+	padding: 0 40px;
+	font-size: 14px;
+	text-align: center;
+	min-width: 400px;
+}
+
+.date-icon {
+	margin: 0 5px;
+	display: inline-block;
+}
+
+.amount-input {
+	background: #cccccc;
+	color: #000;
+	font-weight: 600;
+	height: 37px;
+	line-height: 35px;
+	border: 1px solid #cccccc; 
+	padding: 0 20px;
+	font-size: 14px;
+	text-align: center;
+	max-width: 130px;
+	margin: 0 15px;
+	-webkit-border-radius: 6px; 
+  	-moz-border-radius: 6px; 
+  	border-radius: 6px;
+}
+
 input[type="checkbox"] {
 	margin: 0 20px 0 0;
 	display: inline-block;
@@ -1725,6 +2223,23 @@ input[type="checkbox"] {
 
 #AccountModal .light-input {
 	max-width: 200px;
+}
+
+/*navigation*/
+.navigation {
+	clear: both;
+	overflow: hidden;
+	text-align: right;
+	margin: 20px 0 40px;
+}
+
+.navigation-label {
+	display: inline-block;
+	padding: 0 10px;
+}
+
+.navigation-label a {
+	color: #3259bb !important;
 }
 
 /* =Media Queries
