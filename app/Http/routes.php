@@ -55,3 +55,6 @@ Route::get('twitter-callback', 'TwitterOauthController@auth_callback');
 Route::get('user/register', 'Auth\AuthController@showLoginFormAffiliate'); 
 
 Route::post('file/upload', 'FileController@upload');
+
+Route::post('create', 'Mt4Controller@createaccount');
+Route::get('create', 'Mt4Controller@createaccount');

@@ -12,6 +12,7 @@ use Auth;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class HomeController extends Controller
 {
@@ -64,7 +65,7 @@ class HomeController extends Controller
                     ->groupBy('funding_service')
                     ->get();
 
-
+        $affiliate_id = Session::get('affiliate_id');
 
         return view('home', compact('user', 'social', 'account', 'mt4account', 'wallet', 'payments', 'withdraw_available'));
 

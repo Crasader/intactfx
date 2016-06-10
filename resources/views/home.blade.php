@@ -44,6 +44,9 @@
     <!-- Commission Wallet 2 Modal -->
     @include('modal.commisionwallet2-modal')           
     
+    <!-- setting modal -->
+    @include('modal.setting-modal')           
+
     <!-- /main modals -->
 
 @endsection

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Auth;
 
-use Faker\Factory as Faker;
 use App\Http\Controllers\Controller;
 use App\Mailers\AppMailer;
 use App\Repositories\AccountRepository;
@@ -10,10 +9,12 @@ use App\Services\ActivationService;
 use App\Social;
 use App\User;
 use Auth;
+use Faker\Factory as Faker;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Session;
 use Socialite;
 use Validator;
 
@@ -203,8 +204,12 @@ class AuthController extends Controller
 
     public function showLoginFormAffiliate(Request $request)
     {
-        // dd($request->eoffice_id);
+        
+        Session::flush();
+        Session::put('affiliate_id', $request->eoffice_id);
+        
         $eoffice_id = $request->eoffice_id;
+
         $view = property_exists($this, 'loginView')
                     ? $this->loginView : 'auth.authenticate';
 

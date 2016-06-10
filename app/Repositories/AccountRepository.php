@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use Faker\Factory as Faker;
 use Illuminate\Database\Connection;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Session;
 
 class AccountRepository
 {
@@ -43,11 +44,32 @@ class AccountRepository
         $account->id = $id;
         $account->user_id = $user->id;
         $account->save();
+
+        //affiliate table
+        $affiliate = new Affiliate;
+        $affiliate->eoffice_id = $id;
+        
+        // if user register with affiliate link
         if ($user->affiliate_id!='') {
-            $affiliate = new Affiliate;
-            $affiliate->eoffice_id = $id;
             $affiliate->affiliate_id = $user->affiliate_id;
             $affiliate->save();
+        } else { // if user register using social
+            
+            //if affiliate_id existing
+            if (Session::has('affiliate_id')){
+                $affiliate_id = Session::get('affiliate_id');    
+
+                $affiliate->affiliate_id = $affiliate_id;
+                $affiliate->save();
+
+                Session::forget('affiliate_id');
+            } else { // get random affiliate id
+
+                $random_eoffice_id = Account::all()->random(1);
+                $affiliate->affiliate_id = $random_eoffice_id->id;
+                $affiliate->save();
+            }
+
         }
         
         

@@ -47,7 +47,8 @@ class PaymentBitcoinController extends Controller
         $this->coinbase_env=='sandbox' ? $configuration->setApiUrl(Configuration::SANDBOX_API_URL) : '';
         
         $client = Client::create($configuration);
-
+        $exchange = $client->getExchangeRates();
+        echo '<pre>' . print_r($exchange, 1 ) . '</pre>';
         // $order = $client->getOrders();
         try {
             $order = $client->getOrder($orderId);
@@ -59,7 +60,7 @@ class PaymentBitcoinController extends Controller
             foreach ($array as $key => $value) {
                 $key = preg_replace('/[\x00-\x1F\x80-\xFF]/', '', $key);    
                 echo $key;
-                
+
                 // if ($key=='*rawData') {
                 //     $res['id'] =  $value['id'];
                 //     $res['amount'] =  $value['amount']['amount'];
