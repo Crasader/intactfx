@@ -57,4 +57,12 @@ Route::get('user/register', 'Auth\AuthController@showLoginFormAffiliate');
 Route::post('file/upload', 'FileController@upload');
 
 Route::post('create', 'Mt4Controller@createaccount');
-Route::get('create', 'Mt4Controller@createaccount');
+Route::get('mt4/create', 'Mt4Controller@createaccount');
+Route::post('mt4/create', 'Mt4Controller@createaccount');
+Route::post('mt4/transferin', 'Mt4Controller@transferIn');
+Route::post('mt4/transferout', 'Mt4Controller@transferOut');
+
+
+Route::get('account/data', 'HomeController@intactdata');
+Route::get('account/getaccount', 'HomeController@miniAccount');
+Route::get('account/updateaccounts', 'Mt4Controller@updateAccount');

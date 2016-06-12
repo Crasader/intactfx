@@ -46,6 +46,7 @@ class HomeController extends Controller
             
         }
 
+        
         $account = Account::where('user_id', $user->id)->first();
 
         $mt4account = Mt4Account::where('eoffice_id', $account->id)->get();
@@ -68,6 +69,27 @@ class HomeController extends Controller
         $affiliate_id = Session::get('affiliate_id');
 
         return view('home', compact('user', 'social', 'account', 'mt4account', 'wallet', 'payments', 'withdraw_available'));
+
+    }
+
+    public function intactdata(){
+        DB::connection()->enableQueryLog();
+        $user = Auth::user();
+        $account = DB::table('intact_users')
+            ->join('intact_accounts', 'intact_accounts.user_id', '=', 'intact_users.id')
+            ->select('intact_users.id', 'intact_users.email', 'intact_accounts.id')
+            ->where('intact_users.id', $user->id)
+            ->get();
+                // dd($account);
+             // dd(DB::getQueryLog());
+            return $account;
+    }
+
+    public function miniAccount(Request $request){
+        
+        $mt4account = Mt4Account::select('eoffice_id', 'mt4login_id', 'account_type', 'balance')->where('eoffice_id', $request->eoffice_id)->get();
+
+        return $mt4account;
 
     }
 

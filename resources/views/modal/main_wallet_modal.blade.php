@@ -22,8 +22,17 @@
                 <p class="bold uppercase nomargin">Deposit</p>
                 <div class="form-box">
                     <form>
-                        <p class="clear text-center"><span class="col-md-3">Enter Amount:</span><span class="col-md-9"><input type="text" class="light-input" name="balance" /> USD</span></p>
+
+                        <p class="clear text-center">
+                            <span class="col-md-3">Enter Amount:</span>
+                            <span class="col-md-9">
+                                <input v-model="intactdata.wallet.amount" type="text" class="light-input" name="balance" />
+                                USD
+                            </span>
+                        </p>
+
                         <p class="text-center">Choose payment method:</p>
+
                         <p class="text-center">
                             <input type="submit" class="payment-button-1" name="bitcoin" value="bitcoin">
                             <input type="submit" class="payment-button-2" name="neteller" value="neteller">
@@ -32,6 +41,7 @@
                             <input type="submit" class="payment-button-5" name="perfectmoney" value="perfectmoney">
                             <input type="submit" class="payment-button-6" name="skrill" value="skrill">
                         </p>
+
                     </form>
                 </div>
                 <p class="bold uppercase nomargin">Withdrawal</p>

@@ -36,7 +36,7 @@
     @include('modal.createaccount-modal')            
 
     <!-- Main Wallet Modal -->
-    @include('modal.mainwallet-modal')                
+    @include('modal.mainwallet-modal')   
 
     <!-- Commission Wallet Modal -->
     @include('modal.commisionwallet-modal')           
@@ -47,6 +47,16 @@
     <!-- setting modal -->
     @include('modal.setting-modal')           
 
+
+    <!-- mt4 account modal -->
+     @include('modal.miniaccount.mini-account-modal')        
+     @include('modal.miniaccount.standard-account-modal')        
+     @include('modal.miniaccount.iprofit-account-modal')        
+     @include('modal.miniaccount.iprofit-high-account-modal')        
+     @include('modal.miniaccount.broker-account-modal')        
+
+     <!-- change pass-->
+     @include('modal.changepass-modal')        
     <!-- /main modals -->
 
 @endsection

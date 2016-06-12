@@ -22,8 +22,8 @@ class Mt4Repository
     
     public function __construct()
     {
-       $this->server_address = "10.5.8.17";
-       $this->server_port = "4000";
+       $this->server_address = env('MT4_IP_ADDRESS');
+       $this->server_port = env('MT4_PORT');
     }
 
     function OpenConnection() {
@@ -49,8 +49,6 @@ class Mt4Repository
     }
     
     function _parse_answer($answerData){
-        echo '<pre>' . print_r($answerData,1) . '</pre>';
-        die();
         $result = array();
         $lines = explode("\n", $answerData);
         $data = explode("&", $lines[0]);
@@ -96,7 +94,7 @@ class Mt4Repository
         $this->sendRequest($request);
 
         // echo '<pre>' . print_r($return['csv'],1) . '</pre>';
-        dd($this->readAnswer());
+       
 
         return $this->_parse_answer($this->readAnswer());
         

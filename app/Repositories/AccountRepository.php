@@ -27,8 +27,6 @@ class AccountRepository
 
        $account = $this->generateAccount($user);
 
-       $this->generateMt4Account($account);
-
         Mail::queue('emails.affiliate', compact('user', 'account'), function($message) use ($user){
             $message->to($user->email)->subject('Thank you for signing up.');
         });
@@ -80,24 +78,24 @@ class AccountRepository
     private function generateMt4Account($account)
     {
 
-        $accountType = [
-            'mini',
-            'standard',
-            'ip_low',
-            'ip_high',
-            'broker'
-        ];
+        // $accountType = [
+        //     'mini',
+        //     'standard',
+        //     'ip_low',
+        //     'ip_high',
+        //     'broker'
+        // ];
 
 
-        foreach ($accountType as $value) {
-            Mt4Account::create([
-                'id' => Faker::create()->numberBetween($min = 10000, $max = 99999),
-                 // Faker::create()->randomNumber($nbDigits = 5),
-                'eoffice_id' => $account->id,
-                'account_type' => $value,
-                'balance' => 0
-            ]);
-        }
+        // foreach ($accountType as $value) {
+        //     Mt4Account::create([
+        //         'id' => Faker::create()->numberBetween($min = 10000, $max = 99999),
+        //          // Faker::create()->randomNumber($nbDigits = 5),
+        //         'eoffice_id' => $account->id,
+        //         'account_type' => $value,
+        //         'balance' => 0
+        //     ]);
+        // }
 
     }
 

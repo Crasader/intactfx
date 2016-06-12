@@ -41,4 +41,11 @@ class User extends Authenticatable
         });
         
     }
+
+    public function account()
+    {
+        
+        return $this->hasOne('App\Account');
+
+    }
 }
