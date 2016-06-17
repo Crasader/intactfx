@@ -74,7 +74,8 @@ class Mt4Repository
         // die();
         
         $request_id = 6099;//rand();
-        $request = "action=$action&request_id=$request_id";
+        $request = "action=$action";
+        // $request = "action=$action&request_id=$request_id";
 
         foreach($params as $key => $value) {
             $request .= "&$key=$value";
@@ -96,7 +97,8 @@ class Mt4Repository
         // echo '<pre>' . print_r($return['csv'],1) . '</pre>';
        
 
-        return $this->_parse_answer($this->readAnswer());
+        // return $this->_parse_answer($this->readAnswer());
+        // return $this->readAnswer();
         
     }
 

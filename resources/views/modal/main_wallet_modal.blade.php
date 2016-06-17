@@ -1,4 +1,6 @@
- <div class="modal fade" id="MainWalletModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+
+    <!-- Main Wallet Modal -->
+    <div class="modal fade" id="MainWalletModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-body">
@@ -10,38 +12,274 @@
             <li role="presentation"><a href="#verification" aria-controls="verification" role="tab" data-toggle="tab">Verification</a></li>
           </ul>
 
-          <div id="side-tabs">
-              <ul class="nav nav-tabs" role="tablist">
-                <li role="presentation"><a href="#deposit" aria-controls="deposit" role="tab" data-toggle="tab">Deposit</a></li>
-                <li role="presentation"><a href="#withdrawal" aria-controls="withdrawal" role="tab" data-toggle="tab">Withdrawal</a></li>
-              </ul>
+          <!-- Deposit Side tabs -->
+          <div id="merchant-tab" class="sidetab-box">
+            <div class="sidetab-box-content">
+            
+              <img src="{{url('img/mainpage/merchant-exchanger-tab.png')}}" alt="merchant exchanger" />
+              <p class="text-center">Please enter your Deposit Code below. <br /> Contact our merchants to get your Deposit Code via our <a href="#">Merchant Page</a>. </p>
+              <form>
+                <p><input type="text" name="depositcode" class="light-input" value="your deposit code" /></p>
+                <p><input type="text" name="amount" class="dark-input" value="amount" /> <input type="submit" name="submit" value="Add Funds" class="modal-btn"></p>
+              </form>
+              <div id="side-tabs">
+                <a href="#merchant" class="toggle-button">Deposit</a> 
+              </div>
+            </div>
+
           </div>
+
+          <div id="ewiretransfer-tab" class="sidetab-box3">
+            <div class="sidetab-box-content3 sidetab-box-common">
+            
+            <div class="col-md-4 nopadding">
+              <img src="{{url("img/mainpage/ewire-tab.png")}}" alt="ewire transfer" />
+            </div>
+            <div class="col-md-8 nopadding">
+                <h3 class="nomargin text-center semibold">Notify your payment</h3>
+                <h3 class="text-center">Upload your proof of payment</h3>
+            </div>
+            <div class="clear"></div>
+            <p>Select file: <input type="file" id="ewiredocument"> <input type="submit" name="submit" value="Upload your documents" class="modal-btn" style="padding: 0 10px !important;"></p>
+            <p>Note (Optional): <br /> <input type="text" name="note" class="light-input" /></p>
+            <p class="text-center"><input type="submit" name="submit" value="Add Funds" class="modal-btn"></p>
+            <p class="nomargin text-center semibold"><a href="#">Request Invoice</a> for a new payment</p>
+              <div id="side-tabs">
+                <a href="#ewiretransfer" class="toggle-button3">Deposit</a> 
+              </div>
+            </div>
+
+          </div>
+
+          <div id="skrill-tab" class="sidetab-box4">
+            <div class="sidetab-box-content4 sidetab-box-common">
+          
+            <img src="{{url("img/mainpage/skrill-tab.png")}}" alt="skrill" />
+             
+            <h3 class="text-center semibold">Amount: <input type="text" name="amount" class="dark-input" value="1000" /> USD</h3>
+            <p class="text-center"><input type="text" name="amountid" class="dark-input" value="E-office ID: 12345" /> <input type="submit" name="submit" value="Add Funds" class="modal-btn"></p>
+            <p class="text-center semibold">You will be redirect to your Skrill’s Login Page</p>
+              <div id="side-tabs">
+                <a href="#skrill" class="toggle-button4">Deposit</a> 
+              </div>
+            </div>
+
+          </div>
+
+          <div id="perfectmoney-tab" class="sidetab-box5">
+            <div class="sidetab-box-content5 sidetab-box-common">
+
+            <form action="https://perfectmoney.is/api/step1.asp" method="POST">
+                <input type="hidden" name="PAYEE_ACCOUNT" value="U11189043">
+                <input v-model="intactdata.profile.eoffice_id" type="hidden" name="PAYEE_NAME" value="Test">
+                <input type="hidden" name="PAYMENT_ID" value="{{ str_random(6) }}">
+                <input v-model="intactdata.wallet.deposit" type="hidden" name="PAYMENT_AMOUNT">
+                <input type="hidden" name="PAYMENT_UNITS" value="USD">
+                <input type="hidden" name="STATUS_URL" value="http://dev.intactfx/payment/pm/pmprocess">
+                <input type="hidden" name="PAYMENT_URL" value="http://dev.intactfx/payment/pm/success">
+                <input type="hidden" name="PAYMENT_URL_METHOD" value="POST">
+                <input type="hidden" name="NOPAYMENT_URL" value="http://dev.intactfx/payment/pm/error">
+                <input type="hidden" name="NOPAYMENT_URL_METHOD" value="POST">
+                <input type="hidden" name="SUGGESTED_MEMO" value="payment comments here">
+                <input type="hidden" name="BAGGAGE_FIELDS" value="">
+                <img src="{{url("img/mainpage/perfect-money-tab.png")}}"  alt="perfect money" />
+                <div class="gap"></div>
+                <h3 class="text-center semibold">Amount: <input v-model="intactdata.wallet.deposit | currency" type="text" name="amount" class="dark-input" /> USD</h3>
+                <p class="text-center"><input disabled="disabled" v-model="intactdata.profile.eoffice_id"  type="text" name="amountid" class="dark-input" /> <input type="submit" name="submit" value="Add Funds" class="modal-btn"></p>
+                <p class="text-center semibold">You will be redirect to your Perfect Money Login Page</p>
+                  <div id="side-tabs">
+                    <a onclick="$(this).closest('form').submit()" href="#perfectmoney" class="toggle-button5">Deposit</a> 
+                  </div>
+                </div>
+             </form>
+
+          </div>
+
+          <div id="neteller-tab" class="sidetab-box6">
+            <div class="sidetab-box-content6 sidetab-box-common">
+          
+            <img src="{{url("img/mainpage/neteller-tab.png")}}" alt="neteller" />
+            <div class="gap"></div>
+            <p class="text-center"><input type="text" name="accountid" class="light-input" value="Neteller Account ID/ Email" /></p>
+            <p class="text-center"><input type="text" name="securityid" class="light-input" value="Secure ID / Authentication Code" /></p>
+            <p class="text-center"><input type="text" name="amountid" class="dark-input" value="E-office ID: 12345" /> <input type="submit" name="submit" value="Add Funds" class="modal-btn"></p>
+              <div id="side-tabs">
+                <a href="#neteller" class="toggle-button6">Deposit</a> 
+              </div>
+            </div>
+
+          </div>
+
+          <div id="bitcoin-tab" class="sidetab-box7">
+            <div class="sidetab-box-content7 sidetab-box-common">
+          
+            <img src="{{url("img/mainpage/bitcoin-tab.png")}}" alt="bitcoin" />
+       <!--      <div class="gap"></div>
+            <div class="col-md-4">
+                <img src="{{url("img/mainpage/unknown-image.png")}}" alt="unknown" />
+            </div>
+            <div class="col-md-8">
+                <p>Address <br /><input type="text" name="address" class="light-input" value="1PPoBFLZk4AMUcZJM6XNSrsQg4LmfA63nq" /></p>
+                <p class="text-center"><input type="submit" name="submit" value="Copy" class="modal-btn"></p>
+                <p class="text-center">Please scan QR Code or copy our BTC Address <br />using your Bitcoin Wallet to send payment</p>
+            </div> -->
+              <div id="side-tabs">
+                <a href="#bitcoin" class="toggle-button7">Deposit</a> 
+              </div> 
+              <iframe id="coinbase_inline_iframe_d897eca845b8d22bcad0141620ecad22" src="https://sandbox.coinbase.com/checkouts/d897eca845b8d22bcad0141620ecad22/inline" style="width: 460px; height: 350px; border: none; box-shadow: 0 1px 3px rgba(0,0,0,0.25);" allowtransparency="true" frameborder="0"></iframe>
+            </div>
+
+          </div>
+
+          <!-- payment detected tab-->
+          <div id="payment-detected-tab" class="sidetab-box8">
+            <div class="sidetab-box-content8 sidetab-box-common">
+          
+                <div class="gap"></div>
+                <p class="text-center">PAYMENT DETECTED</p>
+                <div class="gap"></div>
+                <p class="text-center">We have detected your payment, and will process <br /> your order as soon as the transaction is confirmed <br /> 
+                    on the Bitcoin network. (this usually takes around 10 minutes).</p>
+                <div class="gap"></div>
+                <p class="text-center">As soon as the transaction is confirmed (normally this takes ~10 minutes), <br />the topup amount will be credited to your main wallet.</p>
+
+            </div>
+
+          </div>
+
+
+          <!-- withdrawal Side tabs -->
+          <div id="merchant-withdraw" class="sidetab-box-withdraw">
+              <div class="sidetab-box-withdraw-content sidetab-box-common">
+              
+                <img src="{{url("img/mainpage/merchant-exchanger-tab.png")}}" alt="merchant exchanger" />
+                <div class="gap"></div>
+                <p class="text-center">Please select your merchant from exchanger list in <br /> <a href="#">Merchant Page</a> <br />
+                  to request withdrawal thru merchant exchanger. </p>
+                <div class="gap"></div>
+                <div id="side-tabs2">
+                  <a href="#merchant-withdrawal" class="next-toggle-button">withdrawal</a> 
+                </div>
+            </div>
+          </div>
+
+          <div id="ewire-withdraw" class="sidetab-box-withdraw2">
+              <div class="sidetab-box-withdraw-content2 sidetab-box-common">
+                
+                <img src="{{ url("img/mainpage/ewire-tab.png") }}" alt="ewire transfer" />
+                <form>
+                    <div class="gap"></div>
+                    <p class="text-center">Please submit your bank account details via <a href="#">Setting Page</a></p>
+                    <div class="gap"></div>
+                    <p class="text-center"><input type="submit" name="submit" value="Cash Out" class="modal-btn"></p>
+                </form>
+
+                <div id="side-tabs2">
+                  <a href="#ewire-withdrawal" class="next-toggle-button2">withdrawal</a> 
+                </div>
+
+            </div>
+          </div>
+
+          <div id="skrill-withdraw" class="sidetab-box-withdraw3">
+              <div class="sidetab-box-withdraw-content3 sidetab-box-common">
+                
+                <img src="{{url('img/mainpage/skrill-tab.png')}}" alt="skrill" />
+                <form>
+                    <div class="gap"></div>
+                    <p class="text-center"><input type="text" name="accountid" class="dark-input fullwidth-input" value="Skrill Account ID/ Email" /></p>
+                    <div class="gap"></div>
+                    <p class="text-center"><input type="submit" name="submit" value="Cash Out" class="modal-btn"></p>
+                </form>
+                <div id="side-tabs2">
+                  <a href="#skrill-withdrawal" class="next-toggle-button3">withdrawal</a> 
+                </div>
+            </div>
+          </div>
+
+          <div id="perfectmoney-withdraw" class="sidetab-box-withdraw4">
+              <div class="sidetab-box-withdraw-content4 sidetab-box-common">
+                
+                <img src="{{url('img/mainpage/perfect-money-tab.png')}}" alt="perfect money" />
+                <form>
+                    <div class="gap"></div>
+                    <p class="text-center"><input type="text" name="accountid" class="dark-input fullwidth-input" value="Perfect Money Account ID/ Email" /></p>
+                    <div class="gap"></div>
+                    <p class="text-center"><input type="submit" name="submit" value="Cash Out" class="modal-btn"></p>
+                </form>
+                <div id="side-tabs2">
+                  <a href="#perfectmoney-withdrawal" class="next-toggle-button4">withdrawal</a> 
+                </div>
+            </div>
+          </div>
+
+          <div id="neteller-withdraw" class="sidetab-box-withdraw5">
+              <div class="sidetab-box-withdraw-content5 sidetab-box-common">
+                
+                <img src="{{url('img/mainpage/neteller-tab.png')}}" alt="neteller" />
+                <form>
+                    <div class="gap"></div>
+                    <p class="text-center"><input type="text" name="accountid" class="dark-input fullwidth-input" value="Neteller Account ID/ Email" /></p>
+                    <div class="gap"></div>
+                    <p class="text-center"><input type="submit" name="submit" value="Cash Out" class="modal-btn"></p>
+                </form>
+                <div id="side-tabs2">
+                  <a href="#neteller-withdrawal" class="next-toggle-button5">withdrawal</a> 
+                </div>
+            </div>
+          </div>
+
+         <div id="bitcoin-withdraw" class="sidetab-box-withdraw6">
+              <div class="sidetab-box-withdraw-content6 sidetab-box-common">
+                
+                <img src="{{url('img/mainpage/bitcoin-tab.png')}}" alt="bitcoin" />
+                <form>
+                    <div class="gap"></div>
+                    <p class="text-center semibold">Please write down or paste your BTC Address</p>
+                    <p class="text-center"><input type="text" name="accountid" class="light-input fullwidth-input" value="" /></p>
+                    <div class="gap"></div>
+                    <p class="text-center"><input type="submit" name="submit" value="Cash Out" class="modal-btn"></p>
+                </form>
+                <div id="side-tabs2">
+                  <a href="#bitcoin-withdrawal" class="next-toggle-button6">withdrawal</a> 
+                </div>
+
+            </div>
+          </div>
+
+          <div id="onetime-password-withdraw" class="sidetab-box-withdraw7">
+              <div class="sidetab-box-withdraw-content7 sidetab-box-common">
+
+              <form>
+                    <div class="gap"></div>
+                    <p class="text-center semibold">One Time Password(OTP)<input type="text" name="accountid" class="light-input short-input" value="" />
+                    <input type="submit" name="submit" value="Request OTP" class="modal-btn"></p>
+                    <div class="gap"></div>
+                    <p class="text-center">Your request will be process within 24 hours. <br />Please come back later to check status of your withdrawal via Transaction History</p>
+              </form>
+            </div>
+          </div>
+
           <!-- Tab panes -->
           <div class="tab-content">
             <div role="tabpanel" class="tab-pane active" id="financial">
                 <p class="bold uppercase nomargin">Deposit</p>
                 <div class="form-box">
                     <form>
-
                         <p class="clear text-center">
                             <span class="col-md-3">Enter Amount:</span>
                             <span class="col-md-9">
-                                <input v-model="intactdata.wallet.amount" type="text" class="light-input" name="balance" />
-                                USD
-                            </span>
+                                <input id="inputDeposit" @click="empty()" v-model="intactdata.wallet.deposit | currency" type="text" class="light-input" name="balance" /> USD</span>
                         </p>
-
                         <p class="text-center">Choose payment method:</p>
-
                         <p class="text-center">
-                            <input type="submit" class="payment-button-1" name="bitcoin" value="bitcoin">
-                            <input type="submit" class="payment-button-2" name="neteller" value="neteller">
-                            <input type="submit" class="payment-button-3" name="merchant" value="merchant">
-                            <input type="submit" class="payment-button-4" name="ewiretransfer" value="ewiretransfer">
-                            <input type="submit" class="payment-button-5" name="perfectmoney" value="perfectmoney">
-                            <input type="submit" class="payment-button-6" name="skrill" value="skrill">
+                            <input type="button" class="payment-button-1 toggle-button7" name="bitcoin" value="bitcoin">
+                            <input type="button" class="payment-button-2 toggle-button6" name="neteller" value="neteller">
+                            <input type="button" class="payment-button-3 toggle-button" name="merchant" value="merchant">
+                            <input type="button" class="payment-button-4 toggle-button3" name="ewiretransfer" value="ewiretransfer">
+                            <input type="button" class="payment-button-5 toggle-button5" name="perfectmoney" value="perfectmoney">
+                            <input type="button" class="payment-button-6 toggle-button4" name="skrill" value="skrill">
                         </p>
-
                     </form>
                 </div>
                 <p class="bold uppercase nomargin">Withdrawal</p>
@@ -50,12 +288,12 @@
                         <p class="clear text-center"><span class="col-md-3">Enter Amount:</span><span class="col-md-9"><input type="text" class="light-input" name="balance" /> USD</span></p>
                         <p class="text-center">Choose payment method:</p>
                         <p class="text-center">
-                            <input type="submit" class="payment-button-1" name="bitcoin" value="bitcoin">
-                            <input type="submit" class="payment-button-2" name="neteller" value="neteller">
-                            <input type="submit" class="payment-button-3" name="merchant" value="merchant">
-                            <input type="submit" class="payment-button-4" name="ewiretransfer" value="ewiretransfer">
-                            <input type="submit" class="payment-button-5" name="perfectmoney" value="perfectmoney">
-                            <input type="submit" class="payment-button-6" name="skrill" value="skrill">
+                            <input type="button" class="payment-button-1 next-toggle-button6" name="bitcoin" value="bitcoin">
+                            <input type="button" class="payment-button-2 next-toggle-button5" name="neteller" value="neteller">
+                            <input type="button" class="payment-button-3 next-toggle-button" name="merchant" value="merchant">
+                            <input type="button" class="payment-button-4 next-toggle-button2" name="ewiretransfer" value="ewiretransfer">
+                            <input type="button" class="payment-button-5 next-toggle-button4" name="perfectmoney" value="perfectmoney">
+                            <input type="button" class="payment-button-6 next-toggle-button3" name="skrill" value="skrill">
                         </p>
                     </form>
                 </div>
@@ -64,6 +302,16 @@
             <div role="tabpanel" class="tab-pane" id="transaction">
                 <div class="transaction-box">
                     <form>
+                    <div class="input-group date">
+    <input id="dob" 
+        v-date="start_date" 
+        placeholder="MM-DD-YYYY" 
+        class="form-control" 
+        name="dob" type="text">
+        <span class="input-group-addon">
+            <span class="glyphicon glyphicon-calendar"></span>
+        </span>
+</div>
                     <p class="clear text-center">
                         <span class="col-md-7">Select Date: From <input type="text" name="datefrom" class="date-input" value="dd/mm/yy" /><img src="{{url('img/mainpage/date-icon.png')}}" class="date-icon" /></span>
                         <span class="col-md-5"> To <input type="text" name="dateto" class="date-input" value="dd/mm/yy" /><img src="{{url('img/mainpage/date-icon.png')}}" class="date-icon" /></span>

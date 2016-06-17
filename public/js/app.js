@@ -23927,6 +23927,10 @@ require('bootstrap');
 },{}],45:[function(require,module,exports){
 'use strict';
 
+var _profile;
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 /**
  * Load the components
  */
@@ -23943,7 +23947,9 @@ module.exports = {
 	data: {
 		intactdata: {
 			wallet: {
-				amount: 12000
+				amount: 12000,
+				deposit: 0,
+				withdrawal: 0
 			},
 			mt4account: {
 				mini: 100,
@@ -23952,21 +23958,28 @@ module.exports = {
 				iprofitHigh: 1000,
 				broker: 50000
 			},
-			profile: {
+			profile: (_profile = {
 				eoffice_id: '',
 				email: '',
 				password: '',
 				new_password: '',
-				investor_password: ''
-			},
-			mt4AccountList: {
-				mini: ''
-			},
+				sel_password: '',
+				sel_inpassword: '',
+				radio_mini_mt4Account_id: '',
+				radio_standard_mt4Account_id: '',
+				radio_mt4Account_id: ''
+			}, _defineProperty(_profile, 'radio_mt4Account_id', ''), _defineProperty(_profile, 'radio_mt4Account_id', ''), _profile),
 			setSelected: {
 				mt4Account_id: '',
 				transferIn: 0,
-				transferOut: 0
+				transferOut: 0,
+				accountType: '',
+				passwordType: ''
 			}
+		},
+
+		mt4AccountList: {
+			accounts: ''
 		},
 
 		tweet_feeds: []
@@ -23994,6 +24007,9 @@ module.exports = {
 	},
 
 	methods: {
+		empty: function empty() {
+			$('#inputDeposit').val('');
+		},
 		submitMini: function submitMini() {
 			//create account
 			this.$http.post('/mt4/create', this.intactdata).then(function (data, status, request) {
@@ -24012,7 +24028,7 @@ module.exports = {
 			// get all account
 			this.$http.get('account/getaccount?eoffice_id=' + this.intactdata.profile.eoffice_id).then(function (result) {
 
-				this.intactdata.mt4AccountList.mini = result.data;
+				this.mt4AccountList.accounts = result.data;
 			});
 		},
 		updateAccounts: function updateAccounts() {
@@ -24020,12 +24036,16 @@ module.exports = {
 			this.$http.get('account/updateaccounts?eoffice_id=' + this.intactdata.profile.eoffice_id).then(function (result) {
 
 				console.log(result);
-				this.getAccount();
+				this.getAccount(); // get all account
 			});
 		},
 		setSelected: function setSelected(id) {
 			//set selected for transfer in/out
 			this.intactdata.setSelected.mt4Account_id = id;
+		},
+		accountSetSelected: function accountSetSelected(accountType) {
+			// alert(accountType)
+			this.intactdata.setSelected.accountType = accountType;
 		},
 		submitTransferIn: function submitTransferIn() {
 			//transfer in
@@ -24047,7 +24067,60 @@ module.exports = {
 			}, function (data, status, request) {});
 		},
 		submitChangePass: function submitChangePass() {
-			alert('change pass');
+			// alert('change pass')
+			// minimum char 7
+			if (this.intactdata.profile.password.length < 7 || this.intactdata.profile.new_password.length < 7) {
+				alert('Password Minimum Character: 7');
+				return false;
+			};
+
+			// regex - one capital letter && one number && one small letter
+			var regEx = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/;
+
+			if (!regEx.test(this.intactdata.profile.new_password)) {
+				alert('Password should contain atlest:\none capital letter \none number \none small letter');
+				return false;
+			};
+
+			//check if the mtr account with the oldpassword is existing
+			this.$http.get('account/checkpassword?password=' + this.intactdata.profile.password + '&mt4login_id=' + this.intactdata.setSelected.mt4Account_id + '&passwordType=' + this.intactdata.setSelected.passwordType).then(function (result) {
+
+				// if (result.data[0]['mt4login_id']==this.intactdata.setSelected.mt4Account_id) {
+				if (result.data.length != 0) {
+					//request change pass
+					// get the current password
+					this.intactdata.profile.sel_password = result.data[0]['password'];
+					this.intactdata.profile.sel_inpassword = result.data[0]['password_investor'];
+
+					this.$http.post('mt4/changepassword', this.intactdata).then(function (data, status, request) {}, function (data, status, request) {});
+
+					console.log(result.data);
+				} else {
+					alert('Wrong Password');
+					return false;
+				}
+			});
+		},
+		openModal: function openModal(accountType, passwordType) {
+			//set selected account type
+			this.intactdata.setSelected.accountType = accountType;
+			this.intactdata.setSelected.passwordType = passwordType;
+			//check if user select an account for changing password
+			switch (this.intactdata.setSelected.accountType) {
+				case 'mini':
+					this.intactdata.setSelected.mt4Account_id = this.intactdata.profile.radio_mini_mt4Account_id;
+					break;
+				case 'standard':
+					this.intactdata.setSelected.mt4Account_id = this.intactdata.profile.radio_standard_mt4Account_id;
+					break;
+			}
+
+			if (this.intactdata.setSelected.mt4Account_id == '') {
+				alert('Please Select Account');
+				return false;
+			};
+
+			$('#changePassModal').modal('show');
 		},
 		processWire: function processWire() {
 

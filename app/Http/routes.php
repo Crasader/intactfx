@@ -61,8 +61,13 @@ Route::get('mt4/create', 'Mt4Controller@createaccount');
 Route::post('mt4/create', 'Mt4Controller@createaccount');
 Route::post('mt4/transferin', 'Mt4Controller@transferIn');
 Route::post('mt4/transferout', 'Mt4Controller@transferOut');
+Route::post('mt4/changepassword', 'Mt4Controller@changepassword');
+Route::get('mt4/pumping', 'Mt4Controller@pumping');
 
 
 Route::get('account/data', 'HomeController@intactdata');
 Route::get('account/getaccount', 'HomeController@miniAccount');
+Route::get('account/checkpassword', 'HomeController@checkPassword');
+
 Route::get('account/updateaccounts', 'Mt4Controller@updateAccount');
+

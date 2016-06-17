@@ -72,6 +72,9 @@ class HomeController extends Controller
 
     }
 
+    /**
+     *
+     */
     public function intactdata(){
         DB::connection()->enableQueryLog();
         $user = Auth::user();
@@ -91,6 +94,20 @@ class HomeController extends Controller
 
         return $mt4account;
 
+    }
+
+    public function checkPassword(Request $request){
+
+        $passwordType =  $request->passwordType;
+
+        if ($passwordType=='password') {
+            $mt4account = Mt4Account::where('mt4login_id', $request->mt4login_id)->where('password', $request->password)->get();   
+        }else{
+            $mt4account = Mt4Account::where('mt4login_id', $request->mt4login_id)->where('password_investor', $request->password)->get();   
+        }
+        
+        return $mt4account;
+        
     }
 
     public function get_twitter_feeds()

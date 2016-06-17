@@ -6,7 +6,6 @@
       <div class="header-buttons">
         <a href="#">Account Logs</a>
         <a href="#">Language</a>
-        <a href="#">test</a>
         <a href="#" data-toggle="modal" data-target="#SettingModal">Settings</a>
       </div>
       <div id="profile">

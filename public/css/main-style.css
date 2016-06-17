@@ -132,6 +132,12 @@ h4 {
 	display: block;
 }
 
+.gap {
+	height: 30px;
+	clear: both;
+	overflow: hidden;
+}
+
 /*color*/
 
 .brown {
@@ -177,7 +183,7 @@ h4 {
 	line-height: 33px;
 	display: inline-block;
 	border: 1px solid #b0b0b0;
-	padding: 0 14px;
+	padding: 0 35px 0 35px;
 	color: #ebebeb;
 	text-decoration: none;
 	margin: 17px 25px 0 25px;
@@ -1352,7 +1358,7 @@ img.alignright {
 }
 
 #MainWalletModal .modal-dialog {
-	margin: 106px auto 150px !important;
+	margin: 106px 20% 150px !important;
 	max-width: 650px;
 	width: auto !important;
 	background: none;
@@ -1389,10 +1395,13 @@ img.alignright {
 	-moz-border-radius: 0 0 10px 10px;
 	-webkit-border-radius: 0 0 10px 10px;
 	border-radius: 0 0 10px 10px;
+	position: relative;
+	z-index: 9;
 }
 
 #MainWalletModal .tab-content > .tab-pane {
 	padding: 15px 30px 0 30px;
+	min-height: 475px;
 }
 
 #MainWalletModal .form-box {
@@ -1507,16 +1516,25 @@ img.alignright {
     -webkit-transform: rotate(90deg); /* Safari */
     transform: rotate(90deg);
     position: absolute;
-    right: -132px;
-    top: 47%;
+    right: -135px;
+    bottom: -7px;
     width: 225px;
+    z-index: 2;
 }
 
-#MainWalletModal #side-tabs .nav-tabs > li {
-	width: 50%;
+#MainWalletModal #side-tabs2 {
+	-ms-transform: rotate(90deg); /* IE 9 */
+    -webkit-transform: rotate(90deg); /* Safari */
+    transform: rotate(90deg);
+    position: absolute;
+    right: -135px;
+    top: 90px;
+    width: 225px;
+    z-index: 2;
 }
 
-#MainWalletModal #side-tabs .nav-tabs > li a {
+
+#MainWalletModal #side-tabs a {
 	margin: 0;
 	background: #fff;
 	-moz-box-shadow: inset 0 20px 20px #00d2ff;
@@ -1525,7 +1543,454 @@ img.alignright {
 	border: none;
 	color: #000;
 	font-weight: 600;
+	height: 45px;
+	padding: 0 35px;
+	line-height: 45px;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 14px;
+	text-transform: uppercase;
+
+	-webkit-border-radius: 4px 4px 0 0;
+  	-moz-border-radius: 4px 4px 0 0;
+  	border-radius: 4px 4px 0 0; 
 }
+
+#MainWalletModal #side-tabs a:hover {
+	-moz-box-shadow: inset 0 20px 20px #035669;
+	-webkit-box-shadow: inset 0 20px 20px #035669;
+	box-shadow: inset 0 20px 20px #035669; 
+	color:#fff;
+}
+
+#MainWalletModal #side-tabs2 a {
+	margin: 0;
+	background: #fff;
+	-moz-box-shadow: inset 0 20px 20px #00d2ff;
+	-webkit-box-shadow: inset 0 20px 20px #00d2ff;
+	box-shadow: inset 0 20px 20px #00d2ff;
+	border: none;
+	color: #000;
+	font-weight: 600;
+	height: 45px;
+	padding: 0 35px;
+	line-height: 45px;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 14px;
+	text-transform: uppercase;
+
+	-webkit-border-radius: 4px 4px 0 0;
+  	-moz-border-radius: 4px 4px 0 0;
+  	border-radius: 4px 4px 0 0; 
+}
+
+#MainWalletModal #side-tabs2 a:hover {
+	-moz-box-shadow: inset 0 20px 20px #035669;
+	-webkit-box-shadow: inset 0 20px 20px #035669;
+	box-shadow: inset 0 20px 20px #035669; 
+	color:#fff;
+}
+
+#MainWalletModal .sidetab-box {
+	position: relative;
+	width: 100%:;
+	margin-left: 190px;
+	top: 49px;
+}
+
+/*ewire*/
+#MainWalletModal .sidetab-box3 {
+	position: relative;
+	width: 100%:;
+	margin-left: 125px;
+	top: 0;
+}
+
+/*skrill*/
+#MainWalletModal .sidetab-box4 {
+	position: relative;
+	width: 100%:;
+	margin-left: 125px;
+	top: 0;
+}
+
+/*perfectmoney*/
+#MainWalletModal .sidetab-box5 {
+	position: relative;
+	width: 100%:;
+	margin-left: 125px;
+	top: 0;
+}
+
+/*neteller*/
+#MainWalletModal .sidetab-box6 {
+	position: relative;
+	width: 100%:;
+	margin-left: 125px;
+	top: 0;
+}
+
+/*bitcoin*/
+#MainWalletModal .sidetab-box7 {
+	position: relative;
+	width: 100%:;
+	margin-left: 125px;
+	top: 0;
+}
+
+/*payment detected*/
+#MainWalletModal .sidetab-box8 {
+	position: relative;
+	width: 100%:;
+	margin-left: 125px;
+	top: 0;
+}
+
+#MainWalletModal .sidetab-box-content {	
+	position: absolute;
+	z-index: 1;
+	margin-left: 0;
+	-moz-box-shadow: inset 0 0 20px #00d2ff;
+	-webkit-box-shadow: inset 0 0 20px #00d2ff;
+	box-shadow: inset 0 0 20px #00d2ff;
+	padding: 25px;
+	font-size: 12px;
+	background: #fff;
+	width: 460px;
+	height: 228px;
+}
+
+
+#MainWalletModal .sidetab-box-content3 {	
+	position: absolute;
+	z-index: 1;
+	margin-left: 0;
+	-moz-box-shadow: inset 0 0 20px #00d2ff;
+	-webkit-box-shadow: inset 0 0 20px #00d2ff;
+	box-shadow: inset 0 0 20px #00d2ff;
+	padding: 25px;
+	font-size: 12px;
+	background: #fff;
+	width: 525px;
+	font-weight: 600;
+	height: 277px;
+}
+
+#MainWalletModal .sidetab-box-content4 {	
+	position: absolute;
+	z-index: 1;
+	margin-left: 0;
+	-moz-box-shadow: inset 0 0 20px #00d2ff;
+	-webkit-box-shadow: inset 0 0 20px #00d2ff;
+	box-shadow: inset 0 0 20px #00d2ff;
+	padding: 25px;
+	font-size: 12px;
+	background: #fff;
+	width: 525px;
+	font-weight: 600;
+	height: 277px;
+}
+
+#MainWalletModal .sidetab-box-content5 {	
+	position: absolute;
+	z-index: 1;
+	margin-left: 0;
+	-moz-box-shadow: inset 0 0 20px #00d2ff;
+	-webkit-box-shadow: inset 0 0 20px #00d2ff;
+	box-shadow: inset 0 0 20px #00d2ff;
+	padding: 25px;
+	font-size: 12px;
+	background: #fff;
+	width: 525px;
+	font-weight: 600;
+	height: 277px;
+}
+
+#MainWalletModal .sidetab-box-content6 {	
+	position: absolute;
+	z-index: 1;
+	margin-left: 0;
+	-moz-box-shadow: inset 0 0 20px #00d2ff;
+	-webkit-box-shadow: inset 0 0 20px #00d2ff;
+	box-shadow: inset 0 0 20px #00d2ff;
+	padding: 25px;
+	font-size: 12px;
+	background: #fff;
+	width: 525px;
+	font-weight: 600;
+	height: 277px;
+}
+
+#MainWalletModal .sidetab-box-content7 {	
+	position: absolute;
+	z-index: 1;
+	margin-left: 0;
+	-moz-box-shadow: inset 0 0 20px #00d2ff;
+	-webkit-box-shadow: inset 0 0 20px #00d2ff;
+	box-shadow: inset 0 0 20px #00d2ff;
+	padding: 25px;
+	font-size: 12px;
+	background: #fff;
+	width: 525px;
+	font-weight: 600;
+	height: 441px;
+}
+
+#MainWalletModal .sidetab-box-content8 {	
+	position: absolute;
+	z-index: 1;
+	margin-left: 0;
+	-moz-box-shadow: inset 0 0 20px #00d2ff;
+	-webkit-box-shadow: inset 0 0 20px #00d2ff;
+	box-shadow: inset 0 0 20px #00d2ff;
+	padding: 25px;
+	font-size: 12px;
+	background: #fff;
+	width: 525px;
+	font-weight: 600;
+	height: 277px;
+}
+
+#MainWalletModal .sidetab-box-withdraw {
+	position: relative;
+	width: 100%:;
+	margin-left: 190px;
+	top: 277px;
+}
+
+#MainWalletModal .sidetab-box-withdraw-content {	
+	position: absolute;
+	z-index: 1;
+	margin-left: 0;
+	-moz-box-shadow: inset 0 0 20px #00d2ff;
+	-webkit-box-shadow: inset 0 0 20px #00d2ff;
+	box-shadow: inset 0 0 20px #00d2ff;
+	padding: 25px;
+	font-size: 12px;
+	background: #fff;
+	width: 460px;
+	font-weight: 600;
+}
+
+#MainWalletModal .sidetab-box-withdraw2 {
+	position: relative;
+	width: 100%:;
+	margin-left: 190px;
+	top: 277px;
+}
+
+#MainWalletModal .sidetab-box-withdraw-content2 {	
+	position: absolute;
+	z-index: 1;
+	margin-left: 0;
+	-moz-box-shadow: inset 0 0 20px #00d2ff;
+	-webkit-box-shadow: inset 0 0 20px #00d2ff;
+	box-shadow: inset 0 0 20px #00d2ff;
+	padding: 25px;
+	font-size: 12px;
+	background: #fff;
+	width: 460px;
+	font-weight: 600;
+}
+
+#MainWalletModal .sidetab-box-withdraw3 {
+	position: relative;
+	width: 100%:;
+	margin-left: 190px;
+	top: 277px;
+}
+
+#MainWalletModal .sidetab-box-withdraw-content3 {	
+	position: absolute;
+	z-index: 1;
+	margin-left: 0;
+	-moz-box-shadow: inset 0 0 20px #00d2ff;
+	-webkit-box-shadow: inset 0 0 20px #00d2ff;
+	box-shadow: inset 0 0 20px #00d2ff;
+	padding: 25px;
+	font-size: 12px;
+	background: #fff;
+	width: 460px;
+	font-weight: 600;
+}
+
+#MainWalletModal .sidetab-box-withdraw4 {
+	position: relative;
+	width: 100%:;
+	margin-left: 190px;
+	top: 277px;
+}
+
+#MainWalletModal .sidetab-box-withdraw-content4 {	
+	position: absolute;
+	z-index: 1;
+	margin-left: 0;
+	-moz-box-shadow: inset 0 0 20px #00d2ff;
+	-webkit-box-shadow: inset 0 0 20px #00d2ff;
+	box-shadow: inset 0 0 20px #00d2ff;
+	padding: 25px;
+	font-size: 12px;
+	background: #fff;
+	width: 460px;
+	font-weight: 600;
+}
+
+#MainWalletModal .sidetab-box-withdraw5 {
+	position: relative;
+	width: 100%:;
+	margin-left: 190px;
+	top: 277px;
+}
+
+#MainWalletModal .sidetab-box-withdraw-content5 {	
+	position: absolute;
+	z-index: 1;
+	margin-left: 0;
+	-moz-box-shadow: inset 0 0 20px #00d2ff;
+	-webkit-box-shadow: inset 0 0 20px #00d2ff;
+	box-shadow: inset 0 0 20px #00d2ff;
+	padding: 25px;
+	font-size: 12px;
+	background: #fff;
+	width: 460px;
+	font-weight: 600;
+}
+
+#MainWalletModal .sidetab-box-withdraw6 {
+	position: relative;
+	width: 100%:;
+	margin-left: 190px;
+	top: 277px;
+}
+
+#MainWalletModal .sidetab-box-withdraw-content6 {	
+	position: absolute;
+	z-index: 1;
+	margin-left: 0;
+	-moz-box-shadow: inset 0 0 20px #00d2ff;
+	-webkit-box-shadow: inset 0 0 20px #00d2ff;
+	box-shadow: inset 0 0 20px #00d2ff;
+	padding: 25px;
+	font-size: 12px;
+	background: #fff;
+	width: 460px;
+	font-weight: 600;
+}
+
+#MainWalletModal .sidetab-box-withdraw7 {
+	position: relative;
+	width: 100%:;
+	margin-left: 115px;
+	top: 277px;
+}
+
+#MainWalletModal .sidetab-box-withdraw-content7 {	
+	position: absolute;
+	z-index: 1;
+	margin-left: 0;
+	-moz-box-shadow: inset 0 0 20px #00d2ff;
+	-webkit-box-shadow: inset 0 0 20px #00d2ff;
+	box-shadow: inset 0 0 20px #00d2ff;
+	padding: 25px;
+	font-size: 12px;
+	background: #fff;
+	width: 535px;
+	font-weight: 600;
+}
+
+#MainWalletModal .sidetab-box-content form {
+	padding: 0;
+}
+
+#MainWalletModal .sidetab-box-content form p {
+	margin: 0 0 10px 0;
+}
+
+#MainWalletModal .sidetab-box-content a {
+	color: #2d51d5;
+}
+
+#MainWalletModal .sidetab-box-content2 a {
+	color: #2d51d5;
+}
+
+#MainWalletModal .sidetab-box-content img {
+	margin: 0 0 10px 0;
+}
+
+#MainWalletModal .sidetab-box-content .light-input {
+	display: block;
+	width: 100% !important
+}
+
+#MainWalletModal .sidetab-box-content .dark-input {
+	margin-right: 20px !important;
+	max-width: 253px !important;
+}
+
+#MainWalletModal .sidetab-box-content .modal-btn {
+	padding: 0 30px !important;
+	font-size: 14px !important;
+	font-weight: normal !important;
+}
+
+#MainWalletModal .sidetab-box-common h3 {
+	font-size: 18px;
+	line-height: 24px;
+}
+
+
+#MainWalletModal .sidetab-box-common form {
+	padding: 0;
+}
+
+#MainWalletModal .sidetab-box-common form p {
+	margin: 0 0 10px 0;
+}
+
+#MainWalletModal .sidetab-box-common a {
+	color: #2d51d5;
+}
+
+#MainWalletModal .sidetab-box-common a {
+	color: #2d51d5;
+}
+
+#MainWalletModal .sidetab-box-common img {
+	margin: 0 0 10px 0;
+}
+
+#MainWalletModal .sidetab-box-common .light-input {
+	display: block;
+	width: 100% !important
+}
+
+#MainWalletModal .sidetab-box-common .dark-input {
+	margin-right: 20px !important;
+	max-width: 253px !important;
+}
+
+#MainWalletModal .sidetab-box-common .modal-btn {
+	padding: 0 30px !important;
+	font-size: 14px !important;
+	font-weight: normal !important;
+}
+
+#MainWalletModal .sidetab-box-common .fullwidth-input {
+	width: 100% !important;
+	margin: 0 !important;
+	max-width: none !important;
+}
+
+#MainWalletModal .sidetab-box-common .short-input {	
+	border: none !important;
+	width: auto !important;
+	max-width: 150px !important;
+	display: inline-block !important;
+	margin: 0 15px;
+}
+
 
 #CommissionWalletModal .modal-dialog {
 	margin: 106px auto 150px !important;

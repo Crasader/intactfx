@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Mail;
 
 class PaymentWireController extends Controller
 {
+    
     public function generateWireInvoice($id, $amount)
    	{
    		
@@ -33,13 +34,15 @@ class PaymentWireController extends Controller
             // return $pdf->download();
             // return $pdf;
             return $pdf->stream();
-
         }
 
     }
 
     public function sendWireEmail(Request $request)
     {
+        $deposit_amount = $request->wallet['deposit'];
+        echo $deposit_amount; dd();
+
 
     	$user = Auth::user();
 

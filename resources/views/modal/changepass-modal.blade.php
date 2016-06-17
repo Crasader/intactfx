@@ -5,10 +5,12 @@
                 {{ Form::open(array('url' => 'foo/bar', 'method' => 'put')) }}
 
                     <p class="clear text-center">
-                        <span class="col-md-5">Enter Old Password:</span>
+
+                        <span v-if="intactdata.setSelected.passwordType == 'password' " class="col-md-5">Enter Master Password:</span>
+                        <span v-else class="col-md-5">Enter Investor Password:</span>
                         <span class="col-md-7">
                             <input  v-model="intactdata.profile.password" type="text" class="dark-input" name="oldpass" />
-                            <span v-show="countPass<7" class="text text-danger">Minimum Character: 7</span>
+                            <!-- <span v-show="countPass<7" class="text text-danger">Minimum Character: 7</span> -->
                         </span>
 
                     </p>
@@ -18,7 +20,7 @@
                         <span class="col-md-5">Enter New Password:</span>
                         <span class="col-md-7">
                             <input v-model="intactdata.profile.new_password" type="text" class="light-input" name="newpass" />
-                            <span v-show="countPassInvestor<7" class="text text-danger">Minimum Character: 7</span>
+                            <!-- <span v-show="countPassInvestor<7" class="text text-danger">Minimum Character: 7</span> -->
                         </span>
                     </p>
                     
