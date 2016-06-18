@@ -1,5 +1,5 @@
-<!--  @{{ intactdata | json }} <br>
- @{{ mt4AccountList | json }} -->
+<!--   @{{ intactdata | json }} <br>
+ @{{ mt4AccountList | json }}  -->
 <div class="container">
   <div class="row">
     <div class="content">

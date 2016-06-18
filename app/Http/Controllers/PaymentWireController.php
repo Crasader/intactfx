@@ -17,7 +17,7 @@ class PaymentWireController extends Controller
     
     public function generateWireInvoice($id, $amount)
    	{
-   		
+
     	$pdf = \PDF::loadView('pdf.wire', compact('amount'));
 
         $user = Auth::user();
@@ -31,9 +31,38 @@ class PaymentWireController extends Controller
         $filename = '/wire_' . $id . '.pdf';
         
         if ($pdf->save($path.$filename)) {
-            // return $pdf->download();
+            return $pdf->download();
             // return $pdf;
-            return $pdf->stream();
+            // return $pdf->stream();
+        }
+
+    }
+
+     public function downloadWireInvoice(Request $request)
+    {
+
+        $amount = $request->wallet['deposit'];
+
+        $user = Auth::user();
+
+        $account = Account::where('user_id', $user->id)->first();
+
+        $pdf = \PDF::loadView('pdf.wire', compact('amount'));
+
+        $user = Auth::user();
+
+        // $path = public_path('pdf\\');
+        
+        $path = public_path() . '/pdf';
+        
+        File::exists($path) or File::makeDirectory($path);
+
+        $filename = '/wire_' . $account->id . '.pdf';
+        
+        if ($pdf->save($path.$filename)) {
+            return $pdf->download();
+            // return $pdf;
+            // return $pdf->stream();
         }
 
     }
@@ -41,7 +70,7 @@ class PaymentWireController extends Controller
     public function sendWireEmail(Request $request)
     {
         $deposit_amount = $request->wallet['deposit'];
-        echo $deposit_amount; dd();
+        // echo $deposit_amount; dd();
 
 
     	$user = Auth::user();
@@ -54,7 +83,7 @@ class PaymentWireController extends Controller
             'funding_service'  => 'wire',
             'email'  => $user->email,
             'payee_account'  => '',
-            'payment_amount'  => $request->amount,
+            'payment_amount'  => $deposit_amount,
             'payment_units'  => 'USD',
             'payor_account'  =>  '',
             'confirm' => true,
@@ -62,7 +91,7 @@ class PaymentWireController extends Controller
 
  		$filename = '/wire_' . $account->id . '.pdf';
 
-    	if ($this->generateWireInvoice($account->id, $request->amount)) {
+    	if ($this->generateWireInvoice($account->id, $deposit_amount)) {
 
             Mail::queue('emails.wire', compact('user', 'account'), function($message) use ($filename, $user){
                 $message

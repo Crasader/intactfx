@@ -29,16 +29,12 @@ body {
   margin: 0;
   padding: 0;
   font-size: 16px;
-  background: url(../img/login_img/body-background.jpg) no-repeat center top;
-  background-size: cover;
+  background: url(../img/login_img/body-background.jpg) no-repeat center 50px;
 }
 
 .row {
 	clear: both;
 	overflow: hidden;
-}
-.nopadding{
-	padding: 0;
 }
  
 
@@ -302,8 +298,8 @@ h4 {
 	font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
 }
 
-#form-wrapper #InputPassword2 {
-	background: url(../img/login_img/password-bg.png) no-repeat 0 0;
+#form-wrapper #InputConfirm {
+	background: url(../img/login_img/password-confirm-bg.png) no-repeat 0 0;
 	width: 265px;
 	height: 32px;
 	line-height: 32px;
@@ -473,6 +469,39 @@ h4 {
 	filter: brightness(150%);
 }
 
+#footer {
+	padding: 13px 0 18px;
+	clear: both;
+	font-size: 12px;
+	color: #000;
+	margin: 30px 0 0 ;
+	overflow: hidden;
+}
+
+#footer .container {
+	padding-top: 13px;
+	padding-bottom: 18px;
+}
+
+#footer .copyright {
+	background: url(../img/login_img/footer-logo.png) no-repeat left top;
+	display: inline-block;
+	padding: 25px 0 0 40px;
+	margin: 0 0 30px 0;
+}
+
+ 
+#footer #footer-logos img {
+	display: inline-block;
+	margin: 25px 25px 25px 0;
+}
+
+#footer #footer-logos span {
+	display: inline-block;
+	margin: 10px 15px 0 0;
+	vertical-align: top;
+}
+
 
 
  /* =Image Elements
@@ -549,7 +578,4 @@ img.alignright {
 	 
 	 
 } 
-
-
-
 /*# sourceMappingURL=all.css.map */

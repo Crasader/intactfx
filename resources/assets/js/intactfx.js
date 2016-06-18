@@ -17,6 +17,8 @@ module.exports = {
 				amount: 12000,
 				deposit: 0,
 				withdrawal: 0,
+				withdrawalLimit: 0,
+				withdrawalMerchant: ''
 			},
 			mt4account:{
 				mini: 100,
@@ -276,6 +278,20 @@ module.exports = {
 			// $("#twitter .tweets:last-child").addClass('last');
 		},
 
+		merchantWithdrawal(merchant){
+			this.intactdata.wallet.withdrawalMerchant = merchant
+			alert(merchant)
+
+			this.$http.get('account/checkwithdrawal?merchant=' + this.intactdata.wallet.withdrawalMerchant ).then(function(result){
+				console.log(result.data)
+				this.intactdata.wallet.withdrawalLimit = result.data
+
+			});
+
+
+
+		}
+
 	},
 
 	computed:{
@@ -287,7 +303,12 @@ module.exports = {
 	    countPassInvestor: function () {
 			return this.intactdata.profile.new_password.length;			 
 	    },
-     
+
+     	monitorWithdrawal: function (){
+     		
+     		return this.intactdata.wallet.withdrawalLimit - this.intactdata.wallet.withdrawal
+     		
+     	}
 	}
 
 };

@@ -1,12 +1,18 @@
-<div class="form-footer">
-    <h3>Not a Member Yet? <span>You can also Log in via</span></h3>
-    <div class="social-media">
-        <a href="{{ url('auth/facebook') }}"><img src=" {{ URL::asset('/img/login_img/social-icon-1.png') }} " alt="facebook" title="facebook" /></a>
-       <!--  <a href="{{ url('auth/twitter') }}"><img src=" {{ URL::asset('/img/login_img/social-icon-2.png') }} " alt="twitter" title="twitter" /></a>
-        <a href="{{ url('auth/yahoo') }}"><img src=" {{ URL::asset('/img/login_img/social-icon-3.png') }} " alt="yahoo" title="yahoo" /></a> -->
-        <a href="{{ url('auth/google') }}"><img src=" {{ URL::asset('/img/login_img/social-icon-4.png') }} " alt="google" title="google" /></a>
-        <!-- <a href="{{ url('auth/live') }}"><img src=" {{ URL::asset('/img/login_img/social-icon-5.png') }} " alt="windows" title="windows" /></a> -->
+ <footer id="footer">
+    <div class="container">
+    <div class="col-md-3 text-center">
+        <span class="copyright">Copyright &copy; 2016 · All Rights Reserved</span>
     </div>
-</div> 
+    <div id="footer-logos" class="col-md-9 text-center">
+        <span class="text-accept semibold">We accept:</span>
+        <img src="{{url('img/login_img/bitcoin.png')}}" alt="bitcoin" title="bitcoin" />
+        <img src="{{url('img/login_img/perfect-money.png')}}" alt="perfect money" title="perfect money" />
+        <img src="{{url('img/login_img/neteller.png')}}" alt="neteller" title="neteller" />
+        <img src="{{url('img/login_img/skrill.png')}}" alt="skrill" title="skrill" />
+        <img src="{{url('img/login_img/ewire-transfer.png')}}" alt="ewire transfer" title="ewire transfer" />
+        <img src="{{url('img/login_img/merchant.png')}}" alt="merchant" title="merchant" />
+    </div>
+    </div>
+  </footer><!--/ footer -->
 
 <!--/ form footer -->

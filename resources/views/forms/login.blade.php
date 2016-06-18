@@ -17,7 +17,7 @@
         @endif
         <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
              {!! csrf_field() !!}
-            <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+            <div style="margin-left: 0px;" class="form-group {{ $errors->has('email') ? ' has-error' : '' }}">
 
                 <input  class="form-control"  name="email" value="{{ old('email') }}" id="InputEmail" required="" autofocus="" />
               
@@ -29,9 +29,9 @@
             
             </div> 
 
-            <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-
-                <input type="password" name="password" class="form-control" id="InputPassword" required=""/>
+            <div style="margin-left: 0px;" class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                 <input type="password" class="form-control" id="InputPassword" required=""/>
+                <!-- <input type="password" name="password" class="form-control" id="InputPassword" required=""/> -->
 
                 @if ($errors->has('password'))
                     <span class="help-block">

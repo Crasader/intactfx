@@ -10,6 +10,8 @@
 |
 */
 
+Route::get('/emaildisplay', 'HomeController@emails');
+
 Route::auth();
 
 Route::group(['middleware' => ['web', 'auth']], function () {
@@ -68,6 +70,7 @@ Route::get('mt4/pumping', 'Mt4Controller@pumping');
 Route::get('account/data', 'HomeController@intactdata');
 Route::get('account/getaccount', 'HomeController@miniAccount');
 Route::get('account/checkpassword', 'HomeController@checkPassword');
+Route::get('account/checkwithdrawal', 'HomeController@checkWithdrawal');
 
 Route::get('account/updateaccounts', 'Mt4Controller@updateAccount');
 

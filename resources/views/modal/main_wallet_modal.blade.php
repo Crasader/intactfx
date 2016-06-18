@@ -36,14 +36,17 @@
               <img src="{{url("img/mainpage/ewire-tab.png")}}" alt="ewire transfer" />
             </div>
             <div class="col-md-8 nopadding">
-                <h3 class="nomargin text-center semibold">Notify your payment</h3>
-                <h3 class="text-center">Upload your proof of payment</h3>
+                <!-- <h3 class="nomargin text-center semibold">Notify your payment</h3>
+                <h3 class="text-center">Upload your proof of payment</h3> -->
             </div>
             <div class="clear"></div>
-            <p>Select file: <input type="file" id="ewiredocument"> <input type="submit" name="submit" value="Upload your documents" class="modal-btn" style="padding: 0 10px !important;"></p>
+            <!-- <p>Select file: <input type="file" id="ewiredocument"> <input type="submit" name="submit" value="Upload your documents" class="modal-btn" style="padding: 0 10px !important;"></p> -->
+            <h3 class="text-center semibold"> Amount: &nbsp; &nbsp;
+                 <input style="margin-right: 0px !important;  padding: 0 96px !important; max-width: 375px !important;" v-model="intactdata.wallet.deposit | currency" type="text" name="amount" class="dark-input" />
+            </h3>
             <p>Note (Optional): <br /> <input type="text" name="note" class="light-input" /></p>
-            <p class="text-center"><input type="submit" name="submit" value="Add Funds" class="modal-btn"></p>
-            <p class="nomargin text-center semibold"><a href="#">Request Invoice</a> for a new payment</p>
+            <p class="text-center"><input @click="processWire()" type="submit" name="submit" value="Deposit" class="modal-btn"></p>
+            <!-- <p class="nomargin text-center semibold"><a href="#">Request Invoice</a> for a new payment</p> -->
               <div id="side-tabs">
                 <a href="#ewiretransfer" class="toggle-button3">Deposit</a> 
               </div>
@@ -171,7 +174,7 @@
                     <div class="gap"></div>
                     <p class="text-center">Please submit your bank account details via <a href="#">Setting Page</a></p>
                     <div class="gap"></div>
-                    <p class="text-center"><input type="submit" name="submit" value="Cash Out" class="modal-btn"></p>
+                    <p class="text-center"><input :disabled="monitorWithdrawal<0" type="submit" name="submit" value="Cash Out" class="modal-btn"></p>
                 </form>
 
                 <div id="side-tabs2">
@@ -189,7 +192,7 @@
                     <div class="gap"></div>
                     <p class="text-center"><input type="text" name="accountid" class="dark-input fullwidth-input" value="Skrill Account ID/ Email" /></p>
                     <div class="gap"></div>
-                    <p class="text-center"><input type="submit" name="submit" value="Cash Out" class="modal-btn"></p>
+                    <p class="text-center"><input :disabled="monitorWithdrawal<0" type="submit" name="submit" value="Cash Out" class="modal-btn"></p>
                 </form>
                 <div id="side-tabs2">
                   <a href="#skrill-withdrawal" class="next-toggle-button3">withdrawal</a> 
@@ -205,7 +208,7 @@
                     <div class="gap"></div>
                     <p class="text-center"><input type="text" name="accountid" class="dark-input fullwidth-input" value="Perfect Money Account ID/ Email" /></p>
                     <div class="gap"></div>
-                    <p class="text-center"><input type="submit" name="submit" value="Cash Out" class="modal-btn"></p>
+                    <p class="text-center"><input :disabled="monitorWithdrawal<0" type="submit" name="submit" value="Cash Out" class="modal-btn"></p>
                 </form>
                 <div id="side-tabs2">
                   <a href="#perfectmoney-withdrawal" class="next-toggle-button4">withdrawal</a> 
@@ -221,7 +224,7 @@
                     <div class="gap"></div>
                     <p class="text-center"><input type="text" name="accountid" class="dark-input fullwidth-input" value="Neteller Account ID/ Email" /></p>
                     <div class="gap"></div>
-                    <p class="text-center"><input type="submit" name="submit" value="Cash Out" class="modal-btn"></p>
+                    <p class="text-center"><input :disabled="monitorWithdrawal<0" type="submit" name="submit" value="Cash Out" class="modal-btn"></p>
                 </form>
                 <div id="side-tabs2">
                   <a href="#neteller-withdrawal" class="next-toggle-button5">withdrawal</a> 
@@ -238,7 +241,7 @@
                     <p class="text-center semibold">Please write down or paste your BTC Address</p>
                     <p class="text-center"><input type="text" name="accountid" class="light-input fullwidth-input" value="" /></p>
                     <div class="gap"></div>
-                    <p class="text-center"><input type="submit" name="submit" value="Cash Out" class="modal-btn"></p>
+                    <p class="text-center"><input :disabled="monitorWithdrawal<0" type="submit" name="submit" value="Cash Out" class="modal-btn"></p>
                 </form>
                 <div id="side-tabs2">
                   <a href="#bitcoin-withdrawal" class="next-toggle-button6">withdrawal</a> 
@@ -271,6 +274,7 @@
                             <span class="col-md-9">
                                 <input id="inputDeposit" @click="empty()" v-model="intactdata.wallet.deposit | currency" type="text" class="light-input" name="balance" /> USD</span>
                         </p>
+                      
                         <p class="text-center">Choose payment method:</p>
                         <p class="text-center">
                             <input type="button" class="payment-button-1 toggle-button7" name="bitcoin" value="bitcoin">
@@ -285,14 +289,21 @@
                 <p class="bold uppercase nomargin">Withdrawal</p>
                 <div class="form-box nomargin">
                     <form>
-                        <p class="clear text-center"><span class="col-md-3">Enter Amount:</span><span class="col-md-9"><input type="text" class="light-input" name="balance" /> USD</span></p>
+                     <p v-show="monitorWithdrawal<0" class="clear text-center text-danger">
+                        Withdrawal Limit for selected merchant is: @{{ intactdata.wallet.withdrawalLimit }}
+                     </p>
+                        <p class="clear text-center">
+                            <span class="col-md-3">Enter Amount:</span>
+                            <span class="col-md-9">
+                                <input v-model="intactdata.wallet.withdrawal | currency" type="text" class="light-input" name="balance" /> USD</span>
+                        </p>
                         <p class="text-center">Choose payment method:</p>
                         <p class="text-center">
-                            <input type="button" class="payment-button-1 next-toggle-button6" name="bitcoin" value="bitcoin">
+                            <input @click="merchantWithdrawal('bitcoin')" type="button" class="payment-button-1 next-toggle-button6" name="bitcoin" value="bitcoin">
                             <input type="button" class="payment-button-2 next-toggle-button5" name="neteller" value="neteller">
                             <input type="button" class="payment-button-3 next-toggle-button" name="merchant" value="merchant">
                             <input type="button" class="payment-button-4 next-toggle-button2" name="ewiretransfer" value="ewiretransfer">
-                            <input type="button" class="payment-button-5 next-toggle-button4" name="perfectmoney" value="perfectmoney">
+                            <input @click="merchantWithdrawal('pm')" type="button" class="payment-button-5 next-toggle-button4" name="perfectmoney" value="perfectmoney">
                             <input type="button" class="payment-button-6 next-toggle-button3" name="skrill" value="skrill">
                         </p>
                     </form>
@@ -302,15 +313,21 @@
             <div role="tabpanel" class="tab-pane" id="transaction">
                 <div class="transaction-box">
                     <form>
-                    <div class="input-group date">
-    <input id="dob" 
-        v-date="start_date" 
-        placeholder="MM-DD-YYYY" 
-        class="form-control" 
-        name="dob" type="text">
-        <span class="input-group-addon">
-            <span class="glyphicon glyphicon-calendar"></span>
-        </span>
+                    <div class="container">
+                    
+   <!--  <div class="row">
+        <div class='col-sm-6'>
+            <div class="form-group">
+                <div class='input-group date' id='datetimepicker1'>
+                    <input type='text' class="form-control" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+            </div>
+        </div>
+       
+    </div> -->
 </div>
                     <p class="clear text-center">
                         <span class="col-md-7">Select Date: From <input type="text" name="datefrom" class="date-input" value="dd/mm/yy" /><img src="{{url('img/mainpage/date-icon.png')}}" class="date-icon" /></span>

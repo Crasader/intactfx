@@ -40,7 +40,8 @@
                            
                             @include('forms.login')
 
-                             @include('forms.loginfooter-merchant')
+                            @include('forms.loginfooter')
+
                         </div><!--/ form wrapper -->
                           
                     </div><!--/ tab panel -->
@@ -54,7 +55,7 @@
                             
                              @include('forms.register')
 
-                             @include('forms.loginfooter-merchant')
+                             @include('forms.loginfooter')
 
                         </div><!--/ form wrapper -->
                     
@@ -67,5 +68,4 @@
         </div> <!-- row -->
     </div> <!--container -->
 </section><!--/ section main -->
-@include('forms.loginfooter')
 @endsection

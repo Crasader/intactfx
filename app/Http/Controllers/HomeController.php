@@ -46,7 +46,6 @@ class HomeController extends Controller
             
         }
 
-        
         $account = Account::where('user_id', $user->id)->first();
 
         $mt4account = Mt4Account::where('eoffice_id', $account->id)->get();
@@ -116,6 +115,36 @@ class HomeController extends Controller
         $feeds = TwitterOauthController::getFeeds();
 
         echo json_encode($feeds->statuses);
+    }
+
+    public function checkWithdrawal(Request $request){
+
+        $merchant = $request->merchant;
+
+        $user = Auth::user();
+
+        $deposit_history  = Payment::select('funding_service', DB::raw('SUM(payment_amount) as total_deposit'))
+                    ->where('email', $user->email)
+                    ->where('type', 'deposit')
+                    ->where('funding_service', $merchant)
+                    ->get();
+
+        $withdraw_history  = Payment::select('funding_service', DB::raw('SUM(payment_amount) as total_withdrawal'))
+                    ->where('email', $user->email)
+                    ->where('type', 'withdrawal')
+                    ->where('funding_service', $merchant)
+                    ->get();
+        
+         // dd($deposit_history[0]->total_deposit);
+
+        $amount_to_withdral = $deposit_history[0]->total_deposit - $withdraw_history[0]->total_withdrawal;
+
+        return $amount_to_withdral;
+
+    }
+
+    public function emails(){
+        return view('emails.miniAccountCreated'); 
     }
 
 }

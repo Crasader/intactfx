@@ -164,6 +164,9 @@ class PaymentBitcoinController extends Controller
         return 'success';
     }
 
+    public function AvailableWithdraw(Request $request){
+
+    }
 
 
 
