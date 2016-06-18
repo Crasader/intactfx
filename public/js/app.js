@@ -24158,7 +24158,7 @@ module.exports = {
 
 		merchantWithdrawal: function merchantWithdrawal(merchant) {
 			this.intactdata.wallet.withdrawalMerchant = merchant;
-			alert(merchant);
+			// alert(merchant)
 
 			this.$http.get('account/checkwithdrawal?merchant=' + this.intactdata.wallet.withdrawalMerchant).then(function (result) {
 				console.log(result.data);
