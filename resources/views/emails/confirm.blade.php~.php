@@ -756,15 +756,14 @@
 
   <section id="main">
     <div class="container">
-        <h2 class="text-center">Your account have been created. To get started please activate your account 
-                <a href="{{ url('user/activation/'.$token) }}"> here. </a> <!-- and go to <a href="#">E-Office</a> and enter your 
-            <br />email and password. --></h2>
+        <h2 class="text-center">Your account have been created. To get started please go to <a href="#">E-Office</a> and enter your 
+            <br />username and password.</h2>
     </div><!--/ container -->
     <div class="green-bar">
     	<div class="green-content">
-            <h3 class="text-center"><span class="semibold">Your E-Office ID:</span> {{ $account->id }} </h3>
-            <h3 class="nomargin"><span class="semibold">Your Username/Email:</span> {{ $user->email }} </h3>
-            <h3><span class="semibold">Your Password: </span> {{ $password }} </h3>
+            <h3 class="text-center"><span class="semibold">Your E-Office ID:</span> ZI9032458</h3>
+            <h3 class="nomargin"><span class="semibold">Your Username/Email:</span> test@test.com</h3>
+            <h3><span class="semibold">Your Password: </span>abcd1234</h3>
     	</div>
     </div>
     <div class="container">

@@ -84,7 +84,7 @@ class AuthController extends Controller
 
         $this->accountRepo->createAccount($user);
         
-        $this->activationService->sendActivationMail($user);
+        $this->activationService->sendActivationMail($user, $request->password);
 
         return redirect('/login')->with('status', 'We sent you an activation code. Check your email.');
     }
@@ -151,6 +151,7 @@ class AuthController extends Controller
 
         //Check is this email present
         $userCheck = User::where('email', '=', $user->email)->first();
+
         if(!empty($userCheck))
         {
             $socialUser = $userCheck;
@@ -172,7 +173,7 @@ class AuthController extends Controller
 
                 $this->accountRepo->createAccount($newSocialUser);
 
-                $this->sendPasswordforSocial($newSocialUser, $password);
+                // $this->sendPasswordforSocial($newSocialUser, $password);
 
                 $socialData = new Social;
                 $socialData->social_id = $user->id;
@@ -218,6 +219,7 @@ class AuthController extends Controller
         }
 
         return view('auth.login',compact('eoffice_id'));
+
     }
  
 }

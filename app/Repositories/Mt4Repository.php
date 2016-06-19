@@ -116,7 +116,7 @@ class Mt4Repository
 
     function readAnswer() {
         
-        $size = fgets($this->socketPtr, 64);    
+        $size = fgets($this->socketPtr, 64);
             
         $answer = "";           
         $readed = 0;

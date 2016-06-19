@@ -144,7 +144,7 @@ class HomeController extends Controller
     }
 
     public function emails(){
-        return view('emails.miniAccountCreated'); 
+        return view('emails.confirm'); 
     }
 
 }

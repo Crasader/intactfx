@@ -26,7 +26,7 @@ class ActivationService
         $this->accountRepo = $accountRepo;
     }
 
-    public function sendActivationMail($user)
+    public function sendActivationMail($user, $password)
     {
 
         if ($user->activated || !$this->shouldSend($user)) {
@@ -34,20 +34,19 @@ class ActivationService
         }
 
         $token = $this->activationRepo->createActivation($user);
+        // dd($user);
 
+        $account = $user->account;
+        // dd($account);
         $link = route('user.activate', $token);
 
         $message = sprintf('Activate account <a href="%s">click here</a>', $link, $link);
 
-        // $this->mailer->raw('emails.confirm', compact('user', 'link'), function(Message $m) use ($user){
-        //     $m->to($user->email)->subject('Activation mail');
-        // });
-        
-        Mail::queue('emails.confirm', compact('user', 'token'), function($message) use ($user){
+        Mail::queue('emails.confirm', compact('user', 'token', 'password', 'account'), function($message) use ($user){
             $message->to($user->email)->subject('Activation mail');
         });
         
-
+        return true;
     }
   
     public function activateUser($token)

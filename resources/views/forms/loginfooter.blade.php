@@ -1,4 +1,4 @@
- <footer id="footer">
+ <footer id="footer" class="footer  navbar-fixed-bottom">
     <div class="container">
     <div class="col-md-3 text-center">
         <span class="copyright">Copyright &copy; 2016 · All Rights Reserved</span>

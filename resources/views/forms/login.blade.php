@@ -30,7 +30,7 @@
             </div> 
 
             <div style="margin-left: 0px;" class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                 <input type="password" class="form-control" id="InputPassword" required=""/>
+                 <input type="password" name="password"  class="form-control" id="InputPassword" required=""/>
                 <!-- <input type="password" name="password" class="form-control" id="InputPassword" required=""/> -->
 
                 @if ($errors->has('password'))

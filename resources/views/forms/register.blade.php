@@ -11,7 +11,7 @@
             <input type="hidden" class="form-control" name="eoffice_id" value="{{ $eoffice_id or '' }}"  >
             <div style="margin-left: 0px;" class="form-group">
                 <!-- <input type="text" class="form-control" name="email"   id="InputEmail1"  placeholder="Email" required="" autofocus=""> -->
-                <input type="email" class="form-control" value="{{ old('name') }}" id="InputEmail" required="" autofocus="" />
+                <input type="email" name="email" class="form-control" value="{{ old('name') }}" id="InputEmail" required="" autofocus="" />
                  @if ($errors->has('email'))
                     <span class="help-block">
                         <strong>{{ $errors->first('email') }}</strong>
@@ -20,7 +20,7 @@
             </div>
 
             <div style="margin-left: 0px;" class="form-group">
-                <input type="password" class="form-control" id="InputPassword" required=""/>
+                <input type="password" class="form-control"  name="password" id="InputPassword" required=""/>
                 <!-- <input type="password" class="form-control" id="InputPassword3" name="password" required=""  placeholder="Password"> -->
                  @if ($errors->has('password'))
                     <span class="help-block">
@@ -30,7 +30,7 @@
             </div>
 
             <div style="margin-left: 0px;" class="form-group">
-                <input type="password" class="form-control" id="InputConfirm" required=""/>
+                <input type="password" class="form-control" name="password_confirmation" id="InputConfirm" required=""/>
                 <!-- <input type="password" class="form-control" id="InputPassword4" name="password_confirmation" placeholder="Confirm Password" required=""/> -->
                 @if ($errors->has('password_confirmation'))
                     <span class="help-block">
