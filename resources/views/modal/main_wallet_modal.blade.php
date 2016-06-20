@@ -451,6 +451,7 @@
                         <p class="nomargin small">Your Identity verification can be verify using National ID Card, Passport or Driving License</p>
                         <p class="clear small">Your Address verification can be verify using Utility bill, Bank Statement or National official letter</p>
                     </div>
+                    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
                 </form>
                 </div>
             </div>
