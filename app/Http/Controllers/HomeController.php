@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Account;
 use App\Http\Requests;
 use App\Mt4Account;
@@ -145,6 +146,16 @@ class HomeController extends Controller
 
     public function emails(){
         return view('emails.confirm'); 
+    }
+
+    public function getHistory(Request $request){
+
+        $user = Auth::user();
+
+        $payments  = Payment::where('email', $user->email)->get();
+        
+        return $payments;
+
     }
 
 }

@@ -65,9 +65,14 @@
 
  <script type="text/javascript">
 
-            // $(function () {
-            //     $('#datetimepicker1').datetimepicker();
-            // });
+            $(function () {
+                $('#datetimepicker1').datetimepicker({
+                  format: 'MM/DD/YYYY'
+                });
+                $('#datetimepicker2').datetimepicker({
+                  format: 'MM/DD/YYYY'
+                });
+            });
   
       $(document).ready(function(){
  
@@ -212,6 +217,11 @@
  
 
               var box = $(".sidetab-box-content7");
+
+              $(".sidetab-box-content6").animate({
+                "margin-left": 0
+              }, 500);
+
               var newValue = contentLastMarginLeft;
               contentLastMarginLeft = box.css("margin-left");
               box.animate({

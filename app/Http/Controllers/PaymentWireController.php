@@ -86,7 +86,7 @@ class PaymentWireController extends Controller
             'payment_amount'  => $deposit_amount,
             'payment_units'  => 'USD',
             'payor_account'  =>  '',
-            'confirm' => true,
+            'confirm' => false,
         ]);
 
  		$filename = '/wire_' . $account->id . '.pdf';

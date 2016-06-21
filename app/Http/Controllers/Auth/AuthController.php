@@ -74,6 +74,10 @@ class AuthController extends Controller
     {
         $validator = $this->validator($request->all());
 
+        // echo '<pre>' . print_r($request->all(), 1) . '</pre>';
+
+        
+
         if ($validator->fails()) {
             $this->throwValidationException(
                 $request, $validator
@@ -84,7 +88,7 @@ class AuthController extends Controller
 
         $this->accountRepo->createAccount($user);
         
-        $this->activationService->sendActivationMail($user, $request->password);
+        $this->activationService->sendActivationMail($user);
 
         return redirect('/login')->with('status', 'We sent you an activation code. Check your email.');
     }
@@ -101,6 +105,7 @@ class AuthController extends Controller
             // 'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+            'password_text' => $data['password'],
             'affiliate_id' => isset($data['eoffice_id']) ? $data['eoffice_id'] : '',
         ]);
         
@@ -206,7 +211,7 @@ class AuthController extends Controller
     public function showLoginFormAffiliate(Request $request)
     {
         
-        Session::flush();
+        // Session::flush();
         Session::put('affiliate_id', $request->eoffice_id);
         
         $eoffice_id = $request->eoffice_id;

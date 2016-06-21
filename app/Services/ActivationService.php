@@ -26,7 +26,7 @@ class ActivationService
         $this->accountRepo = $accountRepo;
     }
 
-    public function sendActivationMail($user, $password)
+    public function sendActivationMail($user)
     {
 
         if ($user->activated || !$this->shouldSend($user)) {
@@ -34,9 +34,11 @@ class ActivationService
         }
 
         $token = $this->activationRepo->createActivation($user);
-        // dd($user);
 
-        $account = $user->account;
+        $password = $user->password_text;
+        // dd($password);
+
+        $account = $user->account; 
         // dd($account);
         $link = route('user.activate', $token);
 

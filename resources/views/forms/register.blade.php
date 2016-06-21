@@ -6,8 +6,7 @@
 
     <div class="form-content">
         <form  class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
-            {!! csrf_field() !!}
-            
+            {{ csrf_field() }}
             <input type="hidden" class="form-control" name="eoffice_id" value="{{ $eoffice_id or '' }}"  >
             <div style="margin-left: 0px;" class="form-group">
                 <!-- <input type="text" class="form-control" name="email"   id="InputEmail1"  placeholder="Email" required="" autofocus=""> -->

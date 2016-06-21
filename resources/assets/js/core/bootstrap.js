@@ -9,8 +9,8 @@ if (window.Vue === undefined) {
 
 require('vue-resource');
 
-   // Set X-CSRF-TOKEN
-   Vue.http.headers.common['X-CSRF-TOKEN'] = Intactfx.csrfToken;
+// Set X-CSRF-TOKEN
+Vue.http.headers.common['X-CSRF-TOKEN'] = Intactfx.csrfToken;
 
 /*
  * Load jQuery and Bootstrap jQuery, used for front-end interaction.
@@ -22,5 +22,14 @@ if (window.$ === undefined || window.jQuery === undefined) {
  * Twiiter bootstrap
  */
 require('bootstrap');
+
+if (window.moment === undefined) {
+    window.moment = require('moment');
+}
+
+
+
+
+
 
 

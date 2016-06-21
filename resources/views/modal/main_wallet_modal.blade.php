@@ -20,7 +20,7 @@
               <p class="text-center">Please enter your Deposit Code below. <br /> Contact our merchants to get your Deposit Code via our <a href="#">Merchant Page</a>. </p>
               <form>
                 <p><input type="text" name="depositcode" class="light-input" value="your deposit code" /></p>
-                <p><input type="text" name="amount" class="dark-input" value="amount" /> <input type="submit" name="submit" value="Add Funds" class="modal-btn"></p>
+                <p><input type="text" name="amount" class="dark-input"   disabled="disabled" value="amount" /> <input type="submit" name="submit" value="Add Funds" class="modal-btn"></p>
               </form>
               <div id="side-tabs">
                 <a href="#merchant" class="toggle-button">Deposit</a> 
@@ -42,7 +42,7 @@
             <div class="clear"></div>
             <!-- <p>Select file: <input type="file" id="ewiredocument"> <input type="submit" name="submit" value="Upload your documents" class="modal-btn" style="padding: 0 10px !important;"></p> -->
             <h3 class="text-center semibold"> Amount: &nbsp; &nbsp;
-                 <input style="margin-right: 0px !important;  padding: 0 96px !important; max-width: 375px !important;" v-model="intactdata.wallet.deposit | currency" type="text" name="amount" class="dark-input" />
+                 <input style="margin-right: 0px !important;  padding: 0 96px !important; max-width: 375px !important;" v-model="intactdata.wallet.deposit | currency" type="text" name="amount" class="dark-input"   disabled="disabled" />
             </h3>
             <p>Note (Optional): <br /> <input type="text" name="note" class="light-input" /></p>
             <p class="text-center"><input @click="processWire()" type="submit" name="submit" value="Deposit" class="modal-btn"></p>
@@ -59,8 +59,8 @@
           
             <img src="{{url("img/mainpage/skrill-tab.png")}}" alt="skrill" />
              
-            <h3 class="text-center semibold">Amount: <input type="text" name="amount" class="dark-input" value="1000" /> USD</h3>
-            <p class="text-center"><input type="text" name="amountid" class="dark-input" value="E-office ID: 12345" /> <input type="submit" name="submit" value="Add Funds" class="modal-btn"></p>
+            <h3 class="text-center semibold">Amount: <input type="text" name="amount" class="dark-input"   disabled="disabled" value="1000" /> USD</h3>
+            <p class="text-center"><input type="text" name="amountid" class="dark-input"   disabled="disabled" value="E-office ID: 12345" /> <input type="submit" name="submit" value="Add Funds" class="modal-btn"></p>
             <p class="text-center semibold">You will be redirect to your Skrill’s Login Page</p>
               <div id="side-tabs">
                 <a href="#skrill" class="toggle-button4">Deposit</a> 
@@ -69,7 +69,7 @@
 
           </div>
 
-          <div id="perfectmoney-tab" class="sidetab-box5">
+        <div id="perfectmoney-tab" class="sidetab-box5">
             <div class="sidetab-box-content5 sidetab-box-common">
 
             <form action="https://perfectmoney.is/api/step1.asp" method="POST">
@@ -78,23 +78,23 @@
                 <input type="hidden" name="PAYMENT_ID" value="{{ str_random(6) }}">
                 <input v-model="intactdata.wallet.deposit" type="hidden" name="PAYMENT_AMOUNT">
                 <input type="hidden" name="PAYMENT_UNITS" value="USD">
-                <input type="hidden" name="STATUS_URL" value="http://dev.intactfx/payment/pm/pmprocess">
-                <input type="hidden" name="PAYMENT_URL" value="http://dev.intactfx/payment/pm/success">
+                <input type="hidden" name="STATUS_URL" value=" {{ url('payment/pm/pmprocess') }} ">
+                <input type="hidden" name="PAYMENT_URL" value="  {{ url('payment/pm/success') }} ">
                 <input type="hidden" name="PAYMENT_URL_METHOD" value="POST">
-                <input type="hidden" name="NOPAYMENT_URL" value="http://dev.intactfx/payment/pm/error">
+                <input type="hidden" name="NOPAYMENT_URL" value=" {{ url('payment/pm/error') }} ">
                 <input type="hidden" name="NOPAYMENT_URL_METHOD" value="POST">
                 <input type="hidden" name="SUGGESTED_MEMO" value="payment comments here">
                 <input type="hidden" name="BAGGAGE_FIELDS" value="">
-                <img src="{{url("img/mainpage/perfect-money-tab.png")}}"  alt="perfect money" />
+                <img src="{{ url("img/mainpage/perfect-money-tab.png") }}"  alt="perfect money" />
                 <div class="gap"></div>
-                <h3 class="text-center semibold">Amount: <input v-model="intactdata.wallet.deposit | currency" type="text" name="amount" class="dark-input" /> USD</h3>
-                <p class="text-center"><input disabled="disabled" v-model="intactdata.profile.eoffice_id"  type="text" name="amountid" class="dark-input" /> <input type="submit" name="submit" value="Add Funds" class="modal-btn"></p>
+                <h3 class="text-center semibold">Amount: <input v-model="intactdata.wallet.deposit | currency" type="text" name="amount" class="dark-input"   disabled="disabled" /> USD</h3>
+                <p class="text-center"><input disabled="disabled" v-model="intactdata.profile.eoffice_id"  type="text" name="amountid" class="dark-input"    /> <input type="submit" name="submit" value="Add Funds" class="modal-btn"></p>
                 <p class="text-center semibold">You will be redirect to your Perfect Money Login Page</p>
                   <div id="side-tabs">
                     <a onclick="$(this).closest('form').submit()" href="#perfectmoney" class="toggle-button5">Deposit</a> 
                   </div>
                 </div>
-             </form>
+            </form>
 
           </div>
 
@@ -105,7 +105,7 @@
             <div class="gap"></div>
             <p class="text-center"><input type="text" name="accountid" class="light-input" value="Neteller Account ID/ Email" /></p>
             <p class="text-center"><input type="text" name="securityid" class="light-input" value="Secure ID / Authentication Code" /></p>
-            <p class="text-center"><input type="text" name="amountid" class="dark-input" value="E-office ID: 12345" /> <input type="submit" name="submit" value="Add Funds" class="modal-btn"></p>
+            <p class="text-center"><input type="text" name="amountid" class="dark-input"   disabled="disabled" value="E-office ID: 12345" /> <input type="submit" name="submit" value="Add Funds" class="modal-btn"></p>
               <div id="side-tabs">
                 <a href="#neteller" class="toggle-button6">Deposit</a> 
               </div>
@@ -313,27 +313,12 @@
             <div role="tabpanel" class="tab-pane" id="transaction">
                 <div class="transaction-box">
                     <form>
-                    <div class="container">
-                    
-   <!--  <div class="row">
-        <div class='col-sm-6'>
-            <div class="form-group">
-                <div class='input-group date' id='datetimepicker1'>
-                    <input type='text' class="form-control" />
-                    <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
-                    </span>
-                </div>
-            </div>
-        </div>
-       
-    </div> -->
-</div>
-                    <p class="clear text-center">
-                        <span class="col-md-7">Select Date: From <input type="text" name="datefrom" class="date-input" value="dd/mm/yy" /><img src="{{url('img/mainpage/date-icon.png')}}" class="date-icon" /></span>
-                        <span class="col-md-5"> To <input type="text" name="dateto" class="date-input" value="dd/mm/yy" /><img src="{{url('img/mainpage/date-icon.png')}}" class="date-icon" /></span>
+                    <p class="clear" style=";overflow:visible;padding-bottom:10px;">
+                        <span class="col-md-6">Select Date: From <input v-model="history.startDate" id="datetimepicker1" type="text" name="datefrom" class="date-input" /><img src="{{url('img/mainpage/date-icon.png')}}" class="date-icon" /></span>
+                        <span class="col-md-6">To <input v-model="history.endDate" id="datetimepicker2" type="text" name="dateto" class="date-input" ><img src="{{url('img/mainpage/date-icon.png')}}" class="date-icon" /></span>
                     </p>
-                    <p class="text-center">
+                    <br>
+                    <p class="text-center" style="z-index:-1;">
                         <input type="submit" name="submit" value="DEPOSIT" class="modal-btn">
                         <input type="submit" name="submit" value="WITHDRAWAL" class="modal-btn middle-btn">
                         <input type="submit" name="submit" value="ALL" class="modal-btn">

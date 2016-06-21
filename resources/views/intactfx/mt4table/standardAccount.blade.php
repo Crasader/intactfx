@@ -7,7 +7,7 @@
             <div class="account-information">
                 <h3>Standard Account</h3>
                 <p>
-                    <a href="#" @click="accountSetSelected('standard')" class="add-account-btn" data-toggle="modal" data-target="#AccountModal">
+                    <a href="#" @click="accountSetSelected('standard')" class="add-account-btn" data-toggle="modal" data-target="#StandardAccountModal">
                     <i class="fa fa-plus" aria-hidden="true"></i> Add Account 
                     </a>
                 </p>

@@ -1048,6 +1048,10 @@ table {
 	text-decoration: underline;
 }
 
+#footer-logos{
+	padding-right: 0;
+}
+
 #footer #footer-logos img {
 	display: inline-block;
 	margin: 25px 25px 25px 0;
@@ -2617,7 +2621,7 @@ input[type="file"] {
 	padding: 0 10px;
 	font-size: 14px;
 	text-align: center;
-	max-width: 140px;
+	max-width: 100px;
 }
 
 .input-note {

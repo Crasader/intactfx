@@ -35,14 +35,16 @@ class Mt4Controller extends Controller
 		$eoffice_id = $request->profile['eoffice_id'];
 		$email = $request->profile['email'];
 		$group = $request->setSelected['accountType'];
-
+		// echo $group; die();
 		// test account for the mean time
 		if ($group=='mini') {
 			$newgroup = 'demoIntactfx';
+			$amount = $request->mt4account['mini'];
 		}
 
 		if ($group=='standard') {
 			$newgroup = 'demoIntact-eur';
+			$amount = $request->mt4account['standard'];
 		}
 
 		// $this->emailAccountCreated();
@@ -50,7 +52,6 @@ class Mt4Controller extends Controller
 
 	   	$password = str_random(7);
 	   	$password_investor = str_random(7);
-
 	   	   	// echo 'test';
 	   	$params['group'] = $newgroup;
 		$params['agent'] = $eoffice_id;
@@ -85,7 +86,7 @@ class Mt4Controller extends Controller
 			$this->emailAccountCreated($params);
 
 			$deposit_params['login'] = $answer["login"];
-			$deposit_params['value'] = $request->mt4account['mini'];	
+			$deposit_params['value'] = 	$amount;
 			$deposit_params['comment']  = 'Intactfx Deposit';	
 
 			$minianswer  = $this->mt4->MakeRequest("changebalance", $deposit_params);

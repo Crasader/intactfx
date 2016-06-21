@@ -52,6 +52,11 @@ module.exports = {
 		mt4AccountList:{
 				accounts: ''
 		},
+
+		history:{
+			startDate: '',
+			endDate: '',
+		},
 		
 		tweet_feeds:[]
 	},
@@ -77,7 +82,7 @@ module.exports = {
 			this.intactdata.profile.email = result.data[0]["email"]
 			
 			this.updateAccounts() //update all accounts
-			
+			this.updateHistory()
 
 		});
 
@@ -93,6 +98,8 @@ module.exports = {
 		
 		submitMini(){
 			//create account
+			// alert('click') 
+			// return false
 			this.$http.post('/mt4/create', this.intactdata).then(
 			
 			function(data, status, request){
@@ -122,6 +129,13 @@ module.exports = {
 			});
 				
 		},
+
+		updateHistory(){
+			this.$http.get('account/gethistory').then(function(result){
+				console.log(result) 
+			});
+		},
+
 
 		updateAccounts(){
 			//update mini account in intactfx db

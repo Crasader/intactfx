@@ -10,7 +10,7 @@
         <img src="{{url('img/login_img/neteller.png')}}" alt="neteller" title="neteller" />
         <img src="{{url('img/login_img/skrill.png')}}" alt="skrill" title="skrill" />
         <img src="{{url('img/login_img/ewire-transfer.png')}}" alt="ewire transfer" title="ewire transfer" />
-        <img src="{{url('img/login_img/merchant.png')}}" alt="merchant" title="merchant" />
+        <img src="{{url('img/login_img/merchant.png')}}" height="26" width="106" alt="merchant" title="merchant" />
     </div>
     </div>
   </footer><!--/ footer -->

@@ -71,6 +71,8 @@ Route::get('account/data', 'HomeController@intactdata');
 Route::get('account/getaccount', 'HomeController@miniAccount');
 Route::get('account/checkpassword', 'HomeController@checkPassword');
 Route::get('account/checkwithdrawal', 'HomeController@checkWithdrawal');
+Route::get('account/gethistory', 'HomeController@getHistory');
 
 Route::get('account/updateaccounts', 'Mt4Controller@updateAccount');
+
 

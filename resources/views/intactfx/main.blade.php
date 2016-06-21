@@ -1,5 +1,6 @@
-<!--   @{{ intactdata | json }} <br>
- @{{ mt4AccountList | json }}  -->
+  <!-- @{{ intactdata | json }} <br> -->
+ <!-- @{{ history | json }}  -->
+
 <div class="container">
   <div class="row">
     <div class="content">

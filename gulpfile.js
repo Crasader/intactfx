@@ -16,7 +16,7 @@ elixir(function(mix) {
      mix.styles([
         'lib/bootstrap.min.css',
         'lib/font-awesome.min.css',
-        'lib/bootstrap-datepicker.min.css',
+        'lib/bootstrap-datetimepicker.css',
         'style.css',
     ]);
 
@@ -24,11 +24,11 @@ elixir(function(mix) {
         'main-style.css'
     ],  'public/css/main-style.css');
     
-    mix.scripts([
-        // 'custom.js',
-        'bootstrap-datepicker.min.js',
-        // "customscript.js"
-    ],'public/js/custom.js');
+    // mix.scripts([
+    //     // 'moment.js',
+        // 'bootstrap-datetimepicker.js',
+    //     // "customscript.js"
+    // ],'public/js/custom.js');
 
     mix.browserify('app.js', 'public/js/app.js');
 
