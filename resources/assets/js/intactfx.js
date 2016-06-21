@@ -57,6 +57,10 @@ module.exports = {
 			startDate: '',
 			endDate: '',
 		},
+
+		transactionHistory:{
+
+		},
 		
 		tweet_feeds:[]
 	},
@@ -82,7 +86,7 @@ module.exports = {
 			this.intactdata.profile.email = result.data[0]["email"]
 			
 			this.updateAccounts() //update all accounts
-			this.updateHistory()
+			this.updateHistory('all')
 
 		});
 
@@ -130,10 +134,10 @@ module.exports = {
 				
 		},
 
-		updateHistory(){
-			this.$http.get('account/gethistory').then(function(result){
-				console.log(result) 
-			});
+		updateHistory(action){
+			this.$http.get('account/gethistory?action='+action).then(function(result){
+				this.transactionHistory = result.data;
+			});	
 		},
 
 
@@ -304,7 +308,11 @@ module.exports = {
 
 
 
-		}
+		},
+
+		moment: function (date) {
+	      return moment(date);
+	    },
 
 	},
 

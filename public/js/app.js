@@ -27893,6 +27893,8 @@ module.exports = {
 			endDate: ''
 		},
 
+		transactionHistory: {},
+
 		tweet_feeds: []
 	},
 
@@ -27914,7 +27916,7 @@ module.exports = {
 			this.intactdata.profile.email = result.data[0]["email"];
 
 			this.updateAccounts(); //update all accounts
-			this.updateHistory();
+			this.updateHistory('all');
 		});
 	},
 
@@ -27945,9 +27947,9 @@ module.exports = {
 				this.mt4AccountList.accounts = result.data;
 			});
 		},
-		updateHistory: function updateHistory() {
-			this.$http.get('account/gethistory').then(function (result) {
-				console.log(result);
+		updateHistory: function updateHistory(action) {
+			this.$http.get('account/gethistory?action=' + action).then(function (result) {
+				this.transactionHistory = result.data;
 			});
 		},
 		updateAccounts: function updateAccounts() {
@@ -28081,7 +28083,23 @@ module.exports = {
 				console.log(result.data);
 				this.intactdata.wallet.withdrawalLimit = result.data;
 			});
-		}
+		},
+
+
+		moment: function (_moment) {
+			function moment(_x) {
+				return _moment.apply(this, arguments);
+			}
+
+			moment.toString = function () {
+				return _moment.toString();
+			};
+
+			return moment;
+		}(function (date) {
+			return moment(date);
+		})
+
 	},
 
 	computed: {

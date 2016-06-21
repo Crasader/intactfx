@@ -1,5 +1,6 @@
   <!-- @{{ intactdata | json }} <br> -->
- <!-- @{{ history | json }}  -->
+ @{{ transactionHistory | json }}  
+ @{{ history | json }}  
 
 <div class="container">
   <div class="row">

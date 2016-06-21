@@ -333,7 +333,25 @@
                               <th>Type</th>
                               <th class="text-center">Status</th>
                             </tr>
-                            <tr>
+
+                            <tr class="table-dashboard" v-for="transaction in transactionHistory">
+                                <td>#@{{ transaction.id}}</td>
+                                <td> @{{  moment(transaction.created_at).format('MM/DD/YYYY')  }} </td>
+                                <td> @{{transaction.payment_amount | currency }}</td>
+                                <td> @{{transaction.type}} 
+                                    <img v-if="transaction.funding_service=='bitcoin'" src="{{url('img/mainpage/bitcoin-small-icon.png')}}" class="transaction-icon" />
+                                    <img v-if="transaction.funding_service=='wire'" src="{{url('img/mainpage/ewire-small-icon.png')}}" class="transaction-icon" />
+                                    <img v-if="transaction.funding_service=='pm'" src="{{url('img/mainpage/pm-small-icon.png')}}" class="transaction-icon" />
+                                </td>
+                                <td>
+                                    <span v-if="transaction.confirm=='0'" class="process-btn">processing</span>
+                                    <span v-if="transaction.confirm=='1'" class="pending-btn">pending</span>
+                                    <span v-if="transaction.confirm=='2'" class="approve-btn">approved</span>
+                                    <span v-if="transaction.confirm=='3'" class="reject-btn">rejected</span>
+                                </td>
+                            </tr>
+
+                            <!-- <tr>
                                 <td>#d431723</td>
                                 <td>23/09/2015</td>
                                 <td>1,000</td>
@@ -409,7 +427,7 @@
                                 <td>15,000</td>
                                 <td>deposit <img src="{{url('img/mainpage/bitcoin-small-icon.png')}}" class="transaction-icon" /></td>
                                 <td><span class="approve-btn">approved</span></td>
-                            </tr>
+                            </tr> -->
                         </table>
                     </form>
                 </div>

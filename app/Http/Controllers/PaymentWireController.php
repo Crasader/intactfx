@@ -81,12 +81,13 @@ class PaymentWireController extends Controller
             'id' => Faker::create()->randomNumber($nbDigits = 9),
             'payment_id' =>  Faker::create()->randomNumber($nbDigits = 6),
             'funding_service'  => 'wire',
+            'type'  => 'deposit',
             'email'  => $user->email,
             'payee_account'  => '',
             'payment_amount'  => $deposit_amount,
             'payment_units'  => 'USD',
             'payor_account'  =>  '',
-            'confirm' => false,
+            'confirm' => 0,
         ]);
 
  		$filename = '/wire_' . $account->id . '.pdf';

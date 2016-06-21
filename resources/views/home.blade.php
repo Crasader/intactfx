@@ -218,10 +218,10 @@
 
               var box = $(".sidetab-box-content7");
 
-              $(".sidetab-box-content6").animate({
+            /*  $(".sidetab-box-content6").animate({
                 "margin-left": 0
               }, 500);
-
+*/
               var newValue = contentLastMarginLeft;
               contentLastMarginLeft = box.css("margin-left");
               box.animate({

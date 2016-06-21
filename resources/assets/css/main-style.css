@@ -1405,7 +1405,7 @@ img.alignright {
 
 #MainWalletModal .tab-content > .tab-pane {
 	padding: 15px 30px 0 30px;
-	min-height: 475px;
+	min-height: 565px;
 }
 
 #MainWalletModal .form-box {
@@ -2421,6 +2421,7 @@ input[type="file"] {
 	font-size:0;
 	line-height: 0;
 	background: url(../img/mainpage/payment-btn-3.png) no-repeat 0 0;
+	background-size: 137px 42px;
 	display: inline-block;
 	width: 165px;
 	height: 49px;
