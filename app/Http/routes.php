@@ -76,3 +76,5 @@ Route::get('account/gethistory', 'HomeController@getHistory');
 Route::get('account/updateaccounts', 'Mt4Controller@updateAccount');
 
 
+
+Route::post('imageupload',  [ 'as' => 'imageupload', 'uses' => 'FileController@imageupload']);

@@ -135,9 +135,15 @@ module.exports = {
 		},
 
 		updateHistory(action){
-			this.$http.get('account/gethistory?action='+action).then(function(result){
-				this.transactionHistory = result.data;
-			});	
+			if ( this.history.startDate=="" && this.history.startDate==""  && action!='all') {
+				alert('please select date')
+				return false;
+			}else{
+				this.$http.get('account/gethistory?action=' + action + '&start=' + this.history.startDate + '&end=' + this.history.endDate).then(function(result){
+					this.transactionHistory = result.data;
+				});	
+			}
+			return false;
 		},
 
 

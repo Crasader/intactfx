@@ -1461,7 +1461,6 @@ img.alignright {
 
 #MainWalletModal .transaction-box {
 	clear: both;
-	overflow: hidden;
 }
 
 #MainWalletModal .transaction-box form {

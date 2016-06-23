@@ -319,12 +319,12 @@
                     </p>
                     <br>
                     <p class="text-center" style="z-index:-1;">
-                        <input type="submit" name="submit" value="DEPOSIT" class="modal-btn">
-                        <input type="submit" name="submit" value="WITHDRAWAL" class="modal-btn middle-btn">
-                        <input type="submit" name="submit" value="ALL" class="modal-btn">
+                        <input @click.prevent="updateHistory('deposit')" type="submit" name="submit" value="DEPOSIT" class="modal-btn">
+                        <input @click.prevent="updateHistory('withdrawal')" type="submit" name="submit" value="WITHDRAWAL" class="modal-btn middle-btn">
+                        <input @click.prevent="updateHistory('filter')" type="submit" name="submit" value="ALL" class="modal-btn">
                     </p>
                     </form>
-                    <form>
+                    <form >
                         <table>
                             <tr>
                               <th class="text-center">Reference Id</th>
@@ -436,6 +436,19 @@
                 <div class="verification-box">
                 <form>
                 <h3>Upload your documents for account verification</h3>
+                       {!! Form::open(array('route' => 'imageupload', 'method' => 'POST', 'id' => 'my-dropzone', 'class' => 'my-dropzone form single-dropzone form-horizontal', 'files' => true)) !!}
+                            <div class="form-group">
+                                <div class="col-md-6">
+                                    <div class="upload-state default">
+                                        <button value="" id="upload-submit" data-loading-text="Uploading...." class="upload-submit btn btn-success" >
+                                        
+                                       
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        {!! Form::close() !!}    
+
                     <p class="clear">
                         <span class="col-md-3">Verify Identity:</span>
                         <span class="col-md-7 fileinput"><input type="file" id="indentityfile" /></span>

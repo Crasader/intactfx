@@ -151,11 +151,41 @@ class HomeController extends Controller
     public function getHistory(Request $request){
 
         $user = Auth::user();
-
-        $payments  = Payment::where('email', $user->email)->get();
         
-        return $payments;
+        $action = $request->action;
 
+        if ($action!="all") {
+            $date1 = strtotime($request->start);
+            $start   =   Carbon::create(date('Y',$date1), date('m',$date1), date('d',$date1), 0, 0, 0);
+            $date2 = strtotime($request->end);
+            $end     =   Carbon::create(date('Y',$date2), date('m',$date2), date('d',$date2), 23, 59, 59);
+        }
+
+        if ($action=="all") {
+
+            $payments  = Payment::where('email', $user->email)->get();
+
+
+
+        } elseif ($action=="deposit" OR $action=="withdrawal" ) {
+           
+            $payments  = Payment::where('email', $user->email)
+                ->where('type', $action)
+                ->where('created_at', '>=', $start)
+                ->where('created_at', '<=', $end)
+                ->get();
+
+        } else {
+         
+            $payments  = Payment::where('email', $user->email)
+                ->where('created_at', '>=', $start)
+                ->where('created_at', '<=', $end)
+                ->get();
+
+        }
+
+        return $payments;
+        
     }
 
 }

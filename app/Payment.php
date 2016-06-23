@@ -23,4 +23,6 @@ class Payment extends Model
         'hash'
     ];
 
+    protected $dates = ['created_at', 'updated_at'];
+
 }
