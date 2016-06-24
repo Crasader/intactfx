@@ -134,7 +134,7 @@ class Mt4Controller extends Controller
 		
 		}else{
 
-			$mt4 = Mt4Account::where('mt4login_id', $mt44Account_id)->first();
+			$mt4 = Mt4Account::where('mt4login_id', $mt4Account_id)->first();
 			$mt4->balance = $answer['newbalance'];
 			$mt4->save();
 			return $answer;
