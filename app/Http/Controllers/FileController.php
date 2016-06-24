@@ -56,4 +56,8 @@ class FileController extends Controller
 			}
 		}
 	}
+
+	public function identityUpload(){
+		echo 'reciv';
+	}
 }

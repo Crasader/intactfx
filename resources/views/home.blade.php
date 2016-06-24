@@ -66,83 +66,70 @@
  <script type="text/javascript">
 
             $(function () {
+                
                 $('#datetimepicker1').datetimepicker({
                   format: 'MM/DD/YYYY'
                 });
+                
                 $('#datetimepicker2').datetimepicker({
                   format: 'MM/DD/YYYY'
                 });
 
-                  //dropzone
-     //Dropzone.js Options - Upload an image via AJAX.
-    // $btn = $('.upload-submit');
-    var stat = $('.upload-state-p');
+                // Prevent Dropzone from auto discovering this element:
+                Dropzone.options.myDropzone = false;
+                // This is useful when you want to create the
+                // Dropzone programmatically later
 
-    Dropzone.options.myDropzone = {
-        uploadMultiple: false,
-        // previewTemplate: '',
-        addRemoveLinks: false,
-        maxFilesize: 2,
-        dictDefaultMessage: '',
-        acceptedFiles: '.jpg, .jpeg, .png, .bmp',
-        accept: function(file, done) {
-                $('.dz-image-preview, .dz-file-preview').hide();
-                img = new Image();
-                img.src = window.URL.createObjectURL( file );
-                img.onload = function() {
-                    var width = img.naturalWidth,
-                    height = img.naturalHeight;
-                    if (width<=1600 && height<=1000 && width>=200 && height>=200){
+                // Disable auto discover for all elements:
+                Dropzone.autoDiscover = false;
+                
+                var myDropzone = new Dropzone('.my-dropzone',{
+                    uploadMultiple: false,
+                    previewTemplate: '<div style="display:none"></div>',
+                    addRemoveLinks: false,
+                    createImageThumbnails: false,
+                    maxFilesize: 2,
+                    dictDefaultMessage: '',
+                    acceptedFiles: '.jpg, .jpeg, .png, .bmp',
+                    accept: function(file, done) {
                         done();                         
-                    }else{
-                        stat.text('Please upload image less than 1600x1000 or greater than 200x200');
-                        $btn.button('reset');
+                    },
+                    init: function() {
+                        this.on("addedfile", function(file) {
+                            $btn.button('loading');
+                        });
+                        this.on("sending", function(file, xhr, formData) {
+                          // Will send the filesize along with the file as POST data.
+                          
+                        });
+                        this.on("thumbnail", function(file, dataUrl) {
+                          
+                        });
+                        this.on("success", function(file, res) {
+                            $('.dz-image-preview, .dz-file-preview').hide();
+                            // alert('Upload Success')
+                            $btn.button('reset');
+                        });
+                        this.on("error", function(file, res) {
+                            $btn.button('reset');
+                            alert(res)
+                            $('.dz-image-preview, .dz-file-preview').hide();
+                        });
+                        this.on("queuecomplete", function () {
+                            this.removeAllFiles();
+                        });
                     }
-                }
-        },
-        init: function() {
-            this.on("addedfile", function(file) {
-                $btn.button('loading');
-            });
-            this.on("sending", function(file, xhr, formData) {
-              // Will send the filesize along with the file as POST data.
-              formData.append("id", $btn.val());
-            });
-            this.on("thumbnail", function(file, dataUrl) {
-                $('.dz-image-preview, .dz-file-preview').hide();
-            });
-            this.on("success", function(file, res) {
-                // $('#img-thumb').attr('src', res.path);
-                stat.text('Upload Success')
-                $btn.button('reset');
-                $btn.html('Uploaded')
-                $('.dz-image-preview, .dz-file-preview').hide();
+                });
+
+                $('#identityUploadBtn').on('click', function(e) {
+                    e.preventDefault();
+                    //trigger file upload select
+                    $btn = $(this)
+                    $(".my-dropzone").trigger('click');
+                    $('div.dz-success').remove();
+                });
 
             });
-            this.on("error", function(file, res) {
-                stat.text(res)
-                $btn.button('reset');
-                alert(res)
-                $('.dz-image-preview, .dz-file-preview').hide();
-            })
-        }
-    };
-
-    var myDropzone = new Dropzone(".my-dropzone");
-    
-        $('.upload-submit').on('click', function(e) {
-            e.preventDefault();
-            //trigger file upload select
-            $btn = $(this)
-            $(".my-dropzone").trigger('click');
-        });
-        //we want to manually init the dropzone.
-        Dropzone.autoDiscover = false;
-
-
-
-            });
-
 
   
       $(document).ready(function(){

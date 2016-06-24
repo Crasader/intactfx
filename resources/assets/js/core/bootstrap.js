@@ -9,6 +9,10 @@ if (window.Vue === undefined) {
 
 require('vue-resource');
 
+if (window.Dropzone === undefined) {
+    window.Dropzone = require('dropzone');
+}
+
 // Set X-CSRF-TOKEN
 Vue.http.headers.common['X-CSRF-TOKEN'] = Intactfx.csrfToken;
 

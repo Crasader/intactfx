@@ -17,6 +17,7 @@ elixir(function(mix) {
         'lib/bootstrap.min.css',
         'lib/font-awesome.min.css',
         'lib/bootstrap-datetimepicker.css',
+        'lib/dropzone.min.css',
         'style.css',
     ]);
 

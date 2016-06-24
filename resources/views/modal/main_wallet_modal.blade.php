@@ -129,7 +129,7 @@
               <div id="side-tabs">
                 <a href="#bitcoin" class="toggle-button7">Deposit</a> 
               </div> 
-              <iframe id="coinbase_inline_iframe_d897eca845b8d22bcad0141620ecad22" src="https://sandbox.coinbase.com/checkouts/d897eca845b8d22bcad0141620ecad22/inline" style="width: 460px; height: 350px; border: none; box-shadow: 0 1px 3px rgba(0,0,0,0.25);" allowtransparency="true" frameborder="0"></iframe>
+              <!-- <iframe id="coinbase_inline_iframe_d897eca845b8d22bcad0141620ecad22" src="https://sandbox.coinbase.com/checkouts/d897eca845b8d22bcad0141620ecad22/inline" style="width: 460px; height: 350px; border: none; box-shadow: 0 1px 3px rgba(0,0,0,0.25);" allowtransparency="true" frameborder="0"></iframe> -->
             </div>
 
           </div>
@@ -434,31 +434,30 @@
             </div>
             <div role="tabpanel" class="tab-pane" id="verification">
                 <div class="verification-box">
-                <form>
-                <h3>Upload your documents for account verification</h3>
-                       {!! Form::open(array('route' => 'imageupload', 'method' => 'POST', 'id' => 'my-dropzone', 'class' => 'my-dropzone form single-dropzone form-horizontal', 'files' => true)) !!}
-                            <div class="form-group">
-                                <div class="col-md-6">
-                                    <div class="upload-state default">
-                                        <button value="" id="upload-submit" data-loading-text="Uploading...." class="upload-submit btn btn-success" >
-                                        
-                                       
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        {!! Form::close() !!}    
+                <h3>Upload your documents for account verification</h3><br>
 
                     <p class="clear">
-                        <span class="col-md-3">Verify Identity:</span>
-                        <span class="col-md-7 fileinput"><input type="file" id="indentityfile" /></span>
-                        <span class="col-md-2"><input type="submit" name="submit" value="Send" class="modal-btn"></span>
+                        <div class="col-md-3" style="line-height:36px;">Verify Identity:</div>
+                        <div class="col-md-9 fileinput">
+                            {!! Form::open(array('route' => 'identityupload', 'method' => 'POST', 'id' => 'my-dropzone', 'class' => 'my-dropzone', 'files' => true, 'style' => 'padding:0;')) !!}
+                                <button id="identityUploadBtn" data-loading-text="Uploading...." type="submit" name="submit" class="upload-submit modal-btn">Upload</button>
+                            {!! Form::close() !!} 
+                            <!--<input type="file" id="indentityfile" />-->
+                        </div>
+                        <!-- <div class="col-md-2"><input type="submit" name="submit" value="Clear" class="modal-btn"></div> -->
                     </p>
+                    <br><br><br>
                     <p class="clear">
-                        <span class="col-md-3">Verify Address:</span>
-                        <span class="col-md-7 fileinput"><input type="file" id="addressfile" /></span>
-                        <span class="col-md-2"><input type="submit" name="submit" value="Send" class="modal-btn"></span>
+                        <div class="col-md-3" style="line-height:36px;">Verify Address:</div>
+                         <div class="col-md-9 fileinput">
+                            {!! Form::open(array('route' => 'addressupload', 'method' => 'POST', 'id' => 'my-dropzone2', 'class' => 'my-dropzone2 form single-dropzone form-horizontal', 'files' => true, 'style' => 'padding:0;')) !!}
+                                <button id="addressUploadBtn" data-loading-text="Uploading...." type="submit" name="submit" class="upload-submit modal-btn">Upload</button>
+                            {!! Form::close() !!} 
+                            <!--<input type="file" id="indentityfile" />-->
+                        </div>
+                        <!-- <span class="col-md-2"><input type="submit" name="submit" value="Clear" class="modal-btn"></span> -->
                     </p>
+                    <br><br><br><br>
                     <div class="col-md-12">
                         <p class="clear">
                             <span class="block">Note (Optional):</span>
@@ -468,7 +467,7 @@
                         <p class="clear small">Your Address verification can be verify using Utility bill, Bank Statement or National official letter</p>
                     </div>
                     <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-                </form>
+                
                 </div>
             </div>
           </div>

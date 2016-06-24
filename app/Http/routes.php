@@ -77,4 +77,5 @@ Route::get('account/updateaccounts', 'Mt4Controller@updateAccount');
 
 
 
-Route::post('imageupload',  [ 'as' => 'imageupload', 'uses' => 'FileController@imageupload']);
+Route::post('identityupload',  [ 'as' => 'identityupload', 'uses' => 'FileController@identityUpload']);
+Route::post('addressupload',  [ 'as' => 'addressupload', 'uses' => 'FileController@addressUpload']);

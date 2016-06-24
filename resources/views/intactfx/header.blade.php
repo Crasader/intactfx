@@ -1,7 +1,7 @@
 <header id="header">
     <div class="container">
       <div id="logo">
-        <a href="index.html"><img src="{{url('img/mainpage/logo.png')}}" alt="logo" title="logo" /></a> 
+        <a href="{{ url('home') }}"><img src="{{url('img/mainpage/logo.png')}}" alt="logo" title="logo" /></a> 
       </div><!--/ logo -->
       <div class="header-buttons">
         <a href="#">Account Logs</a>
