@@ -29,9 +29,10 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')
         //          ->hourly();
-        Log::info('Showing user profile for user');
         $schedule->call(function() {
-            echo 'adsf';
+            DB::table('intact_pumpingtrades')->insert(
+                 ['mt4login_id' => '810205206']
+            );
             $this->dispatch(new CheckCommissionTable);
         })->everyMinute();
     }
