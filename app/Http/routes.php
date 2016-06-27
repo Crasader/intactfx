@@ -52,7 +52,6 @@ Route::post('wire','PaymentWireController@sendWireEmail');
 Route::get('twitter-authenticate', 'TwitterOauthController@auth_twitter');
 Route::get('twitter-callback', 'TwitterOauthController@auth_callback');
 
-
 // other routes
 Route::get('user/register', 'Auth\AuthController@showLoginFormAffiliate'); 
 
@@ -64,18 +63,22 @@ Route::post('mt4/create', 'Mt4Controller@createaccount');
 Route::post('mt4/transferin', 'Mt4Controller@transferIn');
 Route::post('mt4/transferout', 'Mt4Controller@transferOut');
 Route::post('mt4/changepassword', 'Mt4Controller@changepassword');
-Route::get('mt4/pumping', 'Mt4Controller@pumping');
-
+Route::get('mt4/hasopentrades', 'Mt4Controller@hasOpenTrades');
 
 Route::get('account/data', 'HomeController@intactdata');
 Route::get('account/getaccount', 'HomeController@miniAccount');
 Route::get('account/checkpassword', 'HomeController@checkPassword');
 Route::get('account/checkwithdrawal', 'HomeController@checkWithdrawal');
 Route::get('account/gethistory', 'HomeController@getHistory');
+Route::get('account/getredcommisionhistory', 'HomeController@getRedCommissionHistory');
+Route::get('account/getbluecommisionhistory', 'HomeController@getBlueCommissionHistory');
+Route::get('account/updatewallet', 'HomeController@updateWallet');
 
 Route::get('account/updateaccounts', 'Mt4Controller@updateAccount');
 
 
-
 Route::post('identityupload',  [ 'as' => 'identityupload', 'uses' => 'FileController@identityUpload']);
 Route::post('addressupload',  [ 'as' => 'addressupload', 'uses' => 'FileController@addressUpload']);
+
+
+Route::get('testjobs', 'HomeController@testjobs');

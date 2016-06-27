@@ -45,12 +45,15 @@
                     <input type="radio" value="@{{ mt4Account.mt4login_id }}" v-model="intactdata.profile.radio_mini_mt4Account_id"> @{{ mt4Account.mt4login_id }}
                 </td>
                 <td>@{{ mt4Account.balance | currency }}</td>
+
                 <td class="green text-center">
-                    <a href="#" @click="setSelected( mt4Account.mt4login_id )" data-toggle="modal" data-target="#TransferInModal">Transfer In</a>
+                    <a href="#" @click="setSelected( mt4Account.mt4login_id, 'TransferInModal' )" data-toggle="modal" >Transfer In</a>
                 </td>
+
                 <td class="green text-center">
-                    <a href="#" @click="setSelected( mt4Account.mt4login_id )" data-toggle="modal" data-target="#TransferOutModal">Transfer Out</a>
+                    <a href="#" @click="setSelected( mt4Account.mt4login_id, 'TransferOutModal' )" data-toggle="modal" >Transfer Out</a>
                 </td>
+
                 <td class="text-center">
                     <a href="#" data-toggle="modal" data-target="#SocialmediaModal"><i class="fa fa-facebook" aria-hidden="true"></i></a>
                     <a href="#" data-toggle="modal" data-target="#SocialmediaModal"><i class="fa fa-twitter" aria-hidden="true"></i></a>

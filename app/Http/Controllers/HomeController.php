@@ -2,14 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use Carbon\Carbon;
 use App\Account;
+use App\Commission;
+use App\CommissionHistory;
 use App\Http\Requests;
+use App\Jobs\CheckCommissionTable;
 use App\Mt4Account;
 use App\Payment;
 use App\Social;
 use App\User;
 use Auth;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -187,5 +190,120 @@ class HomeController extends Controller
         return $payments;
         
     }
+
+    public function testjobs(){
+        $job = new CheckCommissionTable;
+        $this->dispatch($job);
+    }
+
+    public function updateWallet(Request $request){
+        $user = Auth::user();
+        DB::connection()->enableQueryLog();
+
+
+        $eoffice_id = $request->eoffice_id;
+
+        //main_wallet
+        
+        $deposit_history  = Payment::select('funding_service', DB::raw('SUM(payment_amount) as total_deposit'))
+                    ->where('email', $user->email)
+                    ->where('type', 'deposit')
+                    ->get();
+
+        $withdrawal_history  = Payment::select('funding_service', DB::raw('SUM(payment_amount) as total_withdrawal'))
+                    ->where('email', $user->email)
+                    ->where('type', 'withdrawal')
+                    ->get();
+
+
+
+        //commission red
+        $red_deposit_history  = Commission::select('to_eoffice', DB::raw('SUM(amount) as total_commission_deposit'))
+                    ->where('to_eoffice', $eoffice_id)
+                    ->where('commission_type', 'deposit')
+                    ->whereIn('account_type', ['mini', 'stadard'])
+                    ->get();
+
+        $red_transfer_history  = Commission::select('to_eoffice', DB::raw('SUM(amount) as total_commission_transfer'))
+                    ->where('to_eoffice', $eoffice_id)
+                    ->where('commission_type', 'transfer')
+                    ->whereIn('account_type', ['mini', 'stadard'])
+                    ->get();
+
+        //commission blue
+        $blue_deposit_history  = Commission::select('to_eoffice', DB::raw('SUM(amount) as total_commission_deposit'))
+                    ->where('to_eoffice', $eoffice_id)
+                    ->where('commission_type', 'deposit')
+                    ->whereIn('account_type', ['iprofit', 'iprofit_high', 'broker'])
+                    ->get();
+
+        $queries = DB::getQueryLog();
+        // dd($queries);
+
+
+        $blue_transfer_history  = Commission::select('to_eoffice', DB::raw('SUM(amount) as total_commission_transfer'))
+                    ->where('to_eoffice', $eoffice_id)
+                    ->where('commission_type', 'transfer')
+                    ->whereIn('account_type', ['iprofit', 'iprofit_high', 'broker'])
+                    ->get();
+
+         // dd($blue_deposit_history);
+        
+        $main_wallet = $deposit_history[0]->total_deposit - $withdrawal_history[0]->total_withdrawal;
+        $red_wallet = $red_deposit_history[0]->total_commission_deposit - $red_transfer_history[0]->total_commission_transfer;
+        $blue_wallet = $blue_deposit_history[0]->total_commission_deposit - $blue_transfer_history[0]->total_commission_transfer;
+        
+        $wallet['main'] =  $main_wallet;
+        $wallet['red'] =  $red_wallet;
+        $wallet['blue'] =  $blue_wallet;
+
+        return $wallet;
+
+
+    }
+
+    public function getRedCommissionHistory(Request $request){
+
+        $user = Auth::user();
+        
+        $eoffice_id = $request->eoffice_id;
+
+        // if ($action!="all") {
+        //     $date1 = strtotime($request->start);
+        //     $start   =   Carbon::create(date('Y',$date1), date('m',$date1), date('d',$date1), 0, 0, 0);
+        //     $date2 = strtotime($request->end);
+        //     $end     =   Carbon::create(date('Y',$date2), date('m',$date2), date('d',$date2), 23, 59, 59);
+        // }
+
+        $history  = CommissionHistory::where('eoffice_id', $eoffice_id)
+                    ->whereIn('account_type', ['mini', 'stadard'])
+                    ->get();
+        
+        // if ($action=="all") {
+
+        //     $payments  = Payment::where('email', $user->email)->get();
+
+        // } elseif ($action=="deposit" OR $action=="withdrawal" ) {
+           
+        //     $payments  = Payment::where('email', $user->email)
+        //         ->where('type', $action)
+        //         ->where('created_at', '>=', $start)
+        //         ->where('created_at', '<=', $end)
+        //         ->get();
+
+        // } else {
+         
+        //     $payments  = Payment::where('email', $user->email)
+        //         ->where('created_at', '>=', $start)
+        //         ->where('created_at', '<=', $end)
+        //         ->get();
+
+        // }
+
+        return $history;
+        
+    }
+
+    
 
 }

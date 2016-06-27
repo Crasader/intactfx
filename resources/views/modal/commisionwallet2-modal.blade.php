@@ -14,8 +14,8 @@
             <div role="tabpanel" class="tab-pane active" id="wallettransfer2">
                 <div class="col-md-6">
                     <form>
-                        <p class="clear text-center"><span class="col-md-5">Total Commission:</span><span class="col-md-7"><input type="text" value="12,000" class="dark-input" name="balance" /> USD</span></p>
-                        <p class="clear text-center"><span class="col-md-5">Enter Amount:</span><span class="col-md-7"><input type="text" value="5,000" class="light-input" name="balance" /> USD</span></p>
+                        <p class="clear text-center"><span class="col-md-5">Total Commission:</span><span class="col-md-7"><input type="text" value="@{{ this.intactdata.wallet.blue | currency }}" class="dark-input" name="balance" /> USD</span></p>
+                        <p class="clear text-center"><span class="col-md-5">Enter Amount:</span><span class="col-md-7"><input type="text" value="" class="light-input" name="balance" /> USD</span></p>
                         <p class="text-center"><input type="submit" name="submit" value="Transfer to Main Wallet" class="modal-btn"></p>
                     </form>
                     <p>&nbsp;</p>

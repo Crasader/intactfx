@@ -16,6 +16,8 @@ class CreateIntactUserProfile extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned()->index();
             $table->foreign('user_id')->references('id')->on('intact_users');
+            $table->string('eoffice_id');
+            $table->foreign('eoffice_id')->references('id')->on('intact_accounts');
             $table->char('account_stat', 40)->default('not');
             $table->string('profile_picture_url', 100);
             $table->string('identity_file_url', 100);

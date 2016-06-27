@@ -29624,7 +29624,9 @@ module.exports = {
 	data: {
 		intactdata: {
 			wallet: {
-				amount: 12000,
+				amount: 0,
+				red: 0,
+				blue: 0,
 				deposit: 0,
 				withdrawal: 0,
 				withdrawalLimit: 0,
@@ -29644,6 +29646,7 @@ module.exports = {
 				new_password: '',
 				sel_password: '',
 				sel_inpassword: '',
+				hasOpenTrades: 0,
 				radio_mini_mt4Account_id: '',
 				radio_standard_mt4Account_id: '',
 				radio_mt4Account_id: ''
@@ -29668,6 +29671,10 @@ module.exports = {
 
 		transactionHistory: {},
 
+		redCommissionHistory: {},
+
+		blueCommissionHistory: {},
+
 		tweet_feeds: []
 	},
 
@@ -29689,7 +29696,9 @@ module.exports = {
 			this.intactdata.profile.email = result.data[0]["email"];
 
 			this.updateAccounts(); //update all accounts
+			this.updateWallets(); //update all accounts
 			this.updateHistory('all');
+			this.updateCommissionHistory();
 		});
 	},
 
@@ -29731,6 +29740,18 @@ module.exports = {
 			}
 			return false;
 		},
+		updateCommissionHistory: function updateCommissionHistory() {
+			// if ( this.history.startDate=="" && this.history.startDate==""  && action!='all') {
+			// 	alert('please select date')
+			// 	return false;
+			// }else{
+			// this.$http.get('account/getcommisionhistory?action=' + action + '&start=' + this.history.startDate + '&end=' + this.history.endDate).then(function(result){
+			this.$http.get('account/getredcommisionhistory?eoffice_id=' + this.intactdata.profile.eoffice_id).then(function (result) {
+				this.redCommissionHistory = result.data;
+			});
+			// }
+			// return false;
+		},
 		updateAccounts: function updateAccounts() {
 			//update mini account in intactfx db
 			this.$http.get('account/updateaccounts?eoffice_id=' + this.intactdata.profile.eoffice_id).then(function (result) {
@@ -29739,9 +29760,31 @@ module.exports = {
 				this.getAccount(); // get all account
 			});
 		},
+		updateWallets: function updateWallets() {
+
+			this.$http.get('account/updatewallet?eoffice_id=' + this.intactdata.profile.eoffice_id).then(function (result) {
+				this.intactdata.wallet.amount = result.data['main'];
+				this.intactdata.wallet.red = result.data['red'];
+				this.intactdata.wallet.blue = result.data['blue'];
+			});
+		},
 		setSelected: function setSelected(id) {
+			var modal = arguments.length <= 1 || arguments[1] === undefined ? '' : arguments[1];
+
+
 			//set selected for transfer in/out
 			this.intactdata.setSelected.mt4Account_id = id;
+
+			if (modal == 'TransferOutModal') {
+				this.$http.get('mt4/hasopentrades?eoffice_id=' + this.intactdata.profile.eoffice_id).then(function (result) {
+					this.intactdata.profile.hasOpenTrades = result.data;
+					$('#TransferOutModal').modal('show');
+				});
+			};
+
+			if (modal == 'TransferInModal') {
+				$('#TransferInModal').modal('show');
+			};
 		},
 		accountSetSelected: function accountSetSelected(accountType) {
 			// alert(accountType)
@@ -29759,6 +29802,7 @@ module.exports = {
 		},
 		submitTransferOut: function submitTransferOut() {
 			//transfer in
+
 			this.$http.post('/mt4/transferout', this.intactdata.setSelected).then(function (data, status, request) {
 
 				console.log(data);
@@ -29858,15 +29902,26 @@ module.exports = {
 			this.intactdata.wallet.withdrawalMerchant = merchant;
 			// alert(merchant)
 
+			//check if the account has open trades
 			this.$http.get('account/checkwithdrawal?merchant=' + this.intactdata.wallet.withdrawalMerchant).then(function (result) {
 				console.log(result.data);
 				this.intactdata.wallet.withdrawalLimit = result.data;
 			});
 		},
+		hasOpenTrades: function hasOpenTrades() {
+
+			this.$http.get('mt4/hasopentrades?eoffice_id=' + this.intactdata.profile.eoffice_id).then(function (result) {
+				if (result.data == 0) {
+					return false;
+				} else {
+					return true;
+				};
+			});
+		},
 
 
 		moment: function (_moment) {
-			function moment(_x) {
+			function moment(_x2) {
 				return _moment.apply(this, arguments);
 			}
 

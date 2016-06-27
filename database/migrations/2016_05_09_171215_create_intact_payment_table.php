@@ -18,7 +18,7 @@ class CreateIntactPaymentTable extends Migration
             $table->string('funding_service');
             $table->string('type');
             $table->string('payee_account');
-            $table->decimal('payment_amount', 5, 2);
+            $table->decimal('payment_amount', 20, 2);
             $table->string('payment_units');
             $table->string('payment_batch_num');
             $table->string('payor_account');

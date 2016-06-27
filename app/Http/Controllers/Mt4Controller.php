@@ -46,7 +46,10 @@ class Mt4Controller extends Controller
 			$newgroup = 'demoIntact-eur';
 			$amount = $request->mt4account['standard'];
 		}
-
+		// iprofit
+		// iprofit_high
+		// broker
+		
 		// $this->emailAccountCreated();
 		// echo '<pre>' . print_r($request->mt4account['mini'], 1 ) . '</pre>';
 
@@ -263,11 +266,23 @@ class Mt4Controller extends Controller
 		}
    }
 
-   public function pumping(){
+   public function hasOpenTrades(Request $request){
+		$eoffice_id = $request->eoffice_id;
+		$mt4Accounts = Mt4Account::select('mt4login_id')->where('eoffice_id', $eoffice_id)->get();
 
-   		$params['trades'] = 1;
-   		return $this->mt4->MakeRequest("pumping", $params);
-   		
+		foreach ($mt4Accounts as $account) {
+			$params['login'] = $account->mt4login_id;
+			$answer  = $this->mt4->MakeRequest("accounthavetrades", $params);
+			if($answer['result']!=1){
+				return 'error';
+			}else{
+				return $answer['trades'];
+			}
+			
+		}
+		
    }
+
+
 
 }

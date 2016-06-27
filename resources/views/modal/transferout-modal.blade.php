@@ -17,9 +17,14 @@
                         </span>
                     </p>
                     
+                    <div v-show="intactdata.profile.hasOpenTrades==1" class="alert alert-warning text-center">
+                        <i class="fa fa-exclamation-triangle"></i> Cannot transfer out from MT4 Account. <br> Close Open trades first.
+                    </div>
+
                     <p class="text-center">
-                        <input @click.prevent="submitTransferOut" type="submit" name="submit" value="Transfer Out" class="modal-btn">
-                    </p>
+                        <input :disabled="intactdata.profile.hasOpenTrades==1" @click.prevent="submitTransferOut" type="submit" name="submit" value="Transfer Out" class="modal-btn">
+                   </p>
+                   
 
                 </form>
             </div>

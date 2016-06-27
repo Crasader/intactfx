@@ -10,14 +10,17 @@
                         <span class="col-md-7">
                             <input disabled v-model="intactdata.wallet.amount | currencyDisplay " type="text"  class="dark-input" name="balance" /><br>
                             <span v-show="intactdata.mt4account.mini>=intactdata.wallet.amount" class="text text-danger">Not Enough Funds</span>
-                        </span>
+                        </span> 
                     </p>
                     <p class="clear text-center">
                         <span class="col-md-5">Enter Amount:</span>
                         <span class="col-md-7">
                             <input v-model="intactdata.mt4account.mini | currencyDisplay" type="text" class="light-input" name="balance" /> <br>
-                            <span v-show="intactdata.mt4account.mini<100" class="text text-danger">Minimum Deposit: $100</span>
+                            <!-- <span v-show="intactdata.mt4account.mini<100" class="text text-danger">Minimum Deposit: $100</span> -->
                         </span>
+                        <div v-show="intactdata.mt4account.mini<100" class="alert alert-warning text-center">
+                            <i class="fa fa-exclamation-triangle"></i> Minimum Deposit: $100
+                        </div>
                     </p>
                     <p class="text-center nomargin">
                         <input @click.prevent="submitMini" id="submitMini" type="submit" name="submit" value="Create Account" class="modal-btn"  :disabled="intactdata.mt4account.mini<100" >

@@ -18,17 +18,17 @@
                     <p class="bold nomargin">Transfer your commission to Main Wallet</p>
                     <div class="form-box">
                         <form>
-                            <p class="clear text-center"><span class="col-md-5">Total Commission:</span><span class="col-md-7"><input type="text" value="12,000" class="dark-input" name="balance" /> USD</span></p>
-                            <p class="clear text-center"><span class="col-md-5">Enter Amount:</span><span class="col-md-7"><input type="text" value="5,000" class="light-input" name="balance" /> USD</span></p>
+                            <p class="clear text-center"><span class="col-md-5">Total Commission:</span><span class="col-md-7"><input type="text" value="@{{ this.intactdata.wallet.red | currency }}" class="dark-input" name="balance" /> </span></p>
+                            <p class="clear text-center"><span class="col-md-5">Enter Amount:</span><span class="col-md-7"><input type="text" class="light-input" name="balance" /> </span></p>
                             <p class="text-center"><input type="submit" name="submit" value="Transfer to Main Wallet" class="modal-btn"></p>
                         </form>
                     </div>
                     <p class="bold nomargin">Transfer your funds to Merchant Wallet</p>
                     <div class="form-box">
                         <form>
-                            <p class="clear text-center"><span class="col-md-5">Main Wallet Balance:</span><span class="col-md-7"><input type="text" value="12,000" class="dark-input" name="balance" /> USD</span></p>
-                            <p class="clear text-center"><span class="col-md-5">Enter Amount:</span><span class="col-md-7"><input type="text" value="5,000" class="light-input" name="balance" /> USD</span></p>
-                            <p class="text-center"><input type="submit" name="submit" value="Transfer from Main Wallet" class="modal-btn"></p>
+                            <p class="clear text-center"><span class="col-md-5">Main Wallet Balance:</span><span class="col-md-7"><input type="text" value="@{{ this.intactdata.wallet.amount | currency }}" class="dark-input" name="balance" /> </span></p>
+                            <p class="clear text-center"><span class="col-md-5">Enter Amount:</span><span class="col-md-7"><input type="text" value="" class="light-input" name="balance" /> </span></p>
+                            <p class="text-center"><input type="submit" name="submit" value="Transfer to Merchant Wallet" class="modal-btn"></p>
                         </form>
                     </div>
                 </div>
@@ -53,84 +53,14 @@
                               <th class="text-center">Level 1</th>
                               <th class="text-center">Level 2</th>
                               <th class="text-center">Level 3</th>
-                              <th class="text-center">Total</th>
+                              <!-- <th class="text-center">Total</th> -->
                             </tr>
-                            <tr>
-                                <td>23/09/2015</td>
-                                <td>690</td>
-                                <td>760</td>
-                                <td>810</td>
-                                <td>&nbsp;</td>
-                            </tr>
-                            <tr>
-                                <td>06/09/2015</td>
-                                <td>440</td>
-                                <td>120</td>
-                                <td>750</td>
-                                <td>&nbsp;</td>
-                            </tr>
-                            <tr>
-                                <td>22/08/2015</td>
-                                <td>940</td>
-                                <td>570</td>
-                                <td>840</td>
-                                <td>&nbsp;</td>
-                            </tr>
-                            <tr>
-                                <td>08/07/2015</td>
-                                <td>860</td>
-                                <td>120</td>
-                                <td>1,100</td>
-                                <td>&nbsp;</td>
-                            </tr>
-                            <tr>
-                                <td>04/06/2015</td>
-                                <td>770</td>
-                                <td>240</td>
-                                <td>840</td>
-                                <td>&nbsp;</td>
-                            </tr>
-                            <tr>
-                                <td>04/05/2015</td>
-                                <td>390</td>
-                                <td>250</td>
-                                <td>470</td>
-                                <td>&nbsp;</td>
-                            </tr>
-                            <tr>
-                                <td>13/04/2015</td>
-                                <td>530</td>
-                                <td>300</td>
-                                <td>980</td>
-                                <td>&nbsp;</td>
-                            </tr>
-                            <tr>
-                                <td>17/03/2015</td>
-                                <td>620</td>
-                                <td>720</td>
-                                <td>310</td>
-                                <td>&nbsp;</td>
-                            </tr>
-                            <tr>
-                                <td>10/03/2015</td>
-                                <td>175</td>
-                                <td>350</td>
-                                <td>620</td>
-                                <td>&nbsp;</td>
-                            </tr>
-                            <tr>
-                                <td>02/03/2015</td>
-                                <td>210</td>
-                                <td>270</td>
-                                <td>730</td>
-                                <td>&nbsp;</td>
-                            </tr>
-                            <tr>
-                                <td>25/02/2015</td>
-                                <td>500</td>
-                                <td>300</td>
-                                <td>1,200</td>
-                                <td>&nbsp;</td>
+                            <tr v-for="redcommission in redCommissionHistory">
+                                <td> @{{  moment(redcommission.created_at).format('MM/DD/YYYY')  }} </td>
+                                <td> @{{ redcommission.level1 | currency }} </td>
+                                <td> @{{ redcommission.level2 | currency }} </td>
+                                <td> @{{ redcommission.level3 | currency }} </td>
+                                <!-- <td>@{{ getSum(redcommission.level1, redcommission.level2, redcommission.level3 ) | currency  }} </td> -->
                             </tr>
                         </table>
                     </form>
