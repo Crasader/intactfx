@@ -2,8 +2,10 @@
 
 namespace App\Console;
 
+use App\Console\Commands\Inspire;
 use App\Jobs\CheckCommissionTable;
 use Illuminate\Console\Scheduling\Schedule;
+use Illuminate\Contracts\Logging\Log;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
 class Kernel extends ConsoleKernel
@@ -27,7 +29,9 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')
         //          ->hourly();
+        Log::info('Showing user profile for user');
         $schedule->call(function() {
+            echo 'adsf';
             $this->dispatch(new CheckCommissionTable);
         })->everyMinute();
     }

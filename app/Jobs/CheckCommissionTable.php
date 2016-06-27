@@ -200,7 +200,7 @@ class CheckCommissionTable extends Job implements ShouldQueue
             }
 
             //update table
-            // $trade->has_read = 1;
+            $trade->has_read = 1;
             $trade->save();
 
         }
