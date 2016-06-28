@@ -1,4 +1,4 @@
-@{{ intactdata.userProfile | json }} <br>
+<!-- @{{ intactdata.userProfile | json }} <br> -->
 <!-- @{{ transactionHistory | json }}   -->
 <!-- @{{ redCommissionHistory | json }}   -->
 
