@@ -29781,8 +29781,8 @@ module.exports = {
 		updateWallets: function updateWallets() {
 
 			this.$http.get('account/updatewallet?eoffice_id=' + this.intactdata.profile.eoffice_id).then(function (result) {
-				// this.intactdata.wallet.amount = result.data['main']
-				this.intactdata.wallet.amount = 12000;
+				this.intactdata.wallet.amount = result.data['main'];
+				// this.intactdata.wallet.amount = 12000
 				this.intactdata.wallet.red = result.data['red'];
 				this.intactdata.wallet.green = result.data['green'];
 			});
