@@ -26,10 +26,10 @@
         </div>
     </div><!--/ col-md-3 -->
 
-    <div class="col-md-9">
+    <div class="col-md-9" style="padding-left:0;padding-right:1;">
 
-        <div class="table">
-            <table class="table" border="0" cellspacing="1">
+        <div class="table"  style="max-height:241px; overflow-y:scroll;">
+            <table class="table" border="0" cellspacing="1" >
 
             <tr>
                 <th class="text-center">Metatrader Account</th>
@@ -38,29 +38,32 @@
                 <th>Withdrawal</th>
                 <th class="text-center">Social Connection</th>
             </tr>
-        
-            <tr class="table-dashboard" v-for="mt4Account in mt4AccountList.accounts"  v-if="mt4Account.account_type == 'mini'">
-               
-                <td class="text-center">
-                    <input type="radio" value="@{{ mt4Account.mt4login_id }}" v-model="intactdata.profile.radio_mini_mt4Account_id"> @{{ mt4Account.mt4login_id }}
-                </td>
-                <td>@{{ mt4Account.balance | currency }}</td>
 
-                <td class="green text-center">
-                    <a href="#" @click="setSelected( mt4Account.mt4login_id, 'TransferInModal' )" data-toggle="modal" >Transfer In</a>
-                </td>
+            <tbody>
+                <tr  class="table-dashboard" v-for="mt4Account in mt4AccountList.accounts"  v-if="mt4Account.account_type == 'mini'">
+                   
+                    <td class="text-center">
+                        <input type="radio" value="@{{ mt4Account.mt4login_id }}" v-model="intactdata.profile.radio_mini_mt4Account_id"> @{{ mt4Account.mt4login_id }}
+                    </td>
+                    <td>@{{ mt4Account.balance | currency }}</td>
 
-                <td class="green text-center">
-                    <a href="#" @click="setSelected( mt4Account.mt4login_id, 'TransferOutModal' )" data-toggle="modal" >Transfer Out</a>
-                </td>
+                    <td class="green text-center">
+                        <a href="#" @click="setSelected( mt4Account.mt4login_id, 'TransferInModal' )" data-toggle="modal" >Transfer In</a>
+                    </td>
 
-                <td class="text-center">
-                    <a href="#" data-toggle="modal" data-target="#SocialmediaModal"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                    <a href="#" data-toggle="modal" data-target="#SocialmediaModal"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                    <a href="#" data-toggle="modal" data-target="#SocialmediaModal"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
-                    <a href="#" data-toggle="modal" data-target="#SocialmediaModal"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
-                </td>
-            </tr>
+                    <td class="green text-center">
+                        <a href="#" @click="setSelected( mt4Account.mt4login_id, 'TransferOutModal' )" data-toggle="modal" >Transfer Out</a>
+                    </td>
+
+                    <td class="text-center">
+                        <a href="#" data-toggle="modal" data-target="#SocialmediaModal"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                        <a href="#" data-toggle="modal" data-target="#SocialmediaModal"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                        <a href="#" data-toggle="modal" data-target="#SocialmediaModal"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
+                        <a href="#" data-toggle="modal" data-target="#SocialmediaModal"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+                    </td>
+                </tr>
+
+            </tbody>
 
             </table>
         </div>

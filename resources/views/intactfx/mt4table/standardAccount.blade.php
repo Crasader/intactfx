@@ -17,8 +17,8 @@
         </div>
     </div><!--/ col-md-3 -->
 
-    <div class="col-md-9">
-        <div class="table">
+    <div class="col-md-9" style="padding-left:0;padding-right:1;">
+        <div class="table" style="max-height:241px; overflow-y:scroll;">
             <table class="table" border="0" cellspacing="1">
                  <tr>
                     <th class="text-center">Metatrader Account</th>
