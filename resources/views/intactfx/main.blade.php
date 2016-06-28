@@ -1,3 +1,4 @@
+{{ phpinfo() }}
 <!-- @{{ intactdata.userProfile | json }} <br> -->
 <!-- @{{ transactionHistory | json }}   -->
 <!-- @{{ redCommissionHistory | json }}   -->
