@@ -11,4 +11,7 @@
 
 require('./core/bootstrap');
 
-new Vue(require('./intactfx'));
+window.vm = new Vue(require('./intactfx'));
+
+
+

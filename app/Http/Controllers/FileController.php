@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 use App\Http\Requests;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Validator;
 
 class FileController extends Controller
 {
@@ -57,7 +57,48 @@ class FileController extends Controller
 		}
 	}
 
-	public function identityUpload(){
-		echo 'reciv';
+	public function identityUpload(Request $request){
+
+		$user = Auth::user();
+
+		if(Input::hasFile('file')) {
+			
+		  	$file = Input::file('file');
+
+			$tmpFilePath = public_path('/uploads');
+			// File::exists($tmpFilePath) or File::makeDirectory($tmpFilePath);
+			$fileName = time() . '-' . $file->getClientOriginalName();
+			$file = $file->move($tmpFilePath, $fileName);
+			$path = $fileName;
+			
+			$response['filename'] = $fileName;
+			$response['status'] = 'success';
+			$response['filefor'] = $request->action;
+			
+			if ( $request->action == 'identityUpload') {
+
+				$user->profile->identity_file_url = $fileName;
+
+			}elseif ( $request->action == 'addressUpload') {
+
+				$user->profile->address_file_url = $fileName;
+
+			}else{
+
+				$user->profile->profile_picture_url = $fileName;
+
+			}
+			
+
+			$user->profile->save();
+
+			return $response;
+
+		} else {
+
+			return $response['status'] = 'error';
+			
+		}
+
 	}
 }

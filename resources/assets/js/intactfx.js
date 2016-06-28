@@ -16,7 +16,7 @@ module.exports = {
     		wallet:{
 				amount: 0,
 				red: 0,
-				blue: 0,
+				green: 0,
 				deposit: 0,
 				withdrawal: 0,
 				withdrawalLimit: 0,
@@ -43,12 +43,18 @@ module.exports = {
 				radio_mt4Account_id: '',
 				radio_mt4Account_id: '',
 			},
+			
+			userProfile:{
+
+			},
+
 			setSelected:{
 				mt4Account_id: '',
-				transferIn: 0,
-				transferOut: 0,
+				transferIn: 10,
+				transferOut: 10,
 				accountType: '',
 				passwordType: '',
+				mt4Balance: '',
 			}
 		},
 
@@ -71,7 +77,12 @@ module.exports = {
 
 		blueCommissionHistory:{
 
-		},		
+		},
+
+		profileForm:{
+			picked: 'neteller',
+			edit: 0
+		},
 		
 		tweet_feeds:[]
 	},
@@ -98,6 +109,7 @@ module.exports = {
 			
 			this.updateAccounts() //update all accounts
 			this.updateWallets() //update all accounts
+			this.updateProfile()
 			this.updateHistory('all')
 			this.updateCommissionHistory()
 
@@ -119,22 +131,22 @@ module.exports = {
 			// return false
 			this.$http.post('/mt4/create', this.intactdata).then(
 			
-			function(data, status, request){
-				
-				$('#miniAccountModal').modal('hide')
-		
-				this.getAccount()
-
-			},
+				function(data, status, request){
+					
+					$('#miniAccountModal').modal('hide')
 			
-			function(data, status, request){
-				
-			});
+					this.getAccount()
 
-			// this.$http.post('/api/v1/documents/'+ this.currentDocument.id, this.currentDocument, function(data, status, request) {
-			// 	// console.log(this.currentDocument.config.content)
-			// 	toastr.options = { "positionClass": "toast-bottom-right" }; toastr.info(data.message)
-			// })
+				},
+				
+				function(data, status, request){
+					
+				});
+
+				// this.$http.post('/api/v1/documents/'+ this.currentDocument.id, this.currentDocument, function(data, status, request) {
+				// 	// console.log(this.currentDocument.config.content)
+				// 	toastr.options = { "positionClass": "toast-bottom-right" }; toastr.info(data.message)
+				// })
 		},
 
 		getAccount(){
@@ -183,32 +195,53 @@ module.exports = {
 
 		},
 
+		updateProfile(){
+
+			this.$http.get('account/getprofile').then(function(result){
+
+				this.intactdata.userProfile = result.data 
+
+			});
+
+		},
+
 		updateWallets(){
 
 			this.$http.get('account/updatewallet?eoffice_id=' + this.intactdata.profile.eoffice_id).then(function(result){
-				this.intactdata.wallet.amount = result.data['main']
+				// this.intactdata.wallet.amount = result.data['main']
+				this.intactdata.wallet.amount = 12000
 				this.intactdata.wallet.red = result.data['red']
-				this.intactdata.wallet.blue = result.data['blue']
+				this.intactdata.wallet.green = result.data['green']
 			});
 
 		},
 
 		setSelected(id, modal = ''){
-			
+				
+
 			//set selected for transfer in/out
 			this.intactdata.setSelected.mt4Account_id = id
 
-			if (modal=='TransferOutModal') {
-				this.$http.get('mt4/hasopentrades?eoffice_id=' + this.intactdata.profile.eoffice_id).then(function(result){
-					this.intactdata.profile.hasOpenTrades = result.data
-					$('#TransferOutModal').modal('show')
-				});
+			
+				if (modal=='TransferOutModal') {
+			
+					this.$http.get('account/updateupdatedaccount?mt4login_id=' + this.intactdata.setSelected.mt4Account_id).then(function(result){		
+						
+						this.intactdata.setSelected.mt4Balance = result.data.balance
+					})
+				
+					this.$http.get('mt4/hasopentrades?eoffice_id=' + this.intactdata.profile.eoffice_id).then(function(result){
+						this.intactdata.profile.hasOpenTrades = result.data
+						$('#TransferOutModal').modal('show')
+					});
 					
-			};
+				};
 
-			if (modal=='TransferInModal') {
-				$('#TransferInModal').modal('show')
-			};
+				if (modal=='TransferInModal') {
+					$('#TransferInModal').modal('show')
+				};
+
+			
 			
 		},
 
@@ -223,9 +256,13 @@ module.exports = {
 			
 			function(data, status, request){
 				
-				console.log(data)
-
+				
+				console.log(data)	
+				
+				this.intactdata.wallet.amount  = this.intactdata.wallet.amount - this.intactdata.setSelected.transferIn
+				
 				this.getAccount()
+				
 				$('#TransferInModal').modal('hide')
 
 			},
@@ -244,6 +281,7 @@ module.exports = {
 			function(data, status, request){
 				
 				console.log(data)
+				this.intactdata.wallet.amount  = parseInt(this.intactdata.wallet.amount) + parseInt(this.intactdata.setSelected.transferOut)
 				this.getAccount()
 				$('#TransferOutModal').modal('hide')
 
@@ -378,6 +416,17 @@ module.exports = {
 
 		},
 
+		profileUpdate(){
+
+			this.$http.post('account/profileupdate', this.intactdata.userProfile, function(data, status, request) {
+				if (data=='success') {
+					this.updateProfile()
+				};
+				this.profileForm.edit = 0
+			})
+
+		},
+
 		moment: function (date) {
 	      return moment(date);
 	    },
@@ -417,3 +466,5 @@ Vue.filter('currencyDisplay', {
     return isNaN(number) ? 0 : parseFloat(number.toFixed(2))
   }
 })
+
+

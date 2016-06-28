@@ -48,4 +48,11 @@ class User extends Authenticatable
         return $this->hasOne('App\Account');
 
     }
+
+     public function profile()
+    {
+        
+        return $this->hasOne('App\Profile');
+
+    }
 }

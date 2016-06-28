@@ -440,7 +440,13 @@
                         <div class="col-md-3" style="line-height:36px;">Verify Identity:</div>
                         <div class="col-md-9 fileinput">
                             {!! Form::open(array('route' => 'identityupload', 'method' => 'POST', 'id' => 'my-dropzone', 'class' => 'my-dropzone', 'files' => true, 'style' => 'padding:0;')) !!}
-                                <button id="identityUploadBtn" data-loading-text="Uploading...." type="submit" name="submit" class="upload-submit modal-btn">Upload</button>
+                                {!! csrf_field() !!}
+                                {!! Form::hidden('action', 'identityUpload') !!}
+                                <a v-show="intactdata.userProfile.identity_file_url!=''" target="_blank" href="{{ url('uploads') }}/@{{ intactdata.userProfile.identity_file_url }}">View Uploaded File &nbsp;&nbsp;&nbsp;</a>
+                                <button id="identityUploadBtn" data-loading-text="Uploading...." type="submit" name="submit" class="upload-submit modal-btn">
+                                    <span v-show="intactdata.userProfile.identity_file_url==''" >Upload</span>
+                                    <span v-show="intactdata.userProfile.identity_file_url!=''" >Upload New</span>
+                                </button>
                             {!! Form::close() !!} 
                             <!--<input type="file" id="indentityfile" />-->
                         </div>
@@ -450,8 +456,13 @@
                     <p class="clear">
                         <div class="col-md-3" style="line-height:36px;">Verify Address:</div>
                          <div class="col-md-9 fileinput">
-                            {!! Form::open(array('route' => 'addressupload', 'method' => 'POST', 'id' => 'my-dropzone2', 'class' => 'my-dropzone2 form single-dropzone form-horizontal', 'files' => true, 'style' => 'padding:0;')) !!}
-                                <button id="addressUploadBtn" data-loading-text="Uploading...." type="submit" name="submit" class="upload-submit modal-btn">Upload</button>
+                            {!! Form::open(array('route' => 'identityupload', 'method' => 'POST', 'id' => 'my-dropzone2', 'class' => 'my-dropzone2 form single-dropzone form-horizontal', 'files' => true, 'style' => 'padding:0;')) !!}
+                                {!! Form::hidden('action', 'addressUpload') !!}
+                                <a v-show="intactdata.userProfile.address_file_url!=''" target="_blank" href="{{ url('uploads') }}/@{{ intactdata.userProfile.address_file_url }}">View Uploaded File &nbsp;&nbsp;&nbsp;</a>
+                                <button id="addressUploadBtn" data-loading-text="Uploading...." type="submit" name="submit" class="upload-submit modal-btn">
+                                  <span v-show="intactdata.userProfile.address_file_url==''" >Upload</span>
+                                  <span v-show="intactdata.userProfile.address_file_url!=''" >Upload New</span>
+                                </button>
                             {!! Form::close() !!} 
                             <!--<input type="file" id="indentityfile" />-->
                         </div>

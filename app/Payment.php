@@ -12,6 +12,7 @@ class Payment extends Model
     	'id',
         'payment_id',
         'funding_service',
+        'type',
         'payee_account',
         'payment_amount',
         'payment_units',

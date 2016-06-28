@@ -72,9 +72,13 @@ Route::get('account/checkwithdrawal', 'HomeController@checkWithdrawal');
 Route::get('account/gethistory', 'HomeController@getHistory');
 Route::get('account/getredcommisionhistory', 'HomeController@getRedCommissionHistory');
 Route::get('account/getbluecommisionhistory', 'HomeController@getBlueCommissionHistory');
+Route::get('account/getprofile', 'HomeController@getProfile');
+Route::post('account/profileupdate', 'HomeController@profileUpdate');
 Route::get('account/updatewallet', 'HomeController@updateWallet');
 
 Route::get('account/updateaccounts', 'Mt4Controller@updateAccount');
+Route::get('account/updateupdatedaccount', 'Mt4Controller@getUpdatedAccount');
+
 
 
 Route::post('identityupload',  [ 'as' => 'identityupload', 'uses' => 'FileController@identityUpload']);

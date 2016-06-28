@@ -29553,10 +29553,18 @@ module.exports = Vue;
 
 require('./core/bootstrap');
 
-new Vue(require('./intactfx'));
+window.vm = new Vue(require('./intactfx'));
 
 },{"./core/bootstrap":21,"./intactfx":24}],21:[function(require,module,exports){
 'use strict';
+
+/*
+ * Load jQuery and Bootstrap jQuery, used for front-end interaction.
+ */
+
+if (window.$ === undefined || window.jQuery === undefined) {
+    window.$ = window.jQuery = require('jquery');
+}
 
 /*
  * Load Vue & Vue-Resource.
@@ -29575,13 +29583,6 @@ if (window.Dropzone === undefined) {
 
 // Set X-CSRF-TOKEN
 Vue.http.headers.common['X-CSRF-TOKEN'] = Intactfx.csrfToken;
-
-/*
- * Load jQuery and Bootstrap jQuery, used for front-end interaction.
- */
-if (window.$ === undefined || window.jQuery === undefined) {
-    window.$ = window.jQuery = require('jquery');
-}
 /**
  * Twiiter bootstrap
  */
@@ -29626,7 +29627,7 @@ module.exports = {
 			wallet: {
 				amount: 0,
 				red: 0,
-				blue: 0,
+				green: 0,
 				deposit: 0,
 				withdrawal: 0,
 				withdrawalLimit: 0,
@@ -29651,12 +29652,16 @@ module.exports = {
 				radio_standard_mt4Account_id: '',
 				radio_mt4Account_id: ''
 			}, _defineProperty(_profile, 'radio_mt4Account_id', ''), _defineProperty(_profile, 'radio_mt4Account_id', ''), _profile),
+
+			userProfile: {},
+
 			setSelected: {
 				mt4Account_id: '',
-				transferIn: 0,
-				transferOut: 0,
+				transferIn: 10,
+				transferOut: 10,
 				accountType: '',
-				passwordType: ''
+				passwordType: '',
+				mt4Balance: ''
 			}
 		},
 
@@ -29674,6 +29679,11 @@ module.exports = {
 		redCommissionHistory: {},
 
 		blueCommissionHistory: {},
+
+		profileForm: {
+			picked: 'neteller',
+			edit: 0
+		},
 
 		tweet_feeds: []
 	},
@@ -29697,6 +29707,7 @@ module.exports = {
 
 			this.updateAccounts(); //update all accounts
 			this.updateWallets(); //update all accounts
+			this.updateProfile();
 			this.updateHistory('all');
 			this.updateCommissionHistory();
 		});
@@ -29760,12 +29771,20 @@ module.exports = {
 				this.getAccount(); // get all account
 			});
 		},
+		updateProfile: function updateProfile() {
+
+			this.$http.get('account/getprofile').then(function (result) {
+
+				this.intactdata.userProfile = result.data;
+			});
+		},
 		updateWallets: function updateWallets() {
 
 			this.$http.get('account/updatewallet?eoffice_id=' + this.intactdata.profile.eoffice_id).then(function (result) {
-				this.intactdata.wallet.amount = result.data['main'];
+				// this.intactdata.wallet.amount = result.data['main']
+				this.intactdata.wallet.amount = 12000;
 				this.intactdata.wallet.red = result.data['red'];
-				this.intactdata.wallet.blue = result.data['blue'];
+				this.intactdata.wallet.green = result.data['green'];
 			});
 		},
 		setSelected: function setSelected(id) {
@@ -29776,6 +29795,12 @@ module.exports = {
 			this.intactdata.setSelected.mt4Account_id = id;
 
 			if (modal == 'TransferOutModal') {
+
+				this.$http.get('account/updateupdatedaccount?mt4login_id=' + this.intactdata.setSelected.mt4Account_id).then(function (result) {
+
+					this.intactdata.setSelected.mt4Balance = result.data.balance;
+				});
+
 				this.$http.get('mt4/hasopentrades?eoffice_id=' + this.intactdata.profile.eoffice_id).then(function (result) {
 					this.intactdata.profile.hasOpenTrades = result.data;
 					$('#TransferOutModal').modal('show');
@@ -29796,7 +29821,10 @@ module.exports = {
 
 				console.log(data);
 
+				this.intactdata.wallet.amount = this.intactdata.wallet.amount - this.intactdata.setSelected.transferIn;
+
 				this.getAccount();
+
 				$('#TransferInModal').modal('hide');
 			}, function (data, status, request) {});
 		},
@@ -29806,6 +29834,7 @@ module.exports = {
 			this.$http.post('/mt4/transferout', this.intactdata.setSelected).then(function (data, status, request) {
 
 				console.log(data);
+				this.intactdata.wallet.amount = parseInt(this.intactdata.wallet.amount) + parseInt(this.intactdata.setSelected.transferOut);
 				this.getAccount();
 				$('#TransferOutModal').modal('hide');
 			}, function (data, status, request) {});
@@ -29916,6 +29945,15 @@ module.exports = {
 				} else {
 					return true;
 				};
+			});
+		},
+		profileUpdate: function profileUpdate() {
+
+			this.$http.post('account/profileupdate', this.intactdata.userProfile, function (data, status, request) {
+				if (data == 'success') {
+					this.updateProfile();
+				};
+				this.profileForm.edit = 0;
 			});
 		},
 

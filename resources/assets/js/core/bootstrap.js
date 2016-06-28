@@ -1,4 +1,12 @@
 /*
+ * Load jQuery and Bootstrap jQuery, used for front-end interaction.
+ */
+
+if (window.$ === undefined || window.jQuery === undefined) {
+    window.$ = window.jQuery = require('jquery');
+}
+
+/*
  * Load Vue & Vue-Resource.
  *
  * Vue is the JavaScript framework used by Spark.
@@ -15,13 +23,6 @@ if (window.Dropzone === undefined) {
 
 // Set X-CSRF-TOKEN
 Vue.http.headers.common['X-CSRF-TOKEN'] = Intactfx.csrfToken;
-
-/*
- * Load jQuery and Bootstrap jQuery, used for front-end interaction.
- */
-if (window.$ === undefined || window.jQuery === undefined) {
-    window.$ = window.jQuery = require('jquery');
-}
 /**
  * Twiiter bootstrap
  */

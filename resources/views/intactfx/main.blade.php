@@ -1,24 +1,25 @@
-  <!-- @{{ intactdata.profile | json }} <br> -->
-<!--   @{{ transactionHistory | json }}   -->
-<!--  @{{ redCommissionHistory | json }}   -->
+@{{ intactdata.userProfile | json }} <br>
+<!-- @{{ transactionHistory | json }}   -->
+<!-- @{{ redCommissionHistory | json }}   -->
 
 <div class="container">
   <div class="row">
     <div class="content">
       <div class="col-md-6">
         <div class="wallet">
-              <img src="{{url('img/mainpage/wallet-main.png')}}" alt="">
-              <div class="wallet-pockets">
+            <img src="{{url('img/mainpage/wallet-main.png')}}" alt="">
+            <div class="wallet-pockets">
                 <div class="wallet-item">
-                  <a class="wallet-card" href="javascript:;"  data-toggle="modal" data-target="#MainWalletModal">
+                  <a class="wallet-card" href="javascript:;"  data-toggle="modal" data-target="#Commission2WalletModal">
                     <div class="wallet-card-image">
-                      <div class="wallet-text">Wallet Amount: @{{ intactdata.wallet.amount | currency }}</div>
+                      <div class="wallet-text">Wallet Amount: @{{ intactdata.wallet.green | currency }}</div>
                       <img src="{{url('img/mainpage/wallet-card-green.png')}}" alt="">
                     </div>
                     <!-- <span class="wallet-link-badge"><span>9</span></span>                     -->
                   </a>
                   <img src="{{url('img/mainpage/wallet-pocket-mid.pn')}}g" alt="" class="wallet-pocket">
                 </div>
+
                 <div class="wallet-item">
                   <a class="wallet-card" href="javascript:;"  data-toggle="modal" data-target="#CommissionWalletModal">
                     <div class="wallet-card-image">
@@ -29,16 +30,18 @@
                   </a>
                   <img src="{{url('img/mainpage/wallet-pocket-mid.png')}}" alt="" class="wallet-pocket">
                 </div>
+
                 <div class="wallet-item">
-                  <a class="wallet-card" href="javascript:;"  data-toggle="modal" data-target="#Commission2WalletModal">
+                  <a class="wallet-card" href="javascript:;"  data-toggle="modal" data-target="#MainWalletModal">
                     <div class="wallet-card-image">
-                      <div class="wallet-text">Wallet Amount: @{{ intactdata.wallet.blue | currency }}</div>
+                      <div class="wallet-text">Wallet Amount: @{{ intactdata.wallet.amount | currency }}</div>
                       <img src="{{url('img/mainpage/wallet-card-blue.png')}}" alt="">
                     </div>                    
                     <!-- <span class="wallet-link-badge"><span>2</span></span>                     -->
                   </a>
                   <img src="{{url('img/mainpage/wallet-pocket-bottom.png')}}" alt="" class="wallet-pocket">
                 </div>
+
               </div>
             </div>
      

@@ -9,6 +9,7 @@ use App\Http\Requests;
 use App\Jobs\CheckCommissionTable;
 use App\Mt4Account;
 use App\Payment;
+use App\Profile;
 use App\Social;
 use App\User;
 use Auth;
@@ -230,8 +231,8 @@ class HomeController extends Controller
                     ->whereIn('account_type', ['mini', 'stadard'])
                     ->get();
 
-        //commission blue
-        $blue_deposit_history  = Commission::select('to_eoffice', DB::raw('SUM(amount) as total_commission_deposit'))
+        //commission green
+        $green_deposit_history  = Commission::select('to_eoffice', DB::raw('SUM(amount) as total_commission_deposit'))
                     ->where('to_eoffice', $eoffice_id)
                     ->where('commission_type', 'deposit')
                     ->whereIn('account_type', ['iprofit', 'iprofit_high', 'broker'])
@@ -241,21 +242,21 @@ class HomeController extends Controller
         // dd($queries);
 
 
-        $blue_transfer_history  = Commission::select('to_eoffice', DB::raw('SUM(amount) as total_commission_transfer'))
+        $green_transfer_history  = Commission::select('to_eoffice', DB::raw('SUM(amount) as total_commission_transfer'))
                     ->where('to_eoffice', $eoffice_id)
                     ->where('commission_type', 'transfer')
                     ->whereIn('account_type', ['iprofit', 'iprofit_high', 'broker'])
                     ->get();
 
-         // dd($blue_deposit_history);
+         // dd($green_deposit_history);
         
         $main_wallet = $deposit_history[0]->total_deposit - $withdrawal_history[0]->total_withdrawal;
         $red_wallet = $red_deposit_history[0]->total_commission_deposit - $red_transfer_history[0]->total_commission_transfer;
-        $blue_wallet = $blue_deposit_history[0]->total_commission_deposit - $blue_transfer_history[0]->total_commission_transfer;
+        $green_wallet = $green_deposit_history[0]->total_commission_deposit - $green_transfer_history[0]->total_commission_transfer;
         
         $wallet['main'] =  $main_wallet;
         $wallet['red'] =  $red_wallet;
-        $wallet['blue'] =  $blue_wallet;
+        $wallet['green'] =  $green_wallet;
 
         return $wallet;
 
@@ -304,6 +305,49 @@ class HomeController extends Controller
         
     }
 
-    
+    public function getProfile(){
+        $user = Auth::user();
+
+        return $user->profile;
+
+    }
+
+    public function profileUpdate(Request $request){
+        
+        $user = Auth::user();
+
+        $profile = Profile::where('user_id', $user->id)->first();
+        $profile->last_name =  $request->last_name;
+        $profile->first_name =  $request->first_name;
+        $profile->gender =  $request->gender;
+        $profile->birthdate =  $request->birthdate;
+        $profile->phone_number =  $request->phone_number;
+        $profile->email =  $request->email;
+        $profile->address =  $request->address;
+        $profile->address2 =  $request->address2;
+        $profile->city =  $request->city;
+        $profile->state =  $request->state;
+        $profile->country =  $request->country;
+        $profile->zipcode =  $request->zipcode;
+        $profile->skype_id =  $request->skype_id;
+        $profile->icq_number =  $request->icq_number;
+        $profile->twitter_username =  $request->twitter_username;
+        $profile->google_email =  $request->google_email;
+        $profile->facebook_url =  $request->facebook_url;
+        $profile->instagram_url =  $request->instagram_url;
+        $profile->bank_name =  $request->bank_name;
+        $profile->bank_account =  $request->bank_account;
+        $profile->bank_fullname =  $request->bank_fullname;
+        $profile->bank_swiftcode =  $request->bank_swiftcode;
+        $profile->bank_country =  $request->bank_country;
+        $profile->bank_state =  $request->bank_state;
+        $profile->netteller =  $request->netteller;
+        $profile->skrill =  $request->skrill;
+        $profile->perfect_money =  $request->perfect_money;
+        $profile->save();
+
+        return 'success';
+
+    }
 
 }

@@ -3334,59 +3334,604 @@ input[type="checkbox"] {
 } 
 
 
-/**
- *  SETTINGS MODAL
- */
 #SettingsModal .modal-dialog {
-  margin: 106px auto auto auto !important;
-  width: 960px;
-  background: none;
-  box-shadow: -10px 0 20px #444;
-  border-radius: 6px; }
+	margin: 106px auto 150px !important;
+	max-width: 1000px;
+	width: auto !important;
+	background: none;
+	-moz-box-shadow:    -10px 0 20px #444;
+   	-webkit-box-shadow: -10px 0 20px #444;
+   	box-shadow:         -10px 0 20px #444;
+   	-webkit-border-radius: 6px; 
+  	-moz-border-radius: 6px; 
+  	border-radius: 6px; 
+}
 
 #SettingsModal .modal-content {
-  background: none;
-  border: none;
-  color: #000;
-  font-size: 14px;
-  box-shadow: none; }
+	background: none;
+   	border: none;
+   	color: #000;
+   	font-size: 14px;
+   	-moz-box-shadow:    none;
+   	-webkit-box-shadow: none;
+   	box-shadow:         none;
+}
 
 #SettingsModal .modal-body {
-  padding: 0;
-  position: relative; }
+	padding: 0;
+}
 
 #SettingsModal .tab-content {
-  background: #fff;
-  padding: 0 0 10px 0;
-  margin: 0;
-  box-shadow: inset 0 -17px 20px #00d2ff;
-  border-radius: 0 0 10px 10px;
-  position: relative;
-  z-index: 9;
-  min-height: 300px; }
+	background: #fff;
+	padding: 0 0 10px 0;
+	margin: 0;
+	-moz-box-shadow: inset 0 -17px 20px #00d2ff;
+	-webkit-box-shadow: inset 0 -17px 20px #00d2ff;
+	box-shadow: inset 0 -17px 20px #00d2ff;
+	-moz-border-radius: 0 0 10px 10px;
+	-webkit-border-radius: 0 0 10px 10px;
+	border-radius: 0 0 10px 10px;
+}
 
 #SettingsModal .tab-content > .tab-pane {
-  padding: 15px 30px 0 30px; }
+	padding: 15px 30px 0 30px;
+}
+
+#SettingsModal .form-box {
+	-webkit-border-radius: 6px; 
+  	-moz-border-radius: 6px; 
+  	border-radius: 6px; 
+  	border: 1px solid #000;
+  	overflow: hidden;
+  	margin: 0 0 20px;
+}
+
+#SettingsModal .form-box form {
+	padding: 15px 0 0;
+}
+
+#SettingsModal .form-box p {
+	margin: 0 0 10px 0;
+}
+
+#SettingsModal .light-input {
+	border: 1px solid #000;
+	max-width: 190px;
+}
+
+#SettingsModal .dark-input {
+	border: 1px solid #000;
+	max-width: 190px;
+}
 
 #SettingsModal .nav-tabs > li {
-  width: 25%;
-  text-align: center; }
+	width: 25%;
+	text-align: center;
+}
 
 #SettingsModal .nav-tabs > li > a {
-  margin: 0;
-  background: #fff;
-  box-shadow: inset 0 20px 20px #035669;
-  border: none;
-  color: #fff;
-  font-weight: 600; }
+	margin: 0;
+	background: #fff;
+	-moz-box-shadow: inset 0 20px 20px #035669;
+	-webkit-box-shadow: inset 0 20px 20px #035669;
+	box-shadow: inset 0 20px 20px #035669;
+	border: none;
+	color: #fff;
+	font-weight: 600;
+}
 
 #SettingsModal .nav-tabs > li.active > a, #SettingsModal .nav-tabs > li.active > a:focus, #SettingsModal .nav-tabs > li.active > a:hover {
-  background-color: #fff !important;
-  color: #000;
-  font-weight: 600;
-  box-shadow: inset 0 20px 20px #00d2ff;
-  font-size: 14px;
-  border: none; }
+	background-color: #fff !important;
+	color: #000;
+	font-weight: 600;
+	-moz-box-shadow: inset 0 20px 20px #00d2ff;
+	-webkit-box-shadow: inset 0 20px 20px #00d2ff;
+	box-shadow: inset 0 20px 20px #00d2ff;
+ 	font-size: 14px;
+ 	border: none;
+}
+
+#SettingsModal .transaction-box {
+	clear: both;
+	overflow: hidden;
+}
+
+#SettingsModal .transaction-box form {
+	padding: 0 0 10px 0;
+}
+
+#SettingsModal .account-profile {
+	clear: both;
+	margin: 35px 0 0;
+}
+
+#SettingsModal .account-profile .account-thumb {
+	float: left;
+	width: 112px;
+	height: 107px;
+	border: 1px solid #cccccc;
+	margin: 0 10px 0 0;
+}
+
+#SettingsModal .account-profile .account-thumb img {
+	width: 110px;
+	height: 105px;
+	display: block;
+}
+
+#SettingsModal .account-status {
+	float: left;
+	width: 333px;
+}
+
+#SettingsModal .account-status .red-btn {
+	margin: 0 0 0 10px;
+}
+
+#SettingsModal .account-status .blue-btn {
+	margin: 0 15px;
+}
+
+#SettingsModal .account-status h3 {
+	font-weight: 700;
+	font-size: 15px;
+	margin: 0 0 5px;
+}
+
+#SettingsModal .financial-information {
+	clear: both;
+	margin: 10px 0 20px 0;
+}
+
+#SettingsModal .financial-information h3 {
+	font-size: 16px;
+	margin: 0 0 5px 0;
+}
+
+
+#SettingsModal .financial-information span {
+	display: inline-block;
+	width: 147px;
+}
+
+#SettingsModal .financial-information span.short {
+	display: inline-block;
+	width: 90px;
+	padding: 0 5px 0 0;
+}
+
+#SettingsModal .radio-inline {
+	margin: 0 25px;
+}
+
+#SettingsModal .col-md-6.left {
+	padding-left: 0;
+}
+
+#SettingsModal .col-md-6.right {
+	padding-right: 0;
+}
+
+#SettingsModal .general-information {
+	clear: both;
+}
+
+#SettingsModal .general-information span {
+	display: inline-block;
+	width: 90px;
+}
+
+#SettingsModal .general-information span.short {
+	display: inline-block;
+	width: 70px;
+	padding: 0 5px 0 0;
+}
+
+#SettingsModal .general-information h3 {
+	font-size: 16px;
+	margin: 0 0 5px 0;
+}
+
+#SettingsModal .general-information .account-input {
+	width: 361px;
+}
+
+#SettingsModal .general-information .account-input.short {
+	width: 141px;
+}
+
+#SettingsModal .general-information .date-icon {
+	margin: -5px 0 0 5px;
+	display: inline-block;
+}
+
+#SettingsModal .general-information .select-form {
+	width: 142px;
+}
+
+#SettingsModal .general-information .social-icon {
+	display: inline-block;
+	text-align: center;
+	width: 76px;
+}
+
+#SettingsModal .settings-content {
+	padding: 30px 30px 10px;
+	clear: both;
+	min-height: 250px;
+	overflow: hidden;
+}
+
+#SettingsModal input[type="file"] {
+	background: #cccccc;
+	color: #3a3a3a;
+	font-weight: normal;
+	line-height: 27px;
+	border: 1px solid #000; 
+	padding: 0 10px;
+	font-size: 14px;
+	text-align: center;
+	-webkit-border-radius: 6px; 
+  	-moz-border-radius: 6px; 
+  	border-radius: 6px; 
+  	width: 323px;
+  	margin: 0 25px 0 0;
+}
+
+
+/*button*/
+.share-btn {
+	display: inline-block;
+	padding: 0 50px;
+	height: 32px;
+	line-height: 30px;
+	border: 1px solid #404141;
+	-moz-box-shadow:    inset 0 0 20px #00d2ff;
+   	-webkit-box-shadow: inset 0 0 20px #00d2ff;
+   	box-shadow:         inset 0 0 20px #00d2ff;
+   	font-size: 18px;
+   	color: #000;
+   	background: #fff;
+   	text-decoration: none;
+   	-webkit-border-radius: 6px; 
+  	-moz-border-radius: 6px; 
+  	border-radius: 6px; 
+  	font-weight: 600;
+  	transition: all 0.5s ease 0s;
+    -webkit-transition: all 0.5s ease 0s;
+    -moz-transition: all 0.5s ease 0s;
+    -o-transition: all 0.5s ease 0s;
+}
+
+.share-btn:hover, .share-btn:active, .share-btn:focus {
+	background: #fff;
+	-moz-box-shadow:    inset 0 0 20px #5ed973;
+   	-webkit-box-shadow: inset 0 0 20px #5ed973;
+   	box-shadow:         inset 0 0 20px #5ed973;
+   	color: #000;
+   	text-decoration: none;
+}
+
+.modal-btn {
+	display: inline-block;
+	padding: 0 50px;
+	height: 32px;
+	line-height: 30px;
+	border: 1px solid #404141;
+	-moz-box-shadow:    inset 0 0 20px #00d2ff;
+   	-webkit-box-shadow: inset 0 0 20px #00d2ff;
+   	box-shadow:         inset 0 0 20px #00d2ff;
+   	font-size: 18px;
+   	color: #000;
+   	background: #fff;
+   	text-decoration: none;
+   	-webkit-border-radius: 6px; 
+  	-moz-border-radius: 6px; 
+  	border-radius: 6px; 
+  	font-weight: 600;
+  	transition: all 0.5s ease 0s;
+    -webkit-transition: all 0.5s ease 0s;
+    -moz-transition: all 0.5s ease 0s;
+    -o-transition: all 0.5s ease 0s;
+}
+
+.modal-btn:hover, .modal-btn:active, .modal-btn:focus {
+	background: #fff;
+	-moz-box-shadow:    inset 0 0 20px #5ed973;
+   	-webkit-box-shadow: inset 0 0 20px #5ed973;
+   	box-shadow:         inset 0 0 20px #5ed973;
+   	color: #000;
+   	text-decoration: none;
+}
+
+.blue-btn {
+	display: inline-block;
+	padding: 0 20px;
+	height: 30px;
+	line-height: 28px;
+	border: 1px solid #404141;
+	-moz-box-shadow:    inset 0 0 20px #00d2ff;
+   	-webkit-box-shadow: inset 0 0 20px #00d2ff;
+   	box-shadow:         inset 0 0 20px #00d2ff;
+   	font-size: 18px;
+   	color: #000;
+   	background: #fff;
+   	text-decoration: none;
+   	-webkit-border-radius: 20px; 
+  	-moz-border-radius: 20px; 
+  	border-radius: 20px; 
+  	font-weight: 600;
+  	transition: all 0.5s ease 0s;
+    -webkit-transition: all 0.5s ease 0s;
+    -moz-transition: all 0.5s ease 0s;
+    -o-transition: all 0.5s ease 0s;
+}
+
+.blue-btn:hover, .blue-btn:active, .blue-btn:focus {
+	background: #fff;
+	-moz-box-shadow:    inset 0 0 20px #5ed973;
+   	-webkit-box-shadow: inset 0 0 20px #5ed973;
+   	box-shadow:         inset 0 0 20px #5ed973;
+   	color: #000;
+   	text-decoration: none;
+}
+
+.red-btn-profile {
+	display: inline-block;
+	padding: 0 20px;
+	height: 32px;
+	line-height: 30px;
+	border: 1px solid #404141;
+	text-transform: uppercase;
+	-moz-box-shadow:     0 0 10px #000;
+   	-webkit-box-shadow:  0 0 10px #000;
+   	box-shadow:          0 0 10px #000;
+   	font-size: 18px;
+   	color: #000;
+   	background: #e73a42;
+   	text-decoration: none;
+   	-webkit-border-radius: 20px; 
+  	-moz-border-radius: 20px; 
+  	border-radius: 20px; 
+  	font-weight: normal;
+  	transition: all 0.5s ease 0s;
+    -webkit-transition: all 0.5s ease 0s;
+    -moz-transition: all 0.5s ease 0s;
+    -o-transition: all 0.5s ease 0s;
+}
+
+.red-btn-profile:hover, .red-btn-profile:active, .red-btn-profile:focus {
+	background: #e00816;
+   	color: #000;
+   	text-decoration: none;
+}
+
+.blue-btn-profile {
+	display: inline-block;
+	padding: 0 20px;
+	height: 32px;
+	line-height: 30px;
+	border: 1px solid #404141;
+	text-transform: uppercase;
+	-moz-box-shadow:     0 0 10px #000;
+   	-webkit-box-shadow:  0 0 10px #000;
+   	box-shadow:          0 0 10px #000;
+   	font-size: 18px;
+   	color: #000;
+   	background: #6B74F2;
+   	text-decoration: none;
+   	-webkit-border-radius: 20px; 
+  	-moz-border-radius: 20px; 
+  	border-radius: 20px; 
+  	font-weight: normal;
+  	transition: all 0.5s ease 0s;
+    -webkit-transition: all 0.5s ease 0s;
+    -moz-transition: all 0.5s ease 0s;
+    -o-transition: all 0.5s ease 0s;
+}
+
+.blue-btn-profile:hover, .blue-btn-profile:active, .blue-btn-profile:focus {
+	background: #0919EB;
+   	color: #000;
+   	text-decoration: none;
+}
+
+.green-btn-profile {
+	display: inline-block;
+	padding: 0 20px;
+	height: 32px;
+	line-height: 30px;
+	border: 1px solid #14CE49;
+	text-transform: uppercase;
+	-moz-box-shadow:     0 0 10px #000;
+   	-webkit-box-shadow:  0 0 10px #000;
+   	box-shadow:          0 0 10px #000;
+   	font-size: 18px;
+   	color: #000;
+   	background: #14CE49;
+   	text-decoration: none;
+   	-webkit-border-radius: 20px; 
+  	-moz-border-radius: 20px; 
+  	border-radius: 20px; 
+  	font-weight: normal;
+  	transition: all 0.5s ease 0s;
+    -webkit-transition: all 0.5s ease 0s;
+    -moz-transition: all 0.5s ease 0s;
+    -o-transition: all 0.5s ease 0s;
+}
+
+.green-btn-profile:hover, .green-btn-profile:active, .green-btn-profile:focus {
+	background: #11BF43;
+   	color: #000;
+   	text-decoration: none;
+}
+
+
+.small-btn {
+	display: inline-block;
+	padding: 0 15px;
+	height: 32px;
+	line-height: 30px;
+	border: 1px solid #404141;
+	-moz-box-shadow:    inset 0 0 20px #00d2ff;
+   	-webkit-box-shadow: inset 0 0 20px #00d2ff;
+   	box-shadow:         inset 0 0 20px #00d2ff;
+   	font-size: 14px;
+   	color: #000;
+   	background: #fff;
+   	text-decoration: none;
+   	-webkit-border-radius: 6px; 
+  	-moz-border-radius: 6px; 
+  	border-radius: 6px; 
+  	font-weight: 600;
+  	transition: all 0.5s ease 0s;
+    -webkit-transition: all 0.5s ease 0s;
+    -moz-transition: all 0.5s ease 0s;
+    -o-transition: all 0.5s ease 0s;
+}
+
+.small-btn:hover, .small-btn:active, .small-btn:focus {
+	background: #fff;
+	-moz-box-shadow:    inset 0 0 20px #5ed973;
+   	-webkit-box-shadow: inset 0 0 20px #5ed973;
+   	box-shadow:         inset 0 0 20px #5ed973;
+   	color: #000;
+   	text-decoration: none;
+}
+
+
+input[type="file"] {
+	display: inline-block;
+}
+
+.middle-btn {
+	margin: 0 20px;
+}
+
+.clear {
+	overflow: hidden;
+	clear: both;
+}
+
+.account-input {
+	background: #cccccc;
+	color: #3a3a3a;
+	font-weight: normal;
+	height: 29px;
+	line-height: 27px;
+	border: 1px solid #000; 
+	padding: 0 10px;
+	font-size: 14px;
+	text-align: center;
+	-webkit-border-radius: 6px; 
+  	-moz-border-radius: 6px; 
+  	border-radius: 6px; 
+  	width: 304px;
+}
+
+.account-input.short {
+	background: #cccccc;
+	color: #3a3a3a;
+	font-weight: normal;
+	height: 29px;
+	line-height: 27px;
+	border: 1px solid #000; 
+	padding: 0 10px;
+	font-size: 14px;
+	text-align: center;
+	-webkit-border-radius: 6px; 
+  	-moz-border-radius: 6px; 
+  	border-radius: 6px; 
+  	width: 131px;
+}
+
+.account-date {
+	background: #cccccc;
+	color: #3a3a3a;
+	font-weight: normal;
+	height: 29px;
+	line-height: 27px;
+	border: 1px solid #000; 
+	padding: 0 10px;
+	font-size: 14px;
+	text-align: center;
+	-webkit-border-radius: 6px; 
+  	-moz-border-radius: 6px; 
+  	border-radius: 6px; 
+  	width: 105px;
+}
+
+.select-form {
+	background: #cccccc;
+	color: #3a3a3a;
+	font-weight: normal;
+	height: 29px;
+	line-height: 27px;
+	border: 1px solid #000; 
+	padding: 0 10px;
+	font-size: 14px;
+	text-align: center;
+	-webkit-border-radius: 6px; 
+  	-moz-border-radius: 6px; 
+  	border-radius: 6px; 
+  	width: 131px;
+}
+
+.input-note {
+	background: #cccccc;
+	color: #000;
+	font-weight: 600;
+	height: 37px;
+	line-height: 35px;
+	border: 1px solid #cccccc; 
+	padding: 0 40px;
+	font-size: 14px;
+	text-align: left;
+	width: 100%;
+	display: block;
+}
+
+.generate-input {
+	background: #898989;
+	color: #000;
+	font-weight: 600;
+	height: 37px;
+	line-height: 35px;
+	border: 1px solid #898989; 
+	padding: 0 40px;
+	font-size: 14px;
+	text-align: center;
+	min-width: 400px;
+}
+
+.date-icon {
+	margin: 0 5px;
+	display: inline-block;
+}
+
+.amount-input {
+	background: #cccccc;
+	color: #000;
+	font-weight: 600;
+	height: 37px;
+	line-height: 35px;
+	border: 1px solid #cccccc; 
+	padding: 0 20px;
+	font-size: 14px;
+	text-align: center;
+	max-width: 130px;
+	margin: 0 15px;
+	-webkit-border-radius: 6px; 
+  	-moz-border-radius: 6px; 
+  	border-radius: 6px;
+}
+
+input[type="checkbox"] {
+	margin: 0 20px 0 0;
+	display: inline-block;
+}
+
+
 
 #main .row,
 #main .content {

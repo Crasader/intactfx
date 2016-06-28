@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use App\Mt4Account;
+use App\Payment;
 use App\Repositories\Mt4Repository;
 use Faker\Factory as Faker;
 use Illuminate\Http\Request;
@@ -120,6 +121,8 @@ class Mt4Controller extends Controller
     */
    public function transferIn(Request $request){
 
+   		$user = Auth::user();
+		
 		$mt4Account_id = $request->mt4Account_id;
 		$value = $request->transferIn;
 		// $eoffice_id = $request->profile['eoffice_id'];
@@ -140,6 +143,19 @@ class Mt4Controller extends Controller
 			$mt4 = Mt4Account::where('mt4login_id', $mt4Account_id)->first();
 			$mt4->balance = $answer['newbalance'];
 			$mt4->save();
+
+			Payment::create([
+                'id' => Faker::create()->randomNumber($nbDigits = 9),
+                'payment_id' =>  Faker::create()->randomNumber($nbDigits = 8),
+                'funding_service'  => 'mt4Transfer',
+                'type'  => 'transferIn',
+                'payment_amount'  => $value,
+                'payment_units'  => 'USD',
+                'payor_account'  =>  $mt4Account_id,
+                'email'  =>  $user->email,
+                'confirm' => true,
+            ]);
+
 			return $answer;
 		}
 		
@@ -152,6 +168,7 @@ class Mt4Controller extends Controller
     */
    public function transferOut(Request $request){
 
+   		$user = Auth::user();
 		$mt4Account_id = $request->mt4Account_id;
 		$value = $request->transferOut * -1;
 		// $eoffice_id = $request->profile['eoffice_id'];
@@ -168,6 +185,17 @@ class Mt4Controller extends Controller
 			print "<p style='background-color:#FFEEEE'>An error occured: <b>".$answer['reason']."</b>.</p>";
 		
 		}else{
+			Payment::create([
+                'id' => Faker::create()->randomNumber($nbDigits = 9),
+                'payment_id' =>  Faker::create()->randomNumber($nbDigits = 8),
+                'funding_service'  => 'mt4Transfer',
+                'type'  => 'transferOut',
+                'payment_amount'  => $request->transferOut,
+                'payment_units'  => 'USD',
+                'payor_account'  =>  $mt4Account_id,
+                'email'  =>  $user->email,
+                'confirm' => true,
+            ]);
 
 			$mt4 = Mt4Account::where('mt4login_id', $mt4Account_id)->first();
 			$mt4->balance = $answer['newbalance'];
@@ -224,6 +252,29 @@ class Mt4Controller extends Controller
 
 		return 'success';
 		
+   }
+
+   public function getUpdatedAccount(Request $request){
+
+		$mt4login_id = $request->mt4login_id;
+
+		$params['login'] = $mt4login_id;
+			
+		$answer  = $this->mt4->MakeRequest("getaccountinfo", $params);
+
+		if($answer['result']!=1){
+			
+			return 'error';
+
+		}else{
+			//update balance
+			$mt4 = Mt4Account::where('mt4login_id', $mt4login_id)->first();
+			$mt4->balance = $answer['balance'];
+			$mt4->save();
+
+		}
+		
+		return $mt4;
    }
 
    /**

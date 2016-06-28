@@ -4,6 +4,7 @@ namespace App\Repositories;
 use App\Account;
 use App\Affiliate;
 use App\Mt4Account;
+use App\Profile;
 use Carbon\Carbon;
 use Faker\Factory as Faker;
 use Illuminate\Database\Connection;
@@ -22,19 +23,17 @@ class AccountRepository
 
     }
 
-    public function createAccount($user)
-    {
+    public function createAccount($user){
 
        $account = $this->generateAccount($user);
-
+       
         Mail::queue('emails.affiliate', compact('user', 'account'), function($message) use ($user){
             $message->to($user->email)->subject('Thank you for signing up.');
         });
 
     }
 
-    private function generateAccount($user)
-    {
+    private function generateAccount($user){
         $id = strval(strtoupper(Faker::create()->randomLetter($nbDigits = 2)) . strtoupper(Faker::create()->randomLetter($nbDigits = 2)) . Faker::create()->numberBetween($min = 100000, $max = 999999));
         // . Faker::create()->numberBetween($min = 100000, $max = 999999)
         
@@ -69,7 +68,8 @@ class AccountRepository
             }
 
         }
-        
+
+        $this->generateProfileData($user);
         
         return $account;
 
@@ -78,25 +78,14 @@ class AccountRepository
     private function generateMt4Account($account)
     {
 
-        // $accountType = [
-        //     'mini',
-        //     'standard',
-        //     'ip_low',
-        //     'ip_high',
-        //     'broker'
-        // ];
+    }
 
-
-        // foreach ($accountType as $value) {
-        //     Mt4Account::create([
-        //         'id' => Faker::create()->numberBetween($min = 10000, $max = 99999),
-        //          // Faker::create()->randomNumber($nbDigits = 5),
-        //         'eoffice_id' => $account->id,
-        //         'account_type' => $value,
-        //         'balance' => 0
-        //     ]);
-        // }
-
+    private function generateProfileData($user){
+        $profile = new Profile;
+        $profile->user_id = $user->id;
+        $profile->account_stat = 0;
+        $profile->eoffice_id = $user->account->id;
+        $profile->save();
     }
 
 }
