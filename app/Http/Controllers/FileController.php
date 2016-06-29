@@ -65,7 +65,7 @@ class FileController extends Controller
 			
 		  	$file = Input::file('file');
 
-			$tmpFilePath = public_path('upload/');
+			$tmpFilePath = public_path('uploads/');
 			// File::exists($tmpFilePath) or File::makeDirectory($tmpFilePath);
 			$fileName = time() . '-' . $file->getClientOriginalName();
 			$file = $file->move($tmpFilePath, $fileName);
