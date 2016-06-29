@@ -18,7 +18,7 @@
                         <div class="col-md-6 left">
                             <div class="account-profile">
                                 <div class="account-thumb">
-                                    <img v-if="intactdata.userProfile.profile_picture_url!=''" src="{{ url('uploads')}}/@{{intactdata.userProfile.profile_picture_url}}" alt="profile photo" title="profile photo" />
+                                    <img v-if="intactdata.userProfile.profile_picture_url!=''" src="{{ url('upload')}}/@{{intactdata.userProfile.profile_picture_url}}" alt="profile photo" title="profile photo" />
                                     <img v-else src="{{ $social->avatar or '../img/member_img/profile-thumb.jpg'}}" alt="profile photo" title="profile photo" />
                                 </div>
                                 <div class="account-status">

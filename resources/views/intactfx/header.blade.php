@@ -23,7 +23,7 @@
           <p><a href="#">Change Password</a> &nbsp;<span class="separator">|</span>&nbsp; <a href="{{ url('logout') }}">Log out</a></p>
         </div>
         <div class="profile-thumb">
-          <img v-if="intactdata.userProfile.profile_picture_url!=''" src="{{ url('uploads')}}/@{{intactdata.userProfile.profile_picture_url}}" alt="profile photo" title="profile photo" />
+          <img v-if="intactdata.userProfile.profile_picture_url!=''" src="{{ url('upload')}}/@{{intactdata.userProfile.profile_picture_url}}" alt="profile photo" title="profile photo" />
           <img v-else src="{{ $social->avatar or '../img/member_img/profile-thumb.jpg'}}" alt="profile photo" title="profile photo" />
         </div>
       </div>
