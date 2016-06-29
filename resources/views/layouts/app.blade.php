@@ -19,8 +19,9 @@
     
     <body>
         <div id="intactfx-app" v-cloak>
-        
-            @yield('content')
+            <br><br>
+            <H1 class="text-center">Maintenance</H1>
+            <!-- @.y.i.e.l.d.(.'.c.o.n.t.e.n.t.'.).  -->
                           
             <!-- BEGIN JAVASCRIPT -->
             <!--JS lib-->
