@@ -17,6 +17,7 @@ module.exports = {
 				amount: 0,
 				red: 0,
 				green: 0,
+				merchant_wallet: 0,
 				deposit: 0,
 				withdrawal: 0,
 				withdrawalLimit: 0,
@@ -75,8 +76,24 @@ module.exports = {
 
 		},
 
+		redCommissionData:{
+			transferToMain: 10,
+			transferToMerchant: 10,
+		},
+
 		blueCommissionHistory:{
 
+		},
+
+		blueCommissionData:{
+
+		},
+
+		merchantWallet:{
+			amount: 0,
+			otp: '',
+			code: '',
+			codeTracking: ''
 		},
 
 		profileForm:{
@@ -122,7 +139,6 @@ module.exports = {
 
 		empty(){
 			$('#inputDeposit').val('')
-			
 		},
 		
 		submitMini(){
@@ -208,10 +224,16 @@ module.exports = {
 		updateWallets(){
 
 			this.$http.get('account/updatewallet?eoffice_id=' + this.intactdata.profile.eoffice_id).then(function(result){
-				// this.intactdata.wallet.amount = result.data['main']
-				this.intactdata.wallet.amount = 12000
+				this.intactdata.wallet.amount = result.data['main']
 				this.intactdata.wallet.red = result.data['red']
 				this.intactdata.wallet.green = result.data['green']
+				this.intactdata.wallet.merchant_wallet = result.data['merchant']
+
+
+				// this.intactdata.wallet.amount = 12000
+				// this.intactdata.wallet.red = 7000
+				// this.intactdata.wallet.green = 5000
+				// this.intactdata.wallet.merchant_wallet = 5000
 			});
 
 		},
@@ -293,6 +315,37 @@ module.exports = {
 
 		},
 
+		transferToMainWallet(){
+
+			this.$http.post('account/transferfromredtomain', this.redCommissionData).then(
+	
+			function(data, status, request){
+				console.log(data)
+				this.updateWallets()
+			},
+			
+			function(data, status, request){
+				
+			});
+
+		},
+
+		transferToMerchantWallet(){
+
+			this.$http.post('account/transferfrommaintomerchant', this.redCommissionData).then(
+	
+			function(data, status, request){
+				console.log(data)
+				this.updateWallets()
+			},
+			
+			function(data, status, request){
+				
+			});
+
+		},
+
+
 		submitChangePass(){
 			// alert('change pass')
 			// minimum char 7
@@ -373,22 +426,35 @@ module.exports = {
 				$('#wirebutton').prop('disabled', false);
 				alert('invoice sent. please check your email')
 				$('#myModal').modal('hide')
+				this.updateWallets()
 			})
 
 			return false;
 		},
 
-		fetchTwitterFeeds: function(){
+		generateCode(){
+			if (this.merchantWallet.otp!='qwerty') {
+				alert('Wrong OTP')
+				return false;
+			};
+			this.$http.post('account/generatecode', this.merchantWallet).then(
+	
+			function(data, status, request){
+				console.log(data)
+				this.merchantWallet.code = data.data
+				this.updateWallets()
+			},
 			
-			// this.$http.post(window.location.href+'fetchtwitterfeeds', {
-			// 	_token:document.querySelector("meta[name='csrf-token']").getAttribute('content')
-			// }, function(tweetfeeds){
-			// 	// this.$set('tweet_feeds', tweetfeeds);
-			// 	this.tweet_feeds = tweetfeeds;
-			// 	console.log(tweetfeeds);
-			// });
+			function(data, status, request){
+				
+			});
 
-			// $("#twitter .tweets:last-child").addClass('last');
+		},
+
+		codeTracking(){
+			this.$http.get('account/codetracking').then(function(result){
+				this.merchantWallet.codeTracking = result.data
+			});
 		},
 
 		merchantWithdrawal(merchant){

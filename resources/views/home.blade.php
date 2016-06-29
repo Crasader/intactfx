@@ -235,7 +235,7 @@
                     }
                 });
 
-                $('#addressUploadBtn').on('click', function(e) {
+                $('#uploadProfilePic').on('click', function(e) {
                     e.preventDefault();
                     //trigger file upload select
                     $btn = $(this)

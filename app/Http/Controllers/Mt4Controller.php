@@ -153,7 +153,7 @@ class Mt4Controller extends Controller
                 'payment_units'  => 'USD',
                 'payor_account'  =>  $mt4Account_id,
                 'email'  =>  $user->email,
-                'confirm' => true,
+                'confirm' => 2,
             ]);
 
 			return $answer;
@@ -194,7 +194,7 @@ class Mt4Controller extends Controller
                 'payment_units'  => 'USD',
                 'payor_account'  =>  $mt4Account_id,
                 'email'  =>  $user->email,
-                'confirm' => true,
+                'confirm' => 2,
             ]);
 
 			$mt4 = Mt4Account::where('mt4login_id', $mt4Account_id)->first();

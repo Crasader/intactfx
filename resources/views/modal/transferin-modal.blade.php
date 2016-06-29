@@ -17,7 +17,7 @@
                         </span>
                     </p>
 
-                     <div v-show="isNaN(intactdata.setSelected.transferIn)" class="alert alert-danger text-center">
+                    <div v-show="isNaN(intactdata.setSelected.transferIn)" class="alert alert-danger text-center">
                         <i class="fa fa-exclamation-triangle"></i> Error value!
                     </div>
 

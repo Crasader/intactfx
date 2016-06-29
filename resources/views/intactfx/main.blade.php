@@ -1,5 +1,5 @@
 <!-- {{ phpinfo() }} -->
-<!-- @{{ intactdata.userProfile | json }} <br> -->
+<!-- @{{ merchantWallet | json }} <br> -->
 <!-- @{{ transactionHistory | json }}   -->
 <!-- @{{ redCommissionHistory | json }}   -->
 
@@ -90,4 +90,4 @@
 
      </div><!--/ content -->
    </div><!--/ row -->
-</div><!--/ container -->
+</div><!--/ container

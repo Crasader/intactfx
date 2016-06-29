@@ -147,6 +147,7 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+        'Orangehill\Iseed\IseedServiceProvider',
         'Collective\Html\HtmlServiceProvider',
         // Laravel\Socialite\SocialiteServiceProvider::class,
         \SocialiteProviders\Manager\ServiceProvider::class,

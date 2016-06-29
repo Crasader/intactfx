@@ -10,16 +10,21 @@
       </div>
       <div id="profile">
         <div class="profile-content">
+           
+            <h3 v-show="intactdata.userProfile.first_name!=''" class="username">Welcome, @{{  intactdata.userProfile.first_name | capitalize }}</h3>
+
             @if(Auth::user()->name!='')
-                <h3 class="username">Welcome, {{ Auth::user()->name }}</h3>
+                <h3 v-else class="username">Welcome, {{ Auth::user()->name }}</h3>
             @else
-                <h3 class="username">Welcome, Daniel</h3>
+                <h3 v-else class="username">Welcome, Daniel</h3>
             @endif
+          
           <p class="userid">( I.D. - {{ $account->id }})</p>
           <p><a href="#">Change Password</a> &nbsp;<span class="separator">|</span>&nbsp; <a href="{{ url('logout') }}">Log out</a></p>
         </div>
         <div class="profile-thumb">
-          <img src="{{ $social->avatar or '../img/member_img/profile-thumb.jpg'}}" alt="profile photo" title="profile photo" />
+          <img v-if="intactdata.userProfile.profile_picture_url!=''" src="{{ url('uploads')}}/@{{intactdata.userProfile.profile_picture_url}}" alt="profile photo" title="profile photo" />
+          <img v-else src="{{ $social->avatar or '../img/member_img/profile-thumb.jpg'}}" alt="profile photo" title="profile photo" />
         </div>
       </div>
       </div><!--/ container -->

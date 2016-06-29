@@ -18,7 +18,8 @@ class CreateIntactUserProfile extends Migration
             $table->foreign('user_id')->references('id')->on('intact_users');
             $table->string('eoffice_id');
             $table->foreign('eoffice_id')->references('id')->on('intact_accounts');
-            $table->char('account_stat', 40)->default('not');
+            $table->enum('account_stat', ['not_verified', 'verified', 'ib_account'])->default('not_verified');
+            $table->enum('merchant_stat', ['0', '1'])->default(0);
             $table->string('profile_picture_url', 100);
             $table->string('identity_file_url', 100);
             $table->string('address_file_url', 100);

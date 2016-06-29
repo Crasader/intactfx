@@ -269,6 +269,7 @@
                 <p class="bold uppercase nomargin">Deposit</p>
                 <div class="form-box">
                     <form>
+
                         <p class="clear text-center">
                             <span class="col-md-3">Enter Amount:</span>
                             <span class="col-md-9">
@@ -276,6 +277,7 @@
                         </p>
                       
                         <p class="text-center">Choose payment method:</p>
+
                         <p class="text-center">
                             <input type="button" class="payment-button-1 toggle-button7" name="bitcoin" value="bitcoin">
                             <input type="button" class="payment-button-2 toggle-button6" name="neteller" value="neteller">
@@ -284,9 +286,12 @@
                             <input type="button" class="payment-button-5 toggle-button5" name="perfectmoney" value="perfectmoney">
                             <input type="button" class="payment-button-6 toggle-button4" name="skrill" value="skrill">
                         </p>
+
                     </form>
                 </div>
+
                 <p class="bold uppercase nomargin">Withdrawal</p>
+                
                 <div class="form-box nomargin">
                     <form>
                      <p v-show="monitorWithdrawal<0" class="clear text-center text-danger">

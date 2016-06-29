@@ -20,7 +20,7 @@ class CreateCommissionTable extends Migration
             $table->string('commission_type');
             $table->string('account_type');
             $table->integer('volume')->unsigned();
-            $table->decimal('amount', 5, 2);
+            $table->decimal('amount', 10, 2);
             $table->timestamps();
         });
     }

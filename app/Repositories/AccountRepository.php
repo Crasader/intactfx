@@ -83,7 +83,7 @@ class AccountRepository
     private function generateProfileData($user){
         $profile = new Profile;
         $profile->user_id = $user->id;
-        $profile->account_stat = 0;
+        // $profile->account_stat = 'not_verified';
         $profile->eoffice_id = $user->account->id;
         $profile->save();
     }

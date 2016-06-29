@@ -18,13 +18,14 @@
                         <div class="col-md-6 left">
                             <div class="account-profile">
                                 <div class="account-thumb">
-                                    <img src="{{url('img/mainpage/account-picture.png')}}" alt="profile photo" title="profile photo" />
+                                    <img v-if="intactdata.userProfile.profile_picture_url!=''" src="{{ url('uploads')}}/@{{intactdata.userProfile.profile_picture_url}}" alt="profile photo" title="profile photo" />
+                                    <img v-else src="{{ $social->avatar or '../img/member_img/profile-thumb.jpg'}}" alt="profile photo" title="profile photo" />
                                 </div>
                                 <div class="account-status">
                                     <h3 class="text-center">Account Status 
-                                        <input v-show="intactdata.userProfile.account_stat==0" type="button" name="OPS! NOT VERIFIED" value="OPS! NOT VERIFIED" class="red-btn-profile">
-                                        <input v-show="intactdata.userProfile.account_stat==1" type="button" name="OPS! NOT VERIFIED" value="VERIFIED!" class="blue-btn-profile">
-                                        <input v-show="intactdata.userProfile.account_stat==2" type="button" name="OPS! NOT VERIFIED" value="IB ACCOUNT" class="green-btn-profile">
+                                        <input v-show="intactdata.userProfile.account_stat=='not_verified'" type="button" value="OPS! NOT VERIFIED" class="red-btn-profile">
+                                        <input v-show="intactdata.userProfile.account_stat=='verified'"     type="button" value="VERIFIED!" class="blue-btn-profile">
+                                        <input v-show="intactdata.userProfile.account_stat=='ib_account'"   type="button" value="IB ACCOUNT" class="green-btn-profile">
                                     </h3>
                                     <p  class="text-center">
                                         <small v-show="intactdata.userProfile.account_stat==0">Please go to Main Wallet to upload your <br />documents for verification</small>
@@ -41,7 +42,11 @@
                                 <p>Change profile picture</p>
                                 <p>
                                     <!-- <input type="file" id="profilepicture"> -->
-                                    <input type="button" name="Upload" value="Upload" class="blue-btn">
+                                    {!! Form::open(array('route' => 'uploadprofilepicture', 'method' => 'POST', 'id' => 'my-dropzone3', 'class' => 'my-dropzone3', 'files' => true, 'style' => 'padding:0;')) !!}
+                                        {!! csrf_field() !!}
+                                        {!! Form::hidden('action', 'uploadprofilepicture') !!}
+                                    {!! Form::close() !!} 
+                                    <input id="uploadProfilePic" type="button" name="Upload" value="Upload" class="blue-btn">
                                 </p>
 
                                 <div class="financial-information">

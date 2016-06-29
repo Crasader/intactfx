@@ -32,12 +32,10 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')
         //          ->hourly();
+        
         $schedule->call(function() {
-            DB::table('intact_pumpingtrades')->insert(
-                 ['mt4login_id' => '810205206']
-            );
-
             $this->dispatch(new CheckCommissionTable);
         })->everyMinute();
+
     }
 }

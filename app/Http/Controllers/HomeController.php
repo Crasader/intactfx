@@ -7,6 +7,7 @@ use App\Commission;
 use App\CommissionHistory;
 use App\Http\Requests;
 use App\Jobs\CheckCommissionTable;
+use App\Merchant;
 use App\Mt4Account;
 use App\Payment;
 use App\Profile;
@@ -14,6 +15,7 @@ use App\Social;
 use App\User;
 use Auth;
 use Carbon\Carbon;
+use Faker\Factory as Faker;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -167,8 +169,8 @@ class HomeController extends Controller
 
         if ($action=="all") {
 
-            $payments  = Payment::where('email', $user->email)->get();
-
+            $payments  = Payment::where('email', $user->email)
+                        ->where('type', '!=', '')->get();
 
 
         } elseif ($action=="deposit" OR $action=="withdrawal" ) {
@@ -182,6 +184,7 @@ class HomeController extends Controller
         } else {
          
             $payments  = Payment::where('email', $user->email)
+                ->where('type', '!=', '')
                 ->where('created_at', '>=', $start)
                 ->where('created_at', '<=', $end)
                 ->get();
@@ -216,7 +219,16 @@ class HomeController extends Controller
                     ->where('type', 'withdrawal')
                     ->get();
 
+        //merchant wallet
+        $merchant_deposit_history  = Merchant::select(DB::raw('SUM(amount) as total_merchant_deposit'))
+                   ->where('eoffice_id', $eoffice_id)
+                    ->where('type', 'deposit')
+                    ->get();
 
+        $merchant_withdrawal_history  = Merchant::select(DB::raw('SUM(amount) as total_merchant_withdrawal'))
+                    ->where('eoffice_id', $eoffice_id)
+                    ->whereIn('type', ['withdrawal', 'code'])
+                    ->get();
 
         //commission red
         $red_deposit_history  = Commission::select('to_eoffice', DB::raw('SUM(amount) as total_commission_deposit'))
@@ -238,7 +250,7 @@ class HomeController extends Controller
                     ->whereIn('account_type', ['iprofit', 'iprofit_high', 'broker'])
                     ->get();
 
-        $queries = DB::getQueryLog();
+        // $queries = DB::getQueryLog();
         // dd($queries);
 
 
@@ -253,10 +265,12 @@ class HomeController extends Controller
         $main_wallet = $deposit_history[0]->total_deposit - $withdrawal_history[0]->total_withdrawal;
         $red_wallet = $red_deposit_history[0]->total_commission_deposit - $red_transfer_history[0]->total_commission_transfer;
         $green_wallet = $green_deposit_history[0]->total_commission_deposit - $green_transfer_history[0]->total_commission_transfer;
+        $merchant_wallet = $merchant_deposit_history[0]->total_merchant_deposit - $merchant_withdrawal_history[0]->total_merchant_withdrawal;
         
         $wallet['main'] =  $main_wallet;
         $wallet['red'] =  $red_wallet;
         $wallet['green'] =  $green_wallet;
+        $wallet['merchant'] =  $merchant_wallet;
 
         return $wallet;
 
@@ -345,6 +359,73 @@ class HomeController extends Controller
         $profile->skrill =  $request->skrill;
         $profile->perfect_money =  $request->perfect_money;
         $profile->save();
+
+        return 'success';
+
+    }
+
+    public function transferRedToMain(Request $request){
+
+        $user = Auth::user();
+
+        $amountToTransfer = $request->transferToMain;
+
+        //withdrawal from commission
+        Commission::create([
+           'from_mt4login_id' => '',
+           'from_eoffice' =>  $user->account->id,
+           'to_eoffice' => $user->account->id,
+           'commission_type' => 'withdrawal',
+           'account_type' => 'mini',
+           'volume' => 0,
+           'amount' =>  $amountToTransfer,
+        ]);
+
+        //deposit to main wallet
+        Payment::create([
+
+            'id' => Faker::create()->randomNumber($nbDigits = 9),
+            'payment_id' =>  Faker::create()->randomNumber($nbDigits = 8),
+            'funding_service'  => 'commission',
+            'type'  => 'transferFromCom',
+            'payment_amount'  => $amountToTransfer,
+            'payment_units'  => 'USD',
+            'payor_account'  =>  $user->email,
+            'email'  =>  $user->email,
+            'confirm' => 2,
+
+        ]);
+
+        return 'success';
+    }
+
+    public function transferFromMainToMerchant(Request $request){ 
+
+        $user = Auth::user();
+        
+        $amountToTransfer = $request->transferToMerchant;
+        
+        //withdrawal from main wallet
+        Payment::create([
+
+            'id' => Faker::create()->randomNumber($nbDigits = 9),
+            'payment_id' =>  Faker::create()->randomNumber($nbDigits = 8),
+            'funding_service'  => 'merchant',
+            'type'  => 'withdrawal',
+            'payment_amount'  => $amountToTransfer,
+            'payment_units'  => 'USD',
+            'payor_account'  =>  $user->email,
+            'email'  =>  $user->email,
+            'confirm' => 2,
+
+        ]);
+        // dd($user->account->id);
+        //deposit to merchant
+        Merchant::create([
+            'eoffice_id' => $user->account->id,
+            'type' => 'deposit',
+            'amount'  => $amountToTransfer,
+        ]);
 
         return 'success';
 
