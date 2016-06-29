@@ -18,9 +18,6 @@
 
     </section><!--/ section main -->
 
-    @include('intactfx.footer') 
-
-
     <!-- main modals -->
 
     <!-- Social Media Modal -->
@@ -45,7 +42,7 @@
     @include('modal.commisionwallet2-modal')           
     
     <!-- setting modal -->
-    @include('modal.settings-modal')           
+    @include('modal.settings-modal')        
 
 
     <!-- mt4 account modal -->
@@ -58,7 +55,7 @@
      <!-- change pass-->
      @include('modal.changepass-modal')        
     <!-- /main modals -->
-
+     @include('intactfx.footer') 
 @endsection
 
 @section('override_js')
