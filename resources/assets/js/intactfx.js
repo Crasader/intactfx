@@ -417,7 +417,7 @@ module.exports = {
 
 			$('#wirebutton').prop('disabled', true);
 			
-			if (this.intactdata.wallet.amount<=0) {
+			if (this.intactdata.wallet.deposit<=0) {
 				alert('please enter amount')
 				return false
 			};
