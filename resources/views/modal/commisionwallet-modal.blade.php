@@ -14,6 +14,7 @@
           <!-- Tab panes -->
           <div class="tab-content">
             <div role="tabpanel" class="tab-pane active" id="wallettransfer">
+
                 <div class="col-md-6">
                     <p class="bold nomargin">Transfer your commission to Main Wallet</p>
                     <div class="form-box">
@@ -96,6 +97,22 @@
                         </form>
                     </div>
 
+                </div>
+                 <div v-show="intactdata.affiliate.count>0" class="col-md-6">
+                     <form>
+                        <table>
+                            <tr>
+                              <th class="text-center">Date</th>
+                              <th class="text-center">Your EofficeID</th>
+                              <th class="text-center">Signed Up By</th>
+                           </tr>
+                            <tr v-for="affiliate in intactdata.affiliate.data">
+                                <td> @{{  moment(affiliate.created_at).format('MM/DD/YYYY')  }} </td>
+                                <td> @{{ affiliate.affiliate_id }} </td>
+                                <td> @{{ affiliate.eoffice_id }} </td>
+                            </tr>
+                        </table>
+                    </form>
                 </div>
             </div>
             <div role="tabpanel" class="tab-pane" id="commission">

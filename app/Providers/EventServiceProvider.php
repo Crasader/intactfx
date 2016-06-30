@@ -18,6 +18,10 @@ class EventServiceProvider extends ServiceProvider
             'App\Listeners\EventListener',
         ],
 
+        'auth.login' => [
+            'App\Events\LoginEventHandler'
+        ],
+
         \SocialiteProviders\Manager\SocialiteWasCalled::class => [
             // add your listeners (aka providers) here
             'SocialiteProviders\Yahoo\YahooExtendSocialite@handle',

@@ -35,7 +35,7 @@ class CheckCommissionTable extends Job implements ShouldQueue
     public function handle()
     {
         $closeTrades = Pumping::where('has_read', 0)->get();
-
+        // dd($closeTrades);
         foreach ($closeTrades as $trade) {
             $pumping_id = $trade->id;
             $profit = $trade->profit;

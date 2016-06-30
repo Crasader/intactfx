@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Account;
+use App\Affiliate;
 use App\Commission;
 use App\CommissionHistory;
 use App\Http\Requests;
@@ -72,10 +73,41 @@ class HomeController extends Controller
                     ->groupBy('funding_service')
                     ->get();
 
-        $affiliate_id = Session::get('affiliate_id');
+        $from = $user->last_timestamp;
+        $to = $user->new_timestamp;
 
-        return view('home', compact('user', 'social', 'account', 'mt4account', 'wallet', 'payments', 'withdraw_available'));
+        $affiliate = Affiliate::where('created_at', '>=', $from)
+                ->where('created_at', '<=', $to)
+                ->where('affiliate_id', $account->id)
+                ->get();
 
+        // dd($affiliate);
+
+        return view('home', compact('user', 'social', 'account', 'mt4account', 'wallet', 'payments', 'withdraw_available','affiliate'));
+
+    }
+
+    public function getAffiliate(){
+        $user = Auth::user();
+        
+        $from = $user->last_timestamp;
+        $to = $user->new_timestamp;
+
+        $affiliate = Affiliate::where('created_at', '>=', $from)
+                ->where('created_at', '<=', $to)
+                ->where('affiliate_id', $user->account->id)
+                ->get();
+
+        $count = Affiliate::where('created_at', '>=', $from)
+                ->where('created_at', '<=', $to)
+                ->where('affiliate_id', $user->account->id)
+                ->count();
+
+        $return = [];
+        array_push($return, $affiliate);
+        array_push($return, $count);
+
+        return $return;
     }
 
     /**

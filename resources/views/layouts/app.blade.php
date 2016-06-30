@@ -19,13 +19,12 @@
     
     <body>
         <div id="intactfx-app" v-cloak>
-            <br><br>
-            <H1 class="text-center">Maintenance</H1>
-            <!-- @.y.i.e.l.d.(.'.c.o.n.t.e.n.t.'.).  -->
+            
+            @yield('content') 
                           
             <!-- BEGIN JAVASCRIPT -->
             <!--JS lib-->
-            <script src="{{ URL::asset('js/app.js') }}"> </script> 
+            <script src="{{ URL::asset('js/app.js') }}"> </script>
             <!-- Other JS -->
 
             <!-- END JAVASCRIPT -->

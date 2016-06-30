@@ -1,3 +1,4 @@
+<!-- @{{ intactdata | json}} -->
 <div class="container">
     <div class="row">
         <div class="content">
@@ -23,7 +24,7 @@
                                     </div>
                                     <img src="{{url('img/mainpage/wallet-card-red.png')}}" alt="">
                                 </div>                    
-                                <!-- <span class="wallet-link-badge"><span>6</span></span>-->
+                                <span v-show="intactdata.affiliate.count>0" class="wallet-link-badge"><span>@{{ intactdata.affiliate.count }}</span></span>
                             </a>
                             <img src="{{url('img/mainpage/wallet-pocket-mid.png')}}" alt="" class="wallet-pocket">
                         </div>

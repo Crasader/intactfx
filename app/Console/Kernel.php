@@ -32,8 +32,7 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')
         //          ->hourly();
-        
-        $schedule->call(function() {
+        $schedule->call(function() {    
             $this->dispatch(new CheckCommissionTable);
         })->everyMinute();
 

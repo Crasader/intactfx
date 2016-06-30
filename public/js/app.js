@@ -29663,6 +29663,10 @@ module.exports = {
 				accountType: '',
 				passwordType: '',
 				mt4Balance: ''
+			},
+			affiliate: {
+				data: '',
+				count: ''
 			}
 		},
 
@@ -29725,6 +29729,7 @@ module.exports = {
 			this.updateProfile();
 			this.updateHistory('all');
 			this.updateCommissionHistory();
+			this.getAffiliate();
 		});
 	},
 
@@ -29805,6 +29810,13 @@ module.exports = {
 				// this.intactdata.wallet.red = 7000
 				// this.intactdata.wallet.green = 5000
 				// this.intactdata.wallet.merchant_wallet = 5000
+			});
+		},
+		getAffiliate: function getAffiliate() {
+
+			this.$http.get('account/getaffiliate').then(function (result) {
+				this.intactdata.affiliate.data = result.data[0];
+				this.intactdata.affiliate.count = result.data[1];
 			});
 		},
 		setSelected: function setSelected(id) {

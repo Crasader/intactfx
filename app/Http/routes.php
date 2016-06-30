@@ -78,6 +78,7 @@ Route::post('account/transferfrommaintomerchant', 'HomeController@transferFromMa
 Route::post('account/generatecode', 'MerchantExchangerController@generateCode');
 Route::get('account/codetracking', 'MerchantExchangerController@codeTracking');
 Route::get('account/getbluecommisionhistory', 'HomeController@getBlueCommissionHistory');
+Route::get('account/getaffiliate', 'HomeController@getAffiliate');
 
 Route::get('account/getprofile', 'HomeController@getProfile');
 Route::post('account/profileupdate', 'HomeController@profileUpdate');

@@ -23,6 +23,8 @@ class CreateUsersTable extends Migration
             $table->string('token')->nullable();
             $table->string('affiliate_id')->nullable();
             $table->rememberToken();
+            $table->timestamp('last_timestamp');
+            $table->timestamp('new_timestamp');
             $table->timestamps();
         });
     }
