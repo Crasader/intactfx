@@ -6,7 +6,7 @@
     "type": "project",
     "require": {
         "php": ">=5.5.9",
-        "laravel/framework": "5.2.*",
+        "laravel/framework": "5.2.39",
         "laravel/socialite": "^2.0",
         "socialiteproviders/yahoo": "^2.0",
         "socialiteproviders/microsoft-live": "^2.0",
