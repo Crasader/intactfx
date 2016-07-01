@@ -139,7 +139,6 @@ module.exports = {
 			this.getAffiliate()
 
 		});
-
 		
 	},
 

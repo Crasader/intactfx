@@ -68,22 +68,31 @@
                 <div id="twitter">
                     <div class="twitter-headline">
                         <h3 class="twiiter-ribbon">Recent Tweet</h3>
-                    </div>
-                    <div class="tweets">
+                    </div>   
+                    <div v-for="tweet in tweet_feeds" class="tweets">                        
                         <h4>#intactfx</h4>
-                        <p>Proin gravida nibh vel velit auctor aliqut velit auctor aliquet enim </p>
+                        <p>@{{ tweet.text }}</p>
                         <span class="glyphicon glyphicon-chevron-right gray-icon" aria-hidden="true"></span>
                     </div>
-                    <div class="separator"></div>
-
-                    <div class="tweets last">
-                        <h4>#intactfx</h4>
-                        <p>Proin gravida nibh vel velit auctor aliqut velit auctor aliquet enim </p>
-                        <span class="glyphicon glyphicon-chevron-right gray-icon" aria-hidden="true"></span>
-                    </div>
+                    <!-- <div class="separator"></div> -->
                 </div><!--/ twitter -->
             </div>
 
         </div>
     </div><!--/ row -->
 </div><!--/ container -->
+
+
+<script>
+  document.addEventListener('DOMContentLoaded',function () {
+    $.ajax({
+      url : 'tweets',
+      dataType : 'json',
+      success : function (resp) {
+        if ( resp.success ) {
+          window.vm.tweet_feeds = resp.data;
+        }
+      }
+    })
+  });
+</script>

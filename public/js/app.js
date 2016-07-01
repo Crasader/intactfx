@@ -29555,6 +29555,8 @@ require('./core/bootstrap');
 
 window.vm = new Vue(require('./intactfx'));
 
+window.vm.tweet_feeds = [{ text: 'fsdfsf' }];
+
 },{"./core/bootstrap":21,"./intactfx":24}],21:[function(require,module,exports){
 'use strict';
 

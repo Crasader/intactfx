@@ -99,6 +99,8 @@ Route::post('uploadprofilepicture',  [ 'as' => 'uploadprofilepicture', 'uses' =>
 
 Route::get('testjobs', 'HomeController@testjobs');
 
+
 Route::get('test', 'HomeController@testemail');
 
+Route::get('tweets', 'TwitterAPIController@test');
 
