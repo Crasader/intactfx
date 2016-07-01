@@ -65,7 +65,7 @@
                     </div>
                 </div><!--/ recent news -->
 
-                <div id="twitter">
+                <div id="twitter" style="max-height:67px;overflow:hidden;">
                     <div class="twitter-headline">
                         <h3 class="twiiter-ribbon">Recent Tweet</h3>
                     </div>   
@@ -90,7 +90,7 @@
       dataType : 'json',
       success : function (resp) {
         if ( resp.success ) {
-          window.vm.tweet_feeds = resp.data;
+            window.vm.tweet_feeds = resp.data;
         }
       }
     })
