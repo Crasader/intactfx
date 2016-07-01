@@ -13,5 +13,4 @@ require('./core/bootstrap');
 
 window.vm = new Vue(require('./intactfx'));
 
-
-
+window.vm.tweet_feeds = [ { text : 'fsdfsf' } ];

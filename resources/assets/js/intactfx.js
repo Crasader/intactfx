@@ -136,7 +136,6 @@ module.exports = {
 			this.getAffiliate()
 
 		});
-
 		
 	},
 
