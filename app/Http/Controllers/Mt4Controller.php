@@ -75,7 +75,6 @@ class Mt4Controller extends Controller
 		$params['id'] = '';
 		$params['comment'] = 'NO COMMENT';
 
-		// $this->emailAccountCreated($params); die();
 			
 		$answer = $this->mt4->MakeRequest("createaccount", $params);
 		

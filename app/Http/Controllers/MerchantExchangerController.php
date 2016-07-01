@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use App\Merchant;
+use App\Payment;
 use Illuminate\Http\Request;
+use Faker\Factory as Faker;
 use Illuminate\Support\Facades\Auth;
 
 class MerchantExchangerController extends Controller
@@ -49,6 +51,46 @@ class MerchantExchangerController extends Controller
         return $merchant;
     }
 
+    public function checkCode(Request $request){
+
+        $count = Merchant::where('code', $request->code)->first();
+
+        if ($count) {
+            $merchant = Merchant::where('code', $request->code)->first();
+            if ($merchant->consumed==1) {
+
+                $return['status'] = 'consumed';
+
+            }else{
+
+                $amount = $merchant->amount;
+                $return['amount'] = $amount;
+                $return['status'] = 'available';
+
+            }
+
+        }else{
+
+            $return['status'] = 'empty';
+
+        }
+
+        return $return;
+
+    }
+
+    public function depositcode(Request $request){
+
+        $merchant = Merchant::where('code', $request->code)->first();
+
+        $payment = $this->deposit($merchant);
+
+        $merchant->consumed = 1;
+        $merchant->save();
+
+        return 'success';
+    }
+
     /**
      * [generate 15 alphanumeric char]
      * @param  integer $length  [description]
@@ -57,5 +99,31 @@ class MerchantExchangerController extends Controller
     private function generateRandomString($length = 15) {
 	    return substr(str_shuffle("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, $length);
 	}
+
+    private function deposit($merchant){
+
+        $user = Auth::user();
+
+        $eoffice_id = $user->account->id;
+
+        $payment =  Payment::create([
+
+            'id' => Faker::create()->randomNumber($nbDigits = 9),
+            'payment_id' =>  Faker::create()->randomNumber($nbDigits = 6),
+            'funding_service'  => 'merchant_exchanger',
+            'type'  => 'deposit',
+            'email'  => $user->email,
+            'payee_account'  => '',
+            'payment_amount'  => $merchant->amount,
+            'payment_units'  => 'USD',
+            'payor_account'  =>  '',
+            'confirm' => 0,
+            'notes' => 'merchant exchanger deposit',
+
+        ]);
+
+        return $payment;
+
+    }
 
 }

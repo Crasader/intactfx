@@ -1,14 +1,105 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>wire</title>
-
-</head>
-<body>
-	<h1>Wire Transfer</h1>
-	<p>
-        please see attach file
-	</p>
-</body>
+<html lang="en" style="font-family:sans-serif;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;font-size:10px;-webkit-tap-highlight-color:rgba(0,0,0,0)">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Intact Welcome Email</title>
+   </head>
+  <body style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;font-family:&quot;Helvetica Neue&quot;,Helvetica,Arial,sans-serif;font-size:14px;line-height:1.42857143;color:#333;font-family:'Raleway', sans-serif;background-color:#fff;margin:0;padding:0;font-size:18px;font-weight:normal;color:#000">
+    <header id="header" style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;display:block;border-top:13px solid #45ab5a;margin:0 0 35px 0">
+      <div class="container" style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;padding-right:15px;padding-left:15px;margin-right:auto;margin-left:auto;width:1170px">
+        <div class="col-md-6" style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;position:relative;min-height:1px;padding-right:15px;padding-left:15px;width:50%;float:left">
+          <div id="logo" style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;margin:30px 0">
+            <a href="#" style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;background-color:transparent;color:#337ab7;color:#2a3acf;text-decoration:none"><img src="{{ url('img/email/invoice/header-logo.png') }}" alt="header-logo" title="logo" class="logo" style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;border:0;vertical-align:middle;max-width:100%"></a>
+          </div>
+        </div>
+        <div class="col-md-6" style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;position:relative;min-height:1px;padding-right:15px;padding-left:15px;width:50%;float:left">
+          <div class="header-content" style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;margin:55px 0 0;text-align:right">
+            <h1 style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;margin:.67em 0;font-size:2em;font-family:inherit;font-weight:500;line-height:1.1;color:inherit;margin-top:20px;margin-bottom:10px;font-size:36px;font-family:'Raleway', sans-serif;font-weight:normal;color:#000;font-size:34px;line-height:40px;margin:0 0 20px 0;font-size:26px;line-height:30px;font-weight:600;margin:0 0 5px 0">Intact Group Corporation</h1>
+            <h2 style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;font-family:inherit;font-weight:500;line-height:1.1;color:inherit;margin-top:20px;margin-bottom:10px;font-size:30px;font-family:'Raleway', sans-serif;color:#000;font-size:26px;line-height:32px;margin:0 0 20px 0;font-size:22px;line-height:28px;margin:0 0 5px;font-weight:normal">455, Foggy Heights, AZ 85004</h2>
+            <h2 style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;font-family:inherit;font-weight:500;line-height:1.1;color:inherit;margin-top:20px;margin-bottom:10px;font-size:30px;font-family:'Raleway', sans-serif;color:#000;font-size:26px;line-height:32px;margin:0 0 20px 0;font-size:22px;line-height:28px;margin:0 0 5px;font-weight:normal">United Kingdom</h2>
+            <h2 style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;font-family:inherit;font-weight:500;line-height:1.1;color:inherit;margin-top:20px;margin-bottom:10px;font-size:30px;font-family:'Raleway', sans-serif;color:#000;font-size:26px;line-height:32px;margin:0 0 20px 0;font-size:22px;line-height:28px;margin:0 0 5px;font-weight:normal">Contact us:  (602) 519-0450</h2>
+            <h2 style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;font-family:inherit;font-weight:500;line-height:1.1;color:inherit;margin-top:20px;margin-bottom:10px;font-size:30px;font-family:'Raleway', sans-serif;color:#000;font-size:26px;line-height:32px;margin:0 0 20px 0;font-size:22px;line-height:28px;margin:0 0 5px;font-weight:normal">Email us: finance.dept@intactfx.com</h2>
+          </div>
+        </div>
+        <div class="clear" style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;overflow:hidden;clear:both"></div>
+      </div>
+      <div class="header-title" style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;margin:0 50% 0 0;height:73px;border-top:3px solid #878683;border-right:3px solid #878683;border-bottom:3px solid #878683;-webkit-border-radius:0 40px 40px 0;-moz-border-radius:0 40px 40px 0;border-radius:0 40px 40px 0;clear:both;overflow:hidden;background:#45ab5a;padding:0 50px;text-align:right">
+        <h1 style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;margin:.67em 0;font-size:2em;font-family:inherit;font-weight:500;line-height:1.1;color:inherit;margin-top:20px;margin-bottom:10px;font-size:36px;font-family:'Raleway', sans-serif;font-weight:normal;line-height:40px;margin:0 0 20px 0;font-size:26px;line-height:30px;margin:0 0 5px 0;font-size:34px;line-height:67px;color:#000;margin:0;font-weight:600">INVOICE</h1>
+      </div>
+    </header>
+    <!--/ header -->
+    <section id="main" style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;display:block;clear:both;overflow:hidden;background:#fff">
+      <div class="container" style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;padding-right:15px;padding-left:15px;margin-right:auto;margin-left:auto;width:1170px;background:none;clear:both">
+        <div class="content" style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;clear:both;overflow:hidden;padding:0;font-size:22px;line-height:28px;text-align:right">
+          <h2 class="client" style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;font-family:inherit;font-weight:500;line-height:1.1;color:inherit;margin-top:20px;margin-bottom:10px;font-size:30px;font-family:'Raleway', sans-serif;font-weight:normal;color:#000;font-size:26px;line-height:32px;margin:0 0 20px 0;margin:0 0 15px 0;font-weight:600">CLIENT</h2>
+          <h2 class="nomargin semibold" style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;font-family:inherit;font-weight:500;line-height:1.1;color:inherit;margin-top:20px;margin-bottom:10px;font-size:30px;font-family:'Raleway', sans-serif;font-weight:normal;color:#000;font-size:26px;line-height:32px;margin:0 0 20px 0;margin:0 !important;font-weight:600 !important">{{ $profile->first_name or '' }} {{ $profile->last_name or ''}}</h2>
+          <h3 style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;font-family:inherit;font-weight:500;line-height:1.1;color:inherit;margin-top:20px;margin-bottom:10px;font-size:24px;font-family:'Raleway', sans-serif;font-weight:normal;color:#000;font-size:22px;line-height:26px;margin:0 0 10px 0"> {{ $profile->address or ''}} <br style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box"> {{$profile->address2 or ''}} <br style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box">
+            {{$profile->city or ''}} {{$profile->state or ''}} {{$profile->country or ''}} {{$profile->zipcode or ''}} </h3>
+          <h2 style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;font-family:inherit;font-weight:500;line-height:1.1;color:inherit;margin-top:20px;margin-bottom:10px;font-size:30px;font-family:'Raleway', sans-serif;font-weight:normal;color:#000;font-size:26px;line-height:32px;margin:0 0 20px 0">Invoice No: <span class="semibold" style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;font-weight:600 !important"> {{ $payment->id or ''}} </span>
+          </h2>
+          <h2 class="nomargin" style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;font-family:inherit;font-weight:500;line-height:1.1;color:inherit;margin-top:20px;margin-bottom:10px;font-size:30px;font-family:'Raleway', sans-serif;font-weight:normal;color:#000;font-size:26px;line-height:32px;margin:0 0 20px 0;margin:0 !important">E-Office ID: <span class="semibold" style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;font-weight:600 !important">{{ $account->id or ''}}</span>
+          </h2>
+          <h2 style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;font-family:inherit;font-weight:500;line-height:1.1;color:inherit;margin-top:20px;margin-bottom:10px;font-size:30px;font-family:'Raleway', sans-serif;font-weight:normal;color:#000;font-size:26px;line-height:32px;margin:0 0 20px 0">Date of Invoice: {{ $payment->created_at->format('jS M Y') }} </h2>
+          <p style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;margin:0 0 10px;margin:0 0 30px 0;font-size:18px">Invoice is valid for 7 (seven) business days from the date stated above.</p>
+        </div>
+      </div>
+      <div class="green-bar" style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;margin:0 0 0 13.5%;border-top:3px solid #878683;border-left:3px solid #878683;border-bottom:3px solid #878683;-webkit-border-radius:40px 0 0 40px;-moz-border-radius:40px 0 0 40px;border-radius:40px 0 0 40px;clear:both;overflow:hidden;background:#45ab5a;padding:0;height:79px">&nbsp;</div>
+      <div class="container" style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;padding-right:15px;padding-left:15px;margin-right:auto;margin-left:auto;width:1170px;background:none;clear:both">
+        <div class="table" style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;width:100%;max-width:100%;margin-bottom:20px;clear:both;margin:-79px 0 50px 0">
+          <table style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;border-spacing:0;border-collapse:collapse;background-color:transparent;width:100%;border:none;background:none;background:unset !important">
+            <tr style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box">
+              <th style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;text-align:left;color:#000;padding:0;height:79px;line-height:79px;font-size:24px;font-weight:600;width:33.3%;text-align:center;border:none !important">ITEM</th>
+              <th style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;text-align:left;color:#000;padding:0;height:79px;line-height:79px;font-size:24px;font-weight:600;width:33.3%;text-align:center;border:none !important">DESCRIPTION</th>
+              <th style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;text-align:left;color:#000;padding:0;height:79px;line-height:79px;font-size:24px;font-weight:600;width:33.3%;text-align:center;border:none !important">AMOUNT</th>
+            </tr>
+            <tr style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box">
+              <td style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;padding:0;color:#000;font-size:24px;font-weight:600;text-align:center;padding:20px 30px !important;border:none !important">1</td>
+              <td style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;padding:0;color:#000;font-size:24px;font-weight:600;text-align:center;padding:20px 30px !important;border:none !important">Deposit via Wire Transfer</td>
+              <td style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;padding:0;color:#000;font-size:24px;font-weight:600;text-align:center;padding:20px 30px !important;border:none !important">${{$payment->payment_amount or ''}}</td>
+            </tr>
+          </table>
+        </div>
+        <hr style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;height:0;-webkit-box-sizing:content-box;-moz-box-sizing:content-box;box-sizing:content-box;margin-top:20px;margin-bottom:20px;border:0;border-top:1px solid #eee;border:3px solid #45ab5a;clear:both;overflow:hidden">
+        <p class="text-center" style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;margin:0 0 10px;text-align:center">In accordance with the agreement between <span class="semibold" style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;font-weight:600 !important">INTACT INFOTECH LIMITED</span> and <span class="semibold" style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;font-weight:600 !important">John Wincester Doe</span>, <br style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box">
+          the payment for the replenishment of account <span class="semibold" style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;font-weight:600 !important">ZI2940123</span> to be made in amount of <span class="semibold" style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;font-weight:600 !important">USD 3000 (Three Thousand)</span></p>
+        <div class="gap" style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;clear:both;overflow:hidden;height:30px"></div>
+        <p class="text-center" style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;margin:0 0 10px;text-align:center">This payment should be transferred to the following bank account</p>
+        <div class="gap" style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;clear:both;overflow:hidden;height:30px"></div>
+        <div class="middle-content" style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;max-width:768px;margin:0 auto 40px">
+          <h3 style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;font-family:inherit;font-weight:500;line-height:1.1;color:inherit;margin-top:20px;margin-bottom:10px;font-size:24px;font-family:'Raleway', sans-serif;font-weight:normal;color:#000;font-size:22px;line-height:26px;margin:0 0 10px 0;margin:0">
+            <span class="semibold" style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;font-weight:600 !important">Beneficiary:</span>  INTACT GROUP CORPORATION</h3>
+          <h3 style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;font-family:inherit;font-weight:500;line-height:1.1;color:inherit;margin-top:20px;margin-bottom:10px;font-size:24px;font-family:'Raleway', sans-serif;font-weight:normal;color:#000;font-size:22px;line-height:26px;margin:0 0 10px 0;margin:0">
+            <span class="semibold" style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;font-weight:600 !important">Beneficiary's address:</span>  455, Foggy Heights, AZ 85004, United Kingdom</h3>
+          <h3 style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;font-family:inherit;font-weight:500;line-height:1.1;color:inherit;margin-top:20px;margin-bottom:10px;font-size:24px;font-family:'Raleway', sans-serif;font-weight:normal;color:#000;font-size:22px;line-height:26px;margin:0 0 10px 0;margin:0">
+            <span class="semibold" style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;font-weight:600 !important">Beneficiary's account:</span>  5427 75233 65 00000067 </h3>
+          <h3 style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;font-family:inherit;font-weight:500;line-height:1.1;color:inherit;margin-top:20px;margin-bottom:10px;font-size:24px;font-family:'Raleway', sans-serif;font-weight:normal;color:#000;font-size:22px;line-height:26px;margin:0 0 10px 0;margin:0">
+            <span class="semibold" style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;font-weight:600 !important">Beneficiary's bank:</span> CITIBANK</h3>
+          <h3 style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;font-family:inherit;font-weight:500;line-height:1.1;color:inherit;margin-top:20px;margin-bottom:10px;font-size:24px;font-family:'Raleway', sans-serif;font-weight:normal;color:#000;font-size:22px;line-height:26px;margin:0 0 10px 0;margin:0">
+            <span class="semibold" style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;font-weight:600 !important">Bank address:</span> London, United Kingdom</h3>
+          <h3 style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;font-family:inherit;font-weight:500;line-height:1.1;color:inherit;margin-top:20px;margin-bottom:10px;font-size:24px;font-family:'Raleway', sans-serif;font-weight:normal;color:#000;font-size:22px;line-height:26px;margin:0 0 10px 0;margin:0">
+            <span class="semibold" style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;font-weight:600 !important">SWIFT:</span>  CTBNUK</h3>
+          <h3 style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;font-family:inherit;font-weight:500;line-height:1.1;color:inherit;margin-top:20px;margin-bottom:10px;font-size:24px;font-family:'Raleway', sans-serif;font-weight:normal;color:#000;font-size:22px;line-height:26px;margin:0 0 10px 0;margin:0">
+            <span class="semibold" style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;font-weight:600 !important">Details of payment:</span> Invoice 2016/WDP001/2940123</h3>
+        </div>
+        <div class="gap" style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;clear:both;overflow:hidden;height:30px"></div>
+        <div class="gap" style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;clear:both;overflow:hidden;height:30px"></div>
+      </div>
+    </section>
+    <!--/ section main -->
+    <footer id="footer" style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;display:block;padding:30px 0 5px;clear:both;font-size:18px;color:#000;margin:40px 0 0;background:#fff;overflow:hidden;border-bottom:15px solid #45ab5a">
+      <div class="container" style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;padding-right:15px;padding-left:15px;margin-right:auto;margin-left:auto;width:1170px">
+        <p class="text-center" style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;margin:0 0 10px;text-align:center"><span class="red" style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;color:#fe0202 !important">Please, note this when making the payment at your bank:</span> Beneficiary account is IntactFx’s bank account number <br style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box">
+          to which you should send the transfer, i.e. the recipient bank account. It is NOT your bank account number. </p>
+        <hr style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;height:0;-webkit-box-sizing:content-box;-moz-box-sizing:content-box;box-sizing:content-box;margin-top:20px;margin-bottom:20px;border:0;border-top:1px solid #eee;border:3px solid #45ab5a;clear:both;overflow:hidden">
+        <p class="text-center small" style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;margin:0 0 10px;font-size:85%;text-align:center;line-height:normal !important">This invoice was created on a computer and is valid without the signature and seal</p>
+        <div class="gap" style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;clear:both;overflow:hidden;height:30px"></div>
+        <p class="text-center semibold small" style="-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;margin:0 0 10px;font-size:85%;text-align:center;font-weight:600 !important;line-height:normal !important">Do not print this message unless it is necessary, consider the environment.</p>
+      </div>
+    </footer>
+  </body>
 </html>

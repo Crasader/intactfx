@@ -48,4 +48,6 @@ class Profile extends Authenticatable
     ];
 
     
+
+    
 }

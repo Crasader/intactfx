@@ -1,4 +1,6 @@
-<!-- @{{ intactdata | json}} -->
+<!-- @{{ intactdata.wallet | json}} <br><br>
+@{{ intactdata.userProfile | json}} <br><br> -->
+
 <div class="container">
     <div class="row">
         <div class="content">
@@ -7,7 +9,7 @@
                     <img src="{{url('img/mainpage/wallet-main.png')}}" alt="">
                         <div class="wallet-pockets">
                             <div class="wallet-item">
-                                <a class="wallet-card" href="javascript:;"  data-toggle="modal" data-target="#Commission2WalletModal">
+                                <a @click.prevent="greenWallet" class="wallet-card" href="javascript:;">
                                     <div class="wallet-card-image">
                                         <div class="wallet-text">Wallet Amount: @{{ intactdata.wallet.green | currency }}</div>
                                         <img src="{{url('img/mainpage/wallet-card-green.png')}}" alt="">

@@ -18,13 +18,6 @@
                         <p class="clear text-center"><span class="col-md-5">Enter Amount:</span><span class="col-md-7"><input type="text" value="" class="light-input" name="balance" /> USD</span></p>
                         <p class="text-center"><input type="submit" name="submit" value="Transfer to Main Wallet" class="modal-btn"></p>
                     </form>
-                    <p>&nbsp;</p>
-                    <p>&nbsp;</p>
-                    <p>&nbsp;</p>
-                    <p>&nbsp;</p>
-                    <p class="text-center"><a href="#" class="modal-btn"> Apply Now</a></p>
-                    <p class="text-center small">Your application will be process within 7 working days</p>
-                    <p>&nbsp;</p>
                 </div>
             </div>
             <div role="tabpanel" class="tab-pane" id="commissionhistory">
