@@ -69,8 +69,8 @@
                     </div>   
                     <div v-for="tweet in tweet_feeds" class="tweets">                        
                         <h4>#intactfx</h4>
-                        <p>@{{ tweet.text }}</p>
-                        <span class="glyphicon glyphicon-chevron-right gray-icon" aria-hidden="true"></span>
+                        <p>@{{{ tweet.text }}}</p>
+                        <a href="@{{ tweet.link }}" target="_blank" class="glyphicon glyphicon-chevron-right gray-icon" aria-hidden="true"></a>
                     </div>
                     <!-- <div class="separator"></div> -->
                 </div><!--/ twitter -->
@@ -83,14 +83,33 @@
 
 <script>
   document.addEventListener('DOMContentLoaded',function () {
-    $.ajax({
-      url : 'tweets',
-      dataType : 'json',
-      success : function (resp) {
-        if ( resp.success ) {
-          window.vm.tweet_feeds = resp.data;
+    
+    (function getTweets() {
+      $.ajax({
+        url : 'tweets',
+        dataType : 'json',
+        complete : function () {
+          // fetch again after 3 seconds
+          setTimeout(getTweets,3000);
+        },
+        success : function (resp) {
+          if ( resp.success ) {
+            resp.data = resp.data.map(function (_tweet) {
+              _tweet.text = _tweet.text
+                            .replace(/#[^\s]+/,function (match) {
+                              return '<a target="_blank" href="https://twitter.com/search?q='+encodeURIComponent(match)+'&src=typd">'+match+'</a>'
+                            })
+                            .replace(/https?[:\/\/][^\s]+/,function (match) {
+                              return '<a target="_blank" href="'+match+'">'+match+'</a>'
+                            });
+              _tweet.link = 'https://twitter.com/intactfx/status/'+_tweet.id_str;
+              return _tweet;
+            });
+            window.vm.tweet_feeds = resp.data;            
+          }
         }
-      }
-    })
+      });
+    })();
+
   });
 </script>

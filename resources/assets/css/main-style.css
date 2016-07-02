@@ -455,6 +455,7 @@ h4 {
 	padding: 10px 20px 50px 75px;
 	display: block;
 	background: url(../img/mainpage/tweet-ribbon.png) no-repeat 0 0;
+	margin: 0 0 50px 0;
 }
 
 #twitter .tweets {
@@ -467,6 +468,7 @@ h4 {
 	max-width: 146px;
 	margin: 0;
 	position: relative;
+	margin-bottom: 30px;
 }
 
 #twitter .tweets:nth-of-type(2n) {
@@ -2868,7 +2870,7 @@ input[type="checkbox"] {
 	}
 
 	#twitter .twitter-headline .twiiter-ribbon {
-		margin: 0;
+		margin: 0 0 50px 0;
 	}
 
 	#twitter .tweets {
