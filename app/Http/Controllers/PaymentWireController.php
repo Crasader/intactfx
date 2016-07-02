@@ -69,11 +69,12 @@ class PaymentWireController extends Controller
 
     public function sendWireEmail(Request $request)
     {
-        $deposit_amount = $request->wallet['deposit'];
+        $deposit_amount = $request->deposit;
         // echo $deposit_amount; dd();
 
-
     	$user = Auth::user();
+
+        $profile = $user->profile;
 
     	$account = Account::where('user_id', $user->id)->first();
 
@@ -88,23 +89,24 @@ class PaymentWireController extends Controller
             'payment_units'  => 'USD',
             'payor_account'  =>  '',
             'confirm' => 0,
+            'notes' => $request->notes,
         ]);
 
  		$filename = '/wire_' . $account->id . '.pdf';
 
-    	if ($this->generateWireInvoice($account->id, $deposit_amount)) {
+    	// if ($this->generateWireInvoice($account->id, $deposit_amount)) {
 
-            Mail::queue('emails.wire', compact('user', 'account'), function($message) use ($filename, $user){
+            Mail::queue('emails.wire', compact('user', 'account',  'profile', 'payment'), function($message) use ($filename, $user){
                 $message
                 ->to($user->email)
-                ->subject('Wire Transfer Invoice')
-                ->attach(public_path() . '/pdf' . $filename);
+                ->subject('Wire Transfer Invoice');
+                // ->attach(public_path() . '/pdf' . $filename);
             });
 
           	// flash()->success('Form submitted');
 
 	      	return redirect()->back();
 
-        }
+        // }
     }
 }

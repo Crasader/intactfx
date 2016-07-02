@@ -31,14 +31,14 @@
                         <i class="fa fa-exclamation-triangle"></i> Minimum amount to transfer: $10
                     </div>
 
-                   
-
-                    <p class="text-center">
-                        <input  :disabled="intactdata.profile.hasOpenTrades==1 
+                   <!--  :disabled="intactdata.profile.hasOpenTrades==1 
                                 || intactdata.setSelected.transferOut > intactdata.wallet.amount 
                                 || intactdata.setSelected.transferOut < 10 
-                                || isNaN(intactdata.setSelected.transferOut) "
-                                @click.prevent="submitTransferOut" type="submit" name="submit" value="Transfer Out" class="modal-btn"
+                                || isNaN(intactdata.setSelected.transferOut) " -->
+
+                    <p class="text-center">
+                        <input  
+                                @click.prevent="submitTransferOut()" type="submit" name="submit" value="Transfer Out" class="modal-btn"
                         >
                     </p>
 

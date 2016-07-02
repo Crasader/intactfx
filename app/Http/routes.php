@@ -68,6 +68,10 @@ Route::get('mt4/hasopentrades', 'Mt4Controller@hasOpenTrades');
 Route::get('account/data', 'HomeController@intactdata');
 Route::get('account/getaccount', 'HomeController@miniAccount');
 Route::get('account/checkpassword', 'HomeController@checkPassword');
+
+Route::get('account/checkcode', 'MerchantExchangerController@checkCode');
+Route::get('account/depositcode', 'MerchantExchangerController@depositCode');
+
 Route::get('account/checkwithdrawal', 'HomeController@checkWithdrawal');
 Route::get('account/gethistory', 'HomeController@getHistory');
 
@@ -95,4 +99,8 @@ Route::post('uploadprofilepicture',  [ 'as' => 'uploadprofilepicture', 'uses' =>
 
 Route::get('testjobs', 'HomeController@testjobs');
 
+
+Route::get('test', 'HomeController@testemail');
+
 Route::get('tweets', 'TwitterAPIController@test');
+

@@ -57,8 +57,18 @@
                         </form>
                     </div>
 
-                    <p v-show="intactdata.userProfile.merchant_stat=='1' || intactdata.userProfile.account_stat=='ib_account'" class="bold nomargin">Transfer your funds to Merchant Wallet</p>
-                    <div v-show="intactdata.userProfile.merchant_stat=='1' || intactdata.userProfile.account_stat=='ib_account'" class="form-box">
+                    <div  v-show="intactdata.userProfile.merchant_stat==0 && intactdata.userProfile.account_stat!='ib_account'" class="form-box">
+                        <p>&nbsp;</p>
+                        <p>&nbsp;</p>
+                        <p>&nbsp;</p>
+                        <p>&nbsp;</p>
+                        <p class="text-center"><a href="#" class="modal-btn"> Apply Now</a></p>
+                        <p class="text-center small">Your application will be process within 7 working days</p>
+                        <p>&nbsp;</p>
+                    </div>
+
+                    <p v-show="intactdata.userProfile.merchant_stat==1 || intactdata.userProfile.account_stat=='ib_account'" class="bold nomargin">Transfer your funds to Merchant Wallet</p>
+                    <div v-show="intactdata.userProfile.merchant_stat==1 || intactdata.userProfile.account_stat=='ib_account'" class="form-box">
                         <form>
                           <!-- validation -->
                             <div v-show="isNaN(redCommissionData.transferToMerchant)" class="alert alert-danger text-center">

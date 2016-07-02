@@ -18,7 +18,7 @@
                             <!-- <span v-show="intactdata.mt4account.mini<100" class="text text-danger">Minimum Deposit: $100</span> -->
                         </span>
 
-                         <div v-show="isNaN(intactdata.mt4account.mini)" class="alert alert-danger text-center">
+                        <div v-show="isNaN(intactdata.mt4account.mini)" class="alert alert-danger text-center">
                             <i class="fa fa-exclamation-triangle"></i> Error value!
                         </div>
 

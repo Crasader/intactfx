@@ -21,7 +21,10 @@ module.exports = {
 				deposit: 0,
 				withdrawal: 0,
 				withdrawalLimit: 0,
-				withdrawalMerchant: ''
+				withdrawalMerchant: '',
+				notes:'',
+				merchantCode:''
+
 			},
 			mt4account:{
 				mini: 100,
@@ -310,7 +313,7 @@ module.exports = {
 
 		submitTransferOut(){
 			//transfer in 
-		
+			alert('asdf')
 			this.$http.post('/mt4/transferout', this.intactdata.setSelected).then(
 	
 			function(data, status, request){
@@ -431,11 +434,11 @@ module.exports = {
 			$('#wirebutton').prop('disabled', true);
 			
 			if (this.intactdata.wallet.deposit<=0) {
-				alert('please enter amount')
+				alert('Please enter amount')
 				return false
 			};
 			
-			this.$http.post('/wire', this.intactdata, function(data, status, request) {
+			this.$http.post('/wire', this.intactdata.wallet, function(data, status, request) {
 				$('#wirebutton').prop('disabled', false);
 				alert('invoice sent. please check your email')
 				$('#myModal').modal('hide')
@@ -480,6 +483,46 @@ module.exports = {
 				this.intactdata.wallet.withdrawalLimit = result.data
 			});
 	
+		},
+
+		depositCode(){
+
+
+			this.$http.get('account/checkcode?code=' + this.intactdata.wallet.merchantCode).then(function(result){
+				console.log(result.data.status)
+				this.intactdata.wallet.merchantCode
+				if (result.data.status=='empty') {
+					alert('Merchant Code not Found!')
+					return false;
+				} else if(result.data.status=='consumed'){
+					alert('Merchant Code has been used!')
+					return false;
+				}else{
+					alert('Merchant Code Found!')
+
+					this.intactdata.wallet.deposit = result.data.amount
+
+					this.$http.get('account/depositcode?code=' + this.intactdata.wallet.merchantCode).then(function(result){
+						if (result.data=='success') {
+							$('#MainWalletModal').modal('hide')
+							this.updateWallets()
+						};
+					});	
+
+				}
+			});
+
+		},
+
+		greenWallet(){
+
+			if (this.intactdata.userProfile.account_stat=='ib_account' || this.intactdata.userProfile.merchant_stat==1 ) {
+				$('#Commission2WalletModal').modal('show')	
+			}else{
+				alert('Apply for merchant account to access this page')
+				$('#CommissionWalletModal').modal('show')	
+			};
+			return false
 		},
 
 		hasOpenTrades(){

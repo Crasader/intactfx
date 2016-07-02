@@ -21,7 +21,8 @@ class Payment extends Model
         'email',
         'confirm',
         'timestamp_gmt',
-        'hash'
+        'hash',
+        'notes'
     ];
 
     protected $dates = ['created_at', 'updated_at'];

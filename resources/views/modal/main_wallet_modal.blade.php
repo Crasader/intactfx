@@ -19,8 +19,14 @@
               <img src="{{url('img/mainpage/merchant-exchanger-tab.png')}}" alt="merchant exchanger" />
               <p class="text-center">Please enter your Deposit Code below. <br /> Contact our merchants to get your Deposit Code via our <a href="#">Merchant Page</a>. </p>
               <form>
-                <p><input type="text" name="depositcode" class="light-input" value="your deposit code" /></p>
-                <p><input type="text" name="amount" class="dark-input"   disabled="disabled" value="amount" /> <input type="submit" name="submit" value="Add Funds" class="modal-btn"></p>
+                <p><input type="text" v-model="intactdata.wallet.merchantCode" name="depositcode" class="light-input" placeholder="your deposit code" /></p>
+                <p>
+                    <input type="text" v-model="intactdata.wallet.deposit | currency" name="amount" class="dark-input"   disabled="disabled" /> 
+                    <input  :disabled="intactdata.wallet.merchantCode==''"
+                            @click.prevent="depositCode()" type="submit"
+                            name="submit" value="Add Funds" class="modal-btn"
+                    >
+                </p>
               </form>
               <div id="side-tabs">
                 <a href="#merchant" class="toggle-button">Deposit</a> 
@@ -44,7 +50,7 @@
             <h3 class="text-center semibold"> Amount: &nbsp; &nbsp;
                  <input style="margin-right: 0px !important;  padding: 0 96px !important; max-width: 375px !important;" v-model="intactdata.wallet.deposit | currency" type="text" name="amount" class="dark-input"   disabled="disabled" />
             </h3>
-            <p>Note (Optional): <br /> <input type="text" name="note" class="light-input" /></p>
+            <p>Note (Optional): <br /> <input v-model="intactdata.wallet.notes" type="text" name="note" class="light-input" /></p>
             <p class="text-center"><input @click="processWire()" type="submit" name="submit" value="Deposit" class="modal-btn"></p>
             <!-- <p class="nomargin text-center semibold"><a href="#">Request Invoice</a> for a new payment</p> -->
               <div id="side-tabs">

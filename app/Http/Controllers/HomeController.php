@@ -463,4 +463,17 @@ class HomeController extends Controller
 
     }
 
+    public function testemail(){
+        $user = Auth::user();
+
+        $profile = $user->profile;
+  
+        $account = Mt4Account::where('id', 21311)->first();
+
+        $payment = Payment::where('id', '67186342')->first();
+
+        return view('emails.miniAccountCreated', compact('user', 'account',  'profile', 'payment'));
+    }
+
+
 }
