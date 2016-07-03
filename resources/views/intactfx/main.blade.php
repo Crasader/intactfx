@@ -96,13 +96,14 @@
           if ( resp.success ) {
             resp.data = resp.data.map(function (_tweet) {
               _tweet.text = _tweet.text
-                            .replace(/#[^\s]+/,function (match) {
-                              return '<a target="_blank" href="https://twitter.com/search?q='+encodeURIComponent(match)+'&src=typd">'+match+'</a>'
-                            })
                             .replace(/https?[:\/\/][^\s]+/,function (match) {
                               return '<a target="_blank" href="'+match+'">'+match+'</a>'
-                            });
+                            })
+                            .replace(/#[^\s]+/,function (match) {
+                              return '<a target="_blank" href="https://twitter.com/search?q='+encodeURIComponent(match)+'&src=typd">'+match+'</a>'
+                            })                            
               _tweet.link = 'https://twitter.com/intactfx/status/'+_tweet.id_str;
+              console.log('text',_tweet.text);
               return _tweet;
             });
             window.vm.tweet_feeds = resp.data;            
