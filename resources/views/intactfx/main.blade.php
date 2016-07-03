@@ -63,7 +63,7 @@
                     </div>
                 </div><!--/ recent news -->
 
-                <div id="twitter">
+                <div id="twitter" class="clearfix hide" v-bind:class="{ 'hide' : !tweet_feeds.hasTweets }">
                     <div class="twitter-headline">
                         <h3 class="twiiter-ribbon">Recent Tweet</h3>
                     </div>   
@@ -103,10 +103,10 @@
                               return '<a target="_blank" href="https://twitter.com/search?q='+encodeURIComponent(match)+'&src=typd">'+match+'</a>'
                             })                            
               _tweet.link = 'https://twitter.com/intactfx/status/'+_tweet.id_str;
-              console.log('text',_tweet.text);
               return _tweet;
             });
-            window.vm.tweet_feeds = resp.data;            
+            window.vm.tweet_feeds = resp.data;    
+            window.vm.tweet_feeds.hasTweets = ( window.vm.tweet_feeds.length > 0 ) ? true : false; 
           }
         }
       });
