@@ -29636,7 +29636,8 @@ module.exports = {
 				withdrawalLimit: 0,
 				withdrawalMerchant: '',
 				notes: '',
-				merchantCode: ''
+				merchantCode: '',
+				validation_code: ''
 
 			},
 			mt4account: {
@@ -29867,7 +29868,7 @@ module.exports = {
 		},
 		submitTransferOut: function submitTransferOut() {
 			//transfer in
-			alert('asdf');
+			// alert('asdf')
 			this.$http.post('/mt4/transferout', this.intactdata.setSelected).then(function (data, status, request) {
 
 				console.log(data);
@@ -29965,15 +29966,35 @@ module.exports = {
 			return false;
 		},
 		generateCode: function generateCode() {
-			if (this.merchantWallet.otp != 'qwerty') {
-				alert('Wrong OTP');
+
+			if (this.merchantWallet.otp == '') {
+				alert('Blank OTP Code');
 				return false;
 			};
-			this.$http.post('account/generatecode', this.merchantWallet).then(function (data, status, request) {
-				console.log(data);
-				this.merchantWallet.code = data.data;
-				this.updateWallets();
-			}, function (data, status, request) {});
+
+			this.$http.get('account/validateotp?otp_code=' + this.merchantWallet.otp).then(function (result) {
+				console.log(result.data);
+
+				if (result.data == '') {
+
+					alert('OTP Code Not Existing!');
+				} else {
+
+					if (result.data.is_deleted == 0) {
+
+						this.$http.post('account/generatecode', this.merchantWallet).then(function (data, status, request) {
+							console.log(data);
+							this.merchantWallet.code = data.data;
+							this.updateWallets();
+						}, function (data, status, request) {});
+					} else {
+
+						alert('OTP Code expired!');
+					};
+				};
+
+				return false;
+			});
 		},
 		codeTracking: function codeTracking() {
 			this.$http.get('account/codetracking').then(function (result) {
@@ -30042,6 +30063,60 @@ module.exports = {
 					this.updateProfile();
 				};
 				this.profileForm.edit = 0;
+			});
+		},
+		sendConfirmationSms: function sendConfirmationSms() {
+
+			this.$http.get('account/confirm').then(function (result) {
+				console.log(result.data);
+				if (result.data == "success") {
+
+					alert('Validation Code has been sent.');
+				} else if (result.data == 24) {
+
+					alert('Invalid Number. Please enter complete phone number with country code');
+				} else {
+
+					alert('Error on sending validation code');
+				}
+			});
+		},
+		confirmPhoneNumber: function confirmPhoneNumber() {
+
+			if (this.intactdata.wallet.validation_code == '') {
+				alert('validation code cannot be blank');
+				return false;
+			};
+
+			this.$http.get('account/validate?validation_code=' + this.intactdata.wallet.validation_code).then(function (result) {
+
+				if (result.data == '') {
+
+					alert('Validation Code Not Existing!');
+				} else {
+
+					if (result.data.is_deleted == 0) {
+
+						this.updateProfile();
+						alert('Phone number validated');
+					} else {
+
+						alert('Validation Code expired!');
+					};
+				};
+			});
+		},
+		requestOTP: function requestOTP() {
+
+			this.$http.get('account/requestotp').then(function (result) {
+
+				if (result.data == 'success') {
+
+					alert('OTP Code has been sent.');
+				} else {
+
+					alert('Error on sending OTP code');
+				}
 			});
 		},
 

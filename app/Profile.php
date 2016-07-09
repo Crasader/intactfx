@@ -23,6 +23,8 @@ class Profile extends Authenticatable
         'gender', 
         'birthdate', 
         'phone_number', 
+        'confirm_phone_number', 
+        'confirm_phone_status', 
         'email', 
         'address', 
         'address2', 
@@ -46,6 +48,8 @@ class Profile extends Authenticatable
         'skrill', 
         'perfect_money'
     ];
+
+    
 
     
 

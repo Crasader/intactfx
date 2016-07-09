@@ -91,6 +91,12 @@ Route::get('account/updatewallet', 'HomeController@updateWallet');
 Route::get('account/updateaccounts', 'Mt4Controller@updateAccount');
 Route::get('account/updateupdatedaccount', 'Mt4Controller@getUpdatedAccount');
 
+//sms
+Route::get('account/confirm', 'HomeController@confirmAccountSms');
+Route::get('account/validate', 'HomeController@validateAccountSms');
+Route::get('account/requestotp', 'HomeController@requestOtp');
+Route::get('account/validateotp', 'HomeController@validateOtp');
+
 
 Route::post('identityupload',  [ 'as' => 'identityupload', 'uses' => 'FileController@identityUpload']);
 Route::post('addressupload',  [ 'as' => 'addressupload', 'uses' => 'FileController@addressUpload']);

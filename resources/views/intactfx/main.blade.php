@@ -1,5 +1,5 @@
-<!-- @{{ intactdata.wallet | json}} <br><br>
-@{{ intactdata.userProfile | json}} <br><br> -->
+<!--  @{{ intactdata.wallet | json}} <br><br>
+ @{{ intactdata.userProfile | json}} <br><br> -->
 
 <div class="container">
     <div class="row">

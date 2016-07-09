@@ -128,7 +128,7 @@
                                     <input :disabled="profileForm.edit==0" v-model="intactdata.userProfile.birthdate" type="text" placeholder="dd/mm/yyyy" class="account-date" name="date" /> 
                                     <img src="{{url('img/mainpage/account-date-icon.png')}}" alt="date" title="date" class="date-icon" />
                                     <span class="short text-right" style="width: 67px !important;">Phone</span> 
-                                    <input :disabled="profileForm.edit==0" v-model="intactdata.userProfile.phone_number" type="text" class="account-input short" name="phone" />
+                                    <input :disabled="profileForm.edit==0" onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')" v-model="intactdata.userProfile.phone_number" type="text" class="account-input short" name="phone" />
                                 </p>
                                 <p>
                                     <span>Email</span>
@@ -199,8 +199,32 @@
                     </div>  
 
                     <div role="tabpanel" class="tab-pane" id="otp">
-                        <div class="settings-content">
+                        <div v-show="intactdata.userProfile.confirm_phone_status==1" class="settings-content">
+                            <p>
+                                <span class="short text-right" style="width: 67px !important;">Phone Number +<strong>@{{ intactdata.userProfile.confirm_phone_number }} </strong> has been validated.</span>
+                            </p>
+                        </div>
 
+                        <div v-show="intactdata.userProfile.confirm_phone_status==0" class="settings-content">
+                            
+                            <div v-show="intactdata.userProfile.confirm_phone_number != intactdata.userProfile.phone_number && intactdata.userProfile.confirm_phone_number!='' " class="alert alert-danger text-center">
+                                <i class="fa fa-exclamation-triangle"></i> You need to confirm the new phone number.
+                            </div>
+
+                            <p>
+                                <span class="short text-right" style="width: 67px !important;">Phone Number</span>
+                            </p>
+                            <p>
+                                <input v-model="intactdata.userProfile.phone_number" type="input" class="account-input" name="phone" disabled="disabled" />
+                                <input @click.prevent="sendConfirmationSms" type="button" value="Send Confirmation Code" class="blue-btn"> 
+                            </p>                        
+                             <p>
+                                <span class="short text-right" style="width: 67px !important;">Enter Confirmation Code</span>
+                            </p>
+                            <p>
+                                <input v-model="intactdata.wallet.validation_code" type="input" class="account-input" name="phone" />
+                                <input @click.prevent="confirmPhoneNumber" type="button" value="Confirm Phone Number" class="blue-btn"> 
+                            </p>
                         </div>
                     </div>
 

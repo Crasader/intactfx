@@ -161,25 +161,36 @@
                     <span><a href="#"><<</a> &nbsp; <a href="#"><</a> <span class="navigation-label">Prev</span><span class="navigation-label">Next</span> <a href="#"> ></a> &nbsp; <a href="#">>></a></span>
                 </div>
             </div>
+            
             <div v-show="intactdata.userProfile.merchant_stat=='1' || intactdata.userProfile.account_stat=='ib_account' " role="tabpanel" class="tab-pane" id="merchant">
                 <h3 class="tab-title">Merchant Wallet Balance: 
                     <input v-model="intactdata.wallet.merchant_wallet | currency" type="text"  class="dark-input" name="balance" disabled="disabled" />
                 </h3>
-                <div class="merchant-box">
+
+                 <div v-show="intactdata.userProfile.confirm_phone_status==0" class="alert alert-danger text-center">
+                    <i class="fa fa-exclamation-triangle"></i> Verify your Phone Number to access this Page!
+                </div>
+
+                <div v-show="intactdata.userProfile.confirm_phone_status==1" class="merchant-box">
                     <form>
                     <h3 class="clear text-center">Please enter Deposit Code value to be generated: 
                         <input v-model="merchantWallet.amount | currency" type="text" value="Amount" class="light-input" name="balance" /> USD
-                        <span class="block red">(Amount must be multiples of10. Min: 100 usd)</span>
+                    
+                        <span v-show="(merchantWallet.amount % 10) != 0 || merchantWallet.amount < 100 || merchantWallet.amount=='' " class="block red">(Amount must be multiples of10. Min: 100 usd)</span>
+                    
                     </h3>
                     <p class="clear text-center">One Time Password (OTP) 
                         <input v-model="merchantWallet.otp" type="text" class="dark-input" name="balance" />
-                        <input type="submit" name="submit" value="Request OTP" class="small-btn">
+                        <input @click.prevent="requestOTP" type="submit" name="submit" value="Request OTP" class="small-btn">
                     </p>
                     <p class="text-center small">One Time Password (OTP) are mandotary upon generating Deposit Code. OTP will be expired once you Logout from your E-Office.</p>
                     </form>
                     <form>
                         <p class="clear text-center">
-                            <input @click.prevent="generateCode()" type="submit" name="submit" value="GENERATE" class="modal-btn"></p>
+                            <input @click.prevent="generateCode()" type="submit" name="submit" value="GENERATE" class="modal-btn"
+                                    :disabled=" (merchantWallet.amount % 10) != 0 || merchantWallet.amount < 100 || merchantWallet.amount=='' "
+                            >
+                        </p>
                         <p class="clear text-center">
                             <input v-model="merchantWallet.code" type="text" class="generate-input" name="generatecode" />
                         </p>

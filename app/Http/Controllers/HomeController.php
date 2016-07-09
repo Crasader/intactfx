@@ -12,8 +12,11 @@ use App\Merchant;
 use App\Mt4Account;
 use App\Payment;
 use App\Profile;
+use App\Repositories\SmsRepository;
+use App\Sms;
 use App\Social;
 use App\User;
+use App\Validation;
 use Auth;
 use Carbon\Carbon;
 use Faker\Factory as Faker;
@@ -29,9 +32,10 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(SmsRepository $sms)
     {
         $this->middleware('auth');
+        $this->sms = $sms;
     }
 
     /**
@@ -41,7 +45,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        
+        // $this->sms->send();
         $user = Auth::user();
         // dd($user);
         try {
@@ -352,6 +356,7 @@ class HomeController extends Controller
     }
 
     public function getProfile(){
+
         $user = Auth::user();
 
         return $user->profile;
@@ -392,6 +397,14 @@ class HomeController extends Controller
         $profile->perfect_money =  $request->perfect_money;
         $profile->save();
 
+        //if the phone number has changed. need to reconfirm
+        if ($request->phone_number != $profile->confirm_phone_number) {
+            
+            $profile->confirm_phone_status = 0;
+            $profile->save(); 
+
+        }
+        
         return 'success';
 
     }
@@ -473,6 +486,137 @@ class HomeController extends Controller
         $payment = Payment::where('id', '67186342')->first();
 
         return view('emails.miniAccountCreated', compact('user', 'account',  'profile', 'payment'));
+    }
+
+    public function confirmAccountSms(){
+        
+        $user = Auth::user();
+
+        $phone = $user->profile->phone_number;
+
+        // $phone = 'asdfsdf';
+        
+        $status = $this->sms->sendValidation($phone);
+
+        // echo '<pre>' . print_r($status) . '</pre>';
+
+        // echo $status['api_message'];
+
+        if ($status['success']) {
+
+            Sms::create([
+                'eoffice_id' => $user->account->id,
+                'user_id' =>  $user->id,
+                'msg' => $status['text_message'],
+                'to' => $phone,
+                'status' => $status['message'],
+                'batch_id' => $status['api_batch_id'],
+            ]);
+
+            return 'success';
+
+        }else{
+    
+            Sms::create([
+                'eoffice_id' => $user->account->id,
+                'user_id' =>  $user->id,
+                'msg' => $status['text_message'],
+                'to' => $phone,
+                'status' => $status['api_message'],
+            ]);
+
+            return $status['api_status_code'];
+
+        }
+
+    }
+
+    public function validateAccountSms(Request $request){
+        $user = Auth::user();
+
+        $validation_code = $request->validation_code;
+
+        // echo $validation_code;
+
+        $validate = Validation::where('eoffice_id', $user->account->id)
+                    ->where('validationcode', $validation_code)
+                    ->first();
+
+        if ($validate!='') {
+
+            if ($validate->is_deleted==0) {
+                //validation statement
+                
+                $user->profile->confirm_phone_status = 1;
+                $user->profile->confirm_phone_number = $user->profile->phone_number;
+                $user->profile->save();
+
+                Validation::where('eoffice_id', $user->account->id)->update(['is_deleted' => 1]);
+            }
+        }
+
+        return $validate;
+
+    }
+
+    public function requestOtp(){
+        $user = Auth::user();
+
+        $phone = $user->profile->phone_number;
+
+        // $phone = 'asdfsdf';
+        
+        $status = $this->sms->sendOtp($phone);
+
+
+        if ($status['success']) {
+
+            Sms::create([
+                'eoffice_id' => $user->account->id,
+                'user_id' =>  $user->id,
+                'msg' => $status['text_message'],
+                'to' => $phone,
+                'status' => $status['message'],
+                'batch_id' => $status['api_batch_id'],
+            ]);
+
+            return 'success';
+
+        }else{
+    
+            Sms::create([
+                'eoffice_id' => $user->account->id,
+                'user_id' =>  $user->id,
+                'msg' => $status['text_message'],
+                'to' => $phone,
+                'status' => $status['api_message'],
+            ]);
+
+            return $status['api_status_code'];
+
+        }
+
+
+
+    }
+
+    public function validateOtp(Request $request){
+        // echo 'validate otp';
+        $user = Auth::user();
+
+        $otp_code = $request->otp_code;
+
+        // echo $validation_code;
+
+        $validate = Validation::where('eoffice_id', $user->account->id)
+                    ->where('otp', $otp_code)
+                    ->first();
+
+        if ($validate!='') {
+            Validation::where('eoffice_id', $user->account->id)->update(['is_deleted' => 1]);
+        }
+
+        return $validate;
     }
 
 
