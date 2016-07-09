@@ -45,7 +45,7 @@ class TwitterAPI extends Model
 		$ch = curl_init();
 
 		//set the url
-		curl_setopt($ch,CURLOPT_URL, 'https://api.twitter.com/1.1/search/tweets.json?q='.urlencode('from:@intactfx'));
+		curl_setopt($ch,CURLOPT_URL, 'https://api.twitter.com/1.1/search/tweets.json?count=4&q='.urlencode('from:@intactfx'));
 
 		// headers
 		curl_setopt($ch, CURLOPT_HTTPHEADER, ["Authorization: Bearer {$access_token}"]);

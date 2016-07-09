@@ -1,6 +1,3 @@
-<!--  @{{ intactdata.wallet | json}} <br><br>
- @{{ intactdata.userProfile | json}} <br><br> -->
-
 <div class="container">
     <div class="row">
         <div class="content">
@@ -9,7 +6,7 @@
                     <img src="{{url('img/mainpage/wallet-main.png')}}" alt="">
                         <div class="wallet-pockets">
                             <div class="wallet-item">
-                                <a @click.prevent="greenWallet" class="wallet-card" href="javascript:;">
+                                <a class="wallet-card" href="javascript:;"  data-toggle="modal" data-target="#Commission2WalletModal">
                                     <div class="wallet-card-image">
                                         <div class="wallet-text">Wallet Amount: @{{ intactdata.wallet.green | currency }}</div>
                                         <img src="{{url('img/mainpage/wallet-card-green.png')}}" alt="">
@@ -65,14 +62,14 @@
                     </div>
                 </div><!--/ recent news -->
 
-                <div id="twitter" style="max-height:67px;overflow:hidden;">
+                <div id="twitter" class="clearfix hide" v-bind:class="{ 'hide' : !tweet_feeds.hasTweets }">
                     <div class="twitter-headline">
                         <h3 class="twiiter-ribbon">Recent Tweet</h3>
                     </div>   
                     <div v-for="tweet in tweet_feeds" class="tweets">                        
                         <h4>#intactfx</h4>
-                        <p>@{{ tweet.text }}</p>
-                        <span class="glyphicon glyphicon-chevron-right gray-icon" aria-hidden="true"></span>
+                        <p>@{{{ tweet.text }}}</p>
+                        <a href="@{{ tweet.link }}" target="_blank" class="glyphicon glyphicon-chevron-right gray-icon" aria-hidden="true"></a>
                     </div>
                     <!-- <div class="separator"></div> -->
                 </div><!--/ twitter -->
@@ -85,14 +82,34 @@
 
 <script>
   document.addEventListener('DOMContentLoaded',function () {
-    $.ajax({
-      url : 'tweets',
-      dataType : 'json',
-      success : function (resp) {
-        if ( resp.success ) {
-            window.vm.tweet_feeds = resp.data;
+    
+    (function getTweets() {
+      $.ajax({
+        url : 'tweets',
+        dataType : 'json',
+        complete : function () {
+          // fetch again after 3 seconds
+          setTimeout(getTweets,3000);
+        },
+        success : function (resp) {
+          if ( resp.success ) {
+            resp.data = resp.data.map(function (_tweet) {
+              _tweet.text = _tweet.text
+                            .replace(/https?[:\/\/][^\s]+/,function (match) {
+                              return '<a target="_blank" href="'+match+'">'+match+'</a>'
+                            })
+                            .replace(/#[^\s]+/,function (match) {
+                              return '<a target="_blank" href="https://twitter.com/search?q='+encodeURIComponent(match)+'&src=typd">'+match+'</a>'
+                            })                            
+              _tweet.link = 'https://twitter.com/intactfx/status/'+_tweet.id_str;
+              return _tweet;
+            });
+            window.vm.tweet_feeds = resp.data;    
+            window.vm.tweet_feeds.hasTweets = ( window.vm.tweet_feeds.length > 0 ) ? true : false; 
+          }
         }
-      }
-    })
+      });
+    })();
+
   });
 </script>

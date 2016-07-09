@@ -444,6 +444,7 @@ h4 {
 #twitter .twitter-headline {
 	float: left;
 	margin: 0 29px 0 0;
+	width: 35.68%;
 }
 
 #twitter .twitter-headline .twiiter-ribbon {
@@ -455,6 +456,7 @@ h4 {
 	padding: 10px 20px 50px 75px;
 	display: block;
 	background: url(../img/mainpage/tweet-ribbon.png) no-repeat 0 0;
+	margin: 0 0 50px 0;
 }
 
 #twitter .tweets {
@@ -464,9 +466,10 @@ h4 {
 	color: #737373;
 	font-size: 9px;
 	line-height: 12px;
-	max-width: 146px;
+	width: 146px;
 	margin: 0;
 	position: relative;
+	margin-bottom: 30px;
 }
 
 #twitter .tweets:nth-of-type(2n) {
@@ -2868,7 +2871,7 @@ input[type="checkbox"] {
 	}
 
 	#twitter .twitter-headline .twiiter-ribbon {
-		margin: 0;
+		margin: 0 0 50px 0;
 	}
 
 	#twitter .tweets {
