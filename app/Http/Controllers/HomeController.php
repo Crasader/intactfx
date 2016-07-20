@@ -238,16 +238,16 @@ class HomeController extends Controller
 
     public function updateWallet(Request $request){
         $user = Auth::user();
+
         DB::connection()->enableQueryLog();
-
-
+        
         $eoffice_id = $request->eoffice_id;
 
         //main_wallet
         
         $deposit_history  = Payment::select('funding_service', DB::raw('SUM(payment_amount) as total_deposit'))
                     ->where('email', $user->email)
-                    ->where('type', 'deposit')
+                    ->whereIn('type', [ 'deposit', 'transferFromCom' ] )
                     ->get();
 
         $withdrawal_history  = Payment::select('funding_service', DB::raw('SUM(payment_amount) as total_withdrawal'))
@@ -420,7 +420,7 @@ class HomeController extends Controller
            'from_mt4login_id' => '',
            'from_eoffice' =>  $user->account->id,
            'to_eoffice' => $user->account->id,
-           'commission_type' => 'withdrawal',
+           'commission_type' => 'transfer',
            'account_type' => 'mini',
            'volume' => 0,
            'amount' =>  $amountToTransfer,

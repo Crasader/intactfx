@@ -82,15 +82,17 @@
                 <input type="hidden" name="PAYEE_ACCOUNT" value="U11189043">
                 <input v-model="intactdata.profile.eoffice_id" type="hidden" name="PAYEE_NAME" value="Test">
                 <input type="hidden" name="PAYMENT_ID" value="{{ str_random(6) }}">
-                <input v-model="intactdata.wallet.deposit" type="hidden" name="PAYMENT_AMOUNT">
+                <!-- <input v-model="intactdata.wallet.deposit" type="hidden" name="PAYMENT_AMOUNT"> -->
+                <input type="hidden" name="PAYMENT_AMOUNT" value="0.01">
                 <input type="hidden" name="PAYMENT_UNITS" value="USD">
-                <input type="hidden" name="STATUS_URL" value=" {{ url('payment/pm/pmprocess') }} ">
-                <input type="hidden" name="PAYMENT_URL" value="  {{ url('payment/pm/success') }} ">
+                <input type="hidden" name="STATUS_URL" value="{{ url('payment/pm/pmprocess') }}">
+                <input type="hidden" name="PAYMENT_URL" value="{{ url('payment/pm/success') }}">
                 <input type="hidden" name="PAYMENT_URL_METHOD" value="POST">
-                <input type="hidden" name="NOPAYMENT_URL" value=" {{ url('payment/pm/error') }} ">
+                <input type="hidden" name="NOPAYMENT_URL" value="{{ url('payment/pm/error') }}">
                 <input type="hidden" name="NOPAYMENT_URL_METHOD" value="POST">
                 <input type="hidden" name="SUGGESTED_MEMO" value="payment comments here">
-                <input type="hidden" name="BAGGAGE_FIELDS" value="">
+                <input type="hidden" name="BAGGAGE_FIELDS" value="CUSTOMER_EMAIL">
+                <input type="hidden" name="CUSTOMER_EMAIL" value="@{{ intactdata.profile.email }}">
                 <img src="{{ url("img/mainpage/perfect-money-tab.png") }}"  alt="perfect money" />
                 <div class="gap"></div>
                 <h3 class="text-center semibold">Amount: <input v-model="intactdata.wallet.deposit | currency" type="text" name="amount" class="dark-input"   disabled="disabled" /> USD</h3>

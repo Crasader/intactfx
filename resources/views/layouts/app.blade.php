@@ -18,8 +18,9 @@
     </head>
     
     <body>
+
         <div id="intactfx-app" v-cloak>
-            
+        <div id="loading" class="loading"></div>
             @yield('content') 
                           
             <!-- BEGIN JAVASCRIPT -->

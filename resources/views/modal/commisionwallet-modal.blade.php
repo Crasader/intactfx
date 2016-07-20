@@ -179,16 +179,16 @@
                         <span v-show="(merchantWallet.amount % 10) != 0 || merchantWallet.amount < 100 || merchantWallet.amount=='' " class="block red">(Amount must be multiples of10. Min: 100 usd)</span>
                     
                     </h3>
-                    <p class="clear text-center">One Time Password (OTP) 
+                    <p v-show="otpOkay==false" class="clear text-center">One Time Password (OTP) 
                         <input v-model="merchantWallet.otp" type="text" class="dark-input" name="balance" />
                         <input @click.prevent="requestOTP" type="submit" name="submit" value="Request OTP" class="small-btn">
                     </p>
-                    <p class="text-center small">One Time Password (OTP) are mandotary upon generating Deposit Code. OTP will be expired once you Logout from your E-Office.</p>
+                    <p v-show="otpOkay==false" class="text-center small">One Time Password (OTP) are mandotary upon generating Deposit Code. OTP will be expired once you Logout from your E-Office.</p>
                     </form>
                     <form>
                         <p class="clear text-center">
                             <input @click.prevent="generateCode()" type="submit" name="submit" value="GENERATE" class="modal-btn"
-                                    :disabled=" (merchantWallet.amount % 10) != 0 || merchantWallet.amount < 100 || merchantWallet.amount=='' "
+                                    :disabled=" (merchantWallet.amount % 10) != 0 || merchantWallet.amount < 100 || merchantWallet.amount=='' || merchantWallet.amount < intactdata.wallet.merchant_wallet"
                             >
                         </p>
                         <p class="clear text-center">
@@ -202,16 +202,17 @@
             </div>
             <div v-show="intactdata.userProfile.merchant_stat=='1' || intactdata.userProfile.account_stat=='ib_account' " role="tabpanel" class="tab-pane" id="code">
                 <div class="codetracking-box">
-                    <form>
+                    <form v-show="otpOkay==false">
                         <h3 class="text-center">Please enter One Time Password(OTP) to access Tracking Code page</h3>
-                        <h3 class="text-center bold">One Time Password(OTP) <input type="text" value="" class="amount-input" name="amount" /> 
-                            <input type="submit" name="submit" value="Request OTP" class="small-btn"></h3>
+                        <h3 class="text-center bold">One Time Password(OTP) 
+                            <input v-model="merchantWallet.otp" type="text" value="" class="amount-input" name="amount" /> 
+                            <input @click.prevent="requestOTP" type="submit" name="submit" value="Request OTP" class="small-btn"></h3>
                     </form>
-                    <p class="text-center"><a href="#" @click.prevent="codeTracking()" class="modal-btn">ENTER</a></p>
+                    <p class="text-center"><a href="#" @click.prevent="codeTracking()" class="modal-btn">Show Code Tracking Table</a></p>
                     
-                    <p class="text-center">Code Tracking services will only be available after you enter One Time Password(OTP)</p>
+                    <p v-show="otpOkay==false" class="text-center">Code Tracking services will only be available after you enter One Time Password(OTP)</p>
                         <br><br>
-                        <table>
+                        <table v-show="otpOkay==true">
                             <tr>
                                 <th class="text-center">Date</th>
                                 <th class="text-center">Code</th>

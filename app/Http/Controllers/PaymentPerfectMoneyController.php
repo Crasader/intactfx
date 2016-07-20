@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 use App\Http\Requests;
+use App\Payment;
+use Faker\Factory as Faker;
+use Illuminate\Http\Request;
 
 class PaymentPerfectMoneyController extends Controller
 {
@@ -86,8 +87,21 @@ class PaymentPerfectMoneyController extends Controller
 
     public function success(Request $request)
     {
-        echo 'success';
-        dd($request);
+      
+        $payment = Payment::create([
+                'id' => Faker::create()->randomNumber($nbDigits = 9),
+                'payment_id' =>  $request->PAYMENT_ID,
+                'funding_service'  => 'pm',
+                'type'  => 'deposit',
+                'payee_account'  => $request->PAYEE_ACCOUNT,
+                'payment_amount'  => $request->PAYMENT_AMOUNT,
+                'payment_units'  => $request->PAYMENT_UNITS,
+                'payor_account'  =>  $request->PAYER_ACCOUNT,
+                'email'  =>  $request->CUSTOMER_EMAIL,
+                'confirm' => true,
+        ]);
+
+        return redirect('/');
     }
 
     public function error(Request $request)

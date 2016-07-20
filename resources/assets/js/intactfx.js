@@ -12,6 +12,9 @@ module.exports = {
     el: '#intactfx-app',
 
     data: {
+    	firstLoading: true,
+    	isFetching:false,
+    	otpOkay: false,
     	intactdata:{
     		wallet:{
 				amount: 0,
@@ -106,7 +109,8 @@ module.exports = {
 
 		profileForm:{
 			picked: 'neteller',
-			edit: 0
+			edit: 0,
+			status: false,
 		},
 		
 		tweet_feeds:[]
@@ -153,6 +157,10 @@ module.exports = {
 			//create account
 			// alert('click') 
 			// return false
+			if (this.firstLoading==false) {
+				this.isLoading()
+			};
+
 			this.$http.post('/mt4/create', this.intactdata).then(
 			
 				function(data, status, request){
@@ -175,8 +183,11 @@ module.exports = {
 
 		getAccount(){
 			// get all account
+			if (this.firstLoading==false) {
+				this.isLoading()
+			};
 			this.$http.get('account/getaccount?eoffice_id=' + this.intactdata.profile.eoffice_id).then(function(result){
-
+				this.loaded()
 				this.mt4AccountList.accounts = result.data
 
 			});
@@ -188,8 +199,13 @@ module.exports = {
 				alert('please select date')
 				return false;
 			}else{
+				if (this.firstLoading==false) {
+					this.isLoading()
+				};
+
 				this.$http.get('account/gethistory?action=' + action + '&start=' + this.history.startDate + '&end=' + this.history.endDate).then(function(result){
 					this.transactionHistory = result.data;
+					this.loaded()
 				});	
 			}
 			return false;
@@ -201,8 +217,12 @@ module.exports = {
 			// 	return false;
 			// }else{
 				// this.$http.get('account/getcommisionhistory?action=' + action + '&start=' + this.history.startDate + '&end=' + this.history.endDate).then(function(result){
+				if (this.firstLoading==false) {
+					this.isLoading()
+				};
 				this.$http.get('account/getredcommisionhistory?eoffice_id=' + this.intactdata.profile.eoffice_id).then(function(result){
 					this.redCommissionHistory = result.data;
+					this.loaded()
 				});	
 			// }
 			// return false;
@@ -212,7 +232,12 @@ module.exports = {
 			//update mini account in intactfx db
 			this.$http.get('account/updateaccounts?eoffice_id=' + this.intactdata.profile.eoffice_id).then(function(result){
 
-				console.log(result) 
+				// console.log(result) 
+
+				if (result.data=='success') {
+    				this.firstLoading = false
+					this.loaded()
+				};
 				this.getAccount() // get all account
 
 			});
@@ -220,23 +245,28 @@ module.exports = {
 		},
 
 		updateProfile(){
+			if (this.firstLoading==false) {
+				this.isLoading()
+			};
 
 			this.$http.get('account/getprofile').then(function(result){
 
 				this.intactdata.userProfile = result.data 
-
+				this.loaded()
 			});
 
 		},
 
 		updateWallets(){
-
+			if (this.firstLoading==false) {
+				this.isLoading()
+			};
 			this.$http.get('account/updatewallet?eoffice_id=' + this.intactdata.profile.eoffice_id).then(function(result){
 				this.intactdata.wallet.amount = result.data['main']
 				this.intactdata.wallet.red = result.data['red']
 				this.intactdata.wallet.green = result.data['green']
 				this.intactdata.wallet.merchant_wallet = result.data['merchant']
-
+				this.loaded()
 
 				// this.intactdata.wallet.amount = 12000
 				// this.intactdata.wallet.red = 7000
@@ -247,10 +277,13 @@ module.exports = {
 		},
 
 		getAffiliate(){
-
+			if (this.firstLoading==false) {
+				this.isLoading()
+			};
 			this.$http.get('account/getaffiliate').then(function(result){
 				this.intactdata.affiliate.data = result.data[0]
 				this.intactdata.affiliate.count = result.data[1]
+				this.loaded()
 			});
 
 		},
@@ -260,23 +293,28 @@ module.exports = {
 
 			//set selected for transfer in/out
 			this.intactdata.setSelected.mt4Account_id = id
-
+				if (this.firstLoading==false) {
+					this.isLoading()
+				};
 			
 				if (modal=='TransferOutModal') {
-			
+					
 					this.$http.get('account/updateupdatedaccount?mt4login_id=' + this.intactdata.setSelected.mt4Account_id).then(function(result){		
 						
 						this.intactdata.setSelected.mt4Balance = result.data.balance
+
 					})
 				
 					this.$http.get('mt4/hasopentrades?eoffice_id=' + this.intactdata.profile.eoffice_id).then(function(result){
 						this.intactdata.profile.hasOpenTrades = result.data
+						this.loaded()
 						$('#TransferOutModal').modal('show')
 					});
-					
+					return false
 				};
 
 				if (modal=='TransferInModal') {
+					this.loaded()
 					$('#TransferInModal').modal('show')
 				};
 
@@ -291,6 +329,10 @@ module.exports = {
 
 		submitTransferIn(){
 			//transfer in 
+			if (this.firstLoading==false) {
+				this.isLoading()
+			};
+
 			this.$http.post('/mt4/transferin', this.intactdata.setSelected).then(
 			
 			function(data, status, request){
@@ -301,7 +343,7 @@ module.exports = {
 				this.intactdata.wallet.amount  = this.intactdata.wallet.amount - this.intactdata.setSelected.transferIn
 				
 				this.getAccount()
-				
+				this.loaded()
 				$('#TransferInModal').modal('hide')
 
 			},
@@ -315,6 +357,10 @@ module.exports = {
 		submitTransferOut(){
 			//transfer in 
 			// alert('asdf')
+			if (this.firstLoading==false) {
+				this.isLoading()
+			};
+
 			this.$http.post('/mt4/transferout', this.intactdata.setSelected).then(
 	
 			function(data, status, request){
@@ -323,7 +369,7 @@ module.exports = {
 				this.intactdata.wallet.amount  = parseInt(this.intactdata.wallet.amount) + parseInt(this.intactdata.setSelected.transferOut)
 				this.getAccount()
 				$('#TransferOutModal').modal('hide')
-
+				this.loaded()
 			},
 			
 			function(data, status, request){
@@ -333,12 +379,15 @@ module.exports = {
 		},
 
 		transferToMainWallet(){
-
+			if (this.firstLoading==false) {
+				this.isLoading()
+			};
 			this.$http.post('account/transferfromredtomain', this.redCommissionData).then(
 	
 			function(data, status, request){
 				console.log(data)
 				this.updateWallets()
+				this.loaded()
 			},
 			
 			function(data, status, request){
@@ -348,6 +397,9 @@ module.exports = {
 		},
 
 		transferToMerchantWallet(){
+			if (this.firstLoading==false) {
+				this.isLoading()
+			};
 
 			this.$http.post('account/transferfrommaintomerchant', this.redCommissionData).then(
 	
@@ -366,8 +418,13 @@ module.exports = {
 		submitChangePass(){
 			// alert('change pass')
 			// minimum char 7
+			if (this.firstLoading==false) {
+				this.isLoading()
+			};
+
 			if (this.intactdata.profile.password.length < 7 || this.intactdata.profile.new_password.length < 7) {
 				alert('Password Minimum Character: 7')
+				this.loaded()
 				return false;
 			};
 
@@ -376,6 +433,7 @@ module.exports = {
 			
 			if (!regEx.test(this.intactdata.profile.new_password)) {
 				alert('Password should contain atlest:\none capital letter \none number \none small letter')
+				this.loaded()
 				return false
 			};
 			
@@ -391,7 +449,7 @@ module.exports = {
 
 					this.$http.post('mt4/changepassword', this.intactdata).then(
 					function(data, status, request){
-						
+						this.loaded()
 					}, 
 					function(data, status, request){
 							
@@ -401,6 +459,7 @@ module.exports = {
 
 				} else {
 					alert('Wrong Password')
+					this.loaded()
 					return false;
 				}
 			});
@@ -431,11 +490,15 @@ module.exports = {
 		},
 
 		processWire(){
+			if (this.firstLoading==false) {
+				this.isLoading()
+			};
 
 			$('#wirebutton').prop('disabled', true);
 			
 			if (this.intactdata.wallet.deposit<=0) {
 				alert('Please enter amount')
+				this.loaded()
 				return false
 			};
 			
@@ -450,8 +513,11 @@ module.exports = {
 		},
 
 		generateCode(){
-
+			if (this.firstLoading==false) {
+				this.isLoading()
+			};
 			if (this.merchantWallet.otp=='') {
+				this.loaded()
 				alert('Blank OTP Code')
 				return false;
 			};
@@ -460,12 +526,12 @@ module.exports = {
 				console.log(result.data)
 
 				if (result.data=='') {
-
+					this.loaded()
 					alert('OTP Code Not Existing!')
 
 				}else{
 
-					if (result.data.is_deleted==0) {
+					if (result.data.is_deleted==0 || his.otpOkay == true) {
 
 						this.$http.post('account/generatecode', this.merchantWallet).then(
 				
@@ -473,6 +539,7 @@ module.exports = {
 							console.log(data)
 							this.merchantWallet.code = data.data
 							this.updateWallets()
+							this.otpOkay = true;
 						},
 						
 						function(data, status, request){
@@ -480,7 +547,7 @@ module.exports = {
 						});
 
 					}else{
-
+						this.loaded()
 						alert('OTP Code expired!')
 
 					};
@@ -491,20 +558,62 @@ module.exports = {
 			});
 
 
-			
-
-
-			
-
 		},
 
 		codeTracking(){
-			this.$http.get('account/codetracking').then(function(result){
-				this.merchantWallet.codeTracking = result.data
+			if (this.firstLoading==false) {
+				this.isLoading()
+			};
+
+			if (this.merchantWallet.otp=='') {
+				this.loaded()
+				alert('Blank OTP Code')
+				return false;
+			};
+
+			this.$http.get('account/validateotp?otp_code='+ this.merchantWallet.otp).then(function(result){
+
+				if (result.data=='') {
+					this.loaded()
+					alert('OTP Code Not Existing!')
+
+				}else{
+
+					if (result.data.is_deleted==0 || this.otpOkay == true) {
+
+						this.$http.post('account/generatecode', this.merchantWallet).then(
+				
+						function(data, status, request){
+
+							this.$http.get('account/codetracking').then(function(result){
+								this.merchantWallet.codeTracking = result.data
+								this.otpOkay = true;
+							});
+							this.otpOkay = true;
+							this.loaded()
+						},
+						
+						function(data, status, request){
+							
+						});
+
+						}else{
+							this.loaded()
+							alert('OTP Code expired!')
+
+						};
+				};
+
 			});
+
+			return false;
+
 		},
 
 		merchantWithdrawal(merchant){
+			if (this.firstLoading==false) {
+				this.isLoading()
+			};
 			this.intactdata.wallet.withdrawalMerchant = merchant
 			// alert(merchant)
 
@@ -512,23 +621,29 @@ module.exports = {
 			this.$http.get('account/checkwithdrawal?merchant=' + this.intactdata.wallet.withdrawalMerchant ).then(function(result){
 				console.log(result.data)
 				this.intactdata.wallet.withdrawalLimit = result.data
+				this.loaded()
 			});
 	
 		},
 
 		depositCode(){
-
+			if (this.firstLoading==false) {
+				this.isLoading()
+			};
 
 			this.$http.get('account/checkcode?code=' + this.intactdata.wallet.merchantCode).then(function(result){
 				console.log(result.data.status)
 				this.intactdata.wallet.merchantCode
 				if (result.data.status=='empty') {
+					this.loaded()
 					alert('Merchant Code not Found!')
 					return false;
 				} else if(result.data.status=='consumed'){
+					this.loaded()
 					alert('Merchant Code has been used!')
 					return false;
 				}else{
+					this.loaded()
 					alert('Merchant Code Found!')
 
 					this.intactdata.wallet.deposit = result.data.amount
@@ -568,33 +683,46 @@ module.exports = {
 			});
 
 		},
+		
+		profileEdit(){
+			this.profileForm.status=true
+			this.profileForm.edit = 1
+		},
 
 		profileUpdate(){
+			if (this.firstLoading==false) {
+				this.isLoading()
+			};
 
 			this.$http.post('account/profileupdate', this.intactdata.userProfile, function(data, status, request) {
 				if (data=='success') {
 					this.updateProfile()
 				};
 				this.profileForm.edit = 0
+				this.profileForm.status=false
+				this.loaded()
 			})
 
 		},
 
 
 		sendConfirmationSms(){
+			if (this.firstLoading==false) {
+				this.isLoading()
+			};
 
 			this.$http.get('account/confirm').then(function(result){
 				console.log(result.data)
 				if (result.data=="success") {
-
+					this.loaded()
 					alert('Validation Code has been sent.')
 
 				} else if(result.data==24) {
-
+					this.loaded()
 					alert('Invalid Number. Please enter complete phone number with country code')
 
 				} else{
-
+					this.loaded()
 					alert('Error on sending validation code')
 
 				}
@@ -605,8 +733,12 @@ module.exports = {
 		},
 
 		confirmPhoneNumber(){
+			if (this.firstLoading==false) {
+				this.isLoading()
+			};
 
 			if (this.intactdata.wallet.validation_code=='') {
+				this.loaded()
 				alert('validation code cannot be blank');
 				return false;
 			};
@@ -614,7 +746,7 @@ module.exports = {
 			this.$http.get('account/validate?validation_code='+ this.intactdata.wallet.validation_code).then(function(result){
 
 				if (result.data=='') {
-
+					this.loaded()
 					alert('Validation Code Not Existing!')
 
 				}else{
@@ -622,10 +754,11 @@ module.exports = {
 					if (result.data.is_deleted==0) {
 
 						this.updateProfile()
+						this.loaded()
 						alert('Phone number validated')
 
 					}else{
-
+						this.loaded()
 						alert('Validation Code expired!')
 
 					};
@@ -636,16 +769,18 @@ module.exports = {
 		},
 
 		requestOTP(){
-			
+			if (this.firstLoading==false) {
+				this.isLoading()
+			};
 
 			this.$http.get('account/requestotp').then(function(result){
 
 				if (result.data=='success') {
-
+					this.loaded()
 					alert('OTP Code has been sent.')
 
 				}else{
-
+					this.loaded()
 					alert('Error on sending OTP code')
 
 				}
@@ -653,6 +788,13 @@ module.exports = {
 			});
 		},
 
+		isLoading(){
+			$('#loading').removeClass('loaded');
+		},
+
+		loaded(){
+			$('#loading').addClass('loaded');
+		},
 
 		moment: function (date) {
 	      return moment(date);
@@ -672,10 +814,9 @@ module.exports = {
 	    },
 
      	monitorWithdrawal: function (){
-     		
      		return this.intactdata.wallet.withdrawalLimit - this.intactdata.wallet.withdrawal
-     		
      	}
+
 	}
 
 };
